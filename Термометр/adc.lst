@@ -1,0 +1,91 @@
+   1               		.file	"adc.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	adc_measurement
+  18               	adc_measurement:
+  19               	.LFB2:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 589A      		sbi 43-32,0
+  25               	.LM3:
+  26 0002 87EC      		ldi r24,lo8(-57)
+  27 0004 8093 7A00 		sts 122,r24
+  28               	.L2:
+  29               	.LM4:
+  30 0008 8091 7A00 		lds r24,122
+  31 000c 84FF      		sbrs r24,4
+  32 000e 00C0      		rjmp .L2
+  33               	.LM5:
+  34 0010 1092 7A00 		sts 122,__zero_reg__
+  35               	.LM6:
+  36 0014 5898      		cbi 43-32,0
+  37               	.LM7:
+  38 0016 2091 7800 		lds r18,120
+  39 001a 30E0      		ldi r19,lo8(0)
+  40               	.LM8:
+  41 001c 4091 7900 		lds r20,121
+  42 0020 942F      		mov r25,r20
+  43 0022 80E0      		ldi r24,lo8(0)
+  44 0024 282B      		or r18,r24
+  45 0026 392B      		or r19,r25
+  46               	.LM9:
+  47 0028 C901      		movw r24,r18
+  48               	/* epilogue start */
+  49 002a 0895      		ret
+  50               	.LFE2:
+  52               	.global	ADC_to_battery_percent
+  54               	ADC_to_battery_percent:
+  55               	.LFB3:
+  56               	.LM10:
+  57               	.LVL0:
+  58               	/* prologue: function */
+  59               	/* frame size = 0 */
+  60               	.LM11:
+  61 002c 833E      		cpi r24,227
+  62 002e 9105      		cpc r25,__zero_reg__
+  63 0030 00F4      		brsh .L6
+  64 0032 80E0      		ldi r24,lo8(0)
+  65               	.LVL1:
+  66 0034 0895      		ret
+  67               	.LVL2:
+  68               	.L6:
+  69               	.LM12:
+  70 0036 9C01      		movw r18,r24
+  71 0038 225E      		subi r18,lo8(-(-226))
+  72 003a 3040      		sbci r19,hi8(-(-226))
+  73               	.LVL3:
+  74               	.LM13:
+  75 003c 2232      		cpi r18,34
+  76 003e 3105      		cpc r19,__zero_reg__
+  77 0040 00F0      		brlo .L8
+  78 0042 84E6      		ldi r24,lo8(100)
+  79 0044 0895      		ret
+  80               	.L8:
+  81               	.LM14:
+  82 0046 C901      		movw r24,r18
+  83 0048 880F      		lsl r24
+  84 004a 991F      		rol r25
+  85 004c 820F      		add r24,r18
+  86               	.LM15:
+  87 004e 0895      		ret
+  88               	.LFE3:
+ 122               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 adc.c
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccHxeyBn.s:2      *ABS*:0000003f __SREG__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccHxeyBn.s:3      *ABS*:0000003e __SP_H__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccHxeyBn.s:4      *ABS*:0000003d __SP_L__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccHxeyBn.s:5      *ABS*:00000034 __CCP__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccHxeyBn.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccHxeyBn.s:7      *ABS*:00000001 __zero_reg__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccHxeyBn.s:18     .text:00000000 adc_measurement
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccHxeyBn.s:54     .text:0000002c ADC_to_battery_percent
+
+NO UNDEFINED SYMBOLS

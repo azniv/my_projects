@@ -1,0 +1,1021 @@
+   1               		.file	"therm_ds18b20.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	therm_write_bit
+  18               	therm_write_bit:
+  19               	.LFB9:
+  20               	.LM1:
+  21               	.LVL0:
+  22               	/* prologue: function */
+  23               	/* frame size = 0 */
+  24               	.LM2:
+  25 0000 9BB1      		in r25,43-32
+  26 0002 2091 0000 		lds r18,THERM_DQ
+  27 0006 41E0      		ldi r20,lo8(1)
+  28 0008 50E0      		ldi r21,hi8(1)
+  29 000a BA01      		movw r22,r20
+  30 000c 00C0      		rjmp 2f
+  31 000e 660F      	1:	lsl r22
+  32 0010 771F      		rol r23
+  33 0012 2A95      	2:	dec r18
+  34 0014 02F4      		brpl 1b
+  35 0016 9B01      		movw r18,r22
+  36 0018 2095      		com r18
+  37 001a 2923      		and r18,r25
+  38 001c 2BB9      		out 43-32,r18
+  39               	.LM3:
+  40 001e 9AB1      		in r25,42-32
+  41 0020 2091 0000 		lds r18,THERM_DQ
+  42 0024 BA01      		movw r22,r20
+  43 0026 00C0      		rjmp 2f
+  44 0028 660F      	1:	lsl r22
+  45 002a 771F      		rol r23
+  46 002c 2A95      	2:	dec r18
+  47 002e 02F4      		brpl 1b
+  48 0030 962B      		or r25,r22
+  49 0032 9AB9      		out 42-32,r25
+  50               	.LBB133:
+  51               	.LBB134:
+  52               	.LBB135:
+  53               	.LBB136:
+  54               	.LM4:
+  55 0034 94E0      		ldi r25,lo8(4)
+  56               	.LVL1:
+  57               	/* #APP */
+  58               	 ;  83 "c:/winavr/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  59 0036 9A95      		1: dec r25
+  60 0038 01F4      		brne 1b
+  61               	 ;  0 "" 2
+  62               	/* #NOAPP */
+  63               	.LBE136:
+  64               	.LBE135:
+  65               	.LBE134:
+  66               	.LBE133:
+  67               	.LM5:
+  68 003a 8823      		tst r24
+  69 003c 01F0      		breq .L2
+  70 003e 9AB1      		in r25,42-32
+  71               	.LVL2:
+  72 0040 8091 0000 		lds r24,THERM_DQ
+  73               	.LVL3:
+  74 0044 00C0      		rjmp 2f
+  75 0046 440F      	1:	lsl r20
+  76 0048 551F      		rol r21
+  77 004a 8A95      	2:	dec r24
+  78 004c 02F4      		brpl 1b
+  79 004e 842F      		mov r24,r20
+  80 0050 8095      		com r24
+  81 0052 8923      		and r24,r25
+  82 0054 8AB9      		out 42-32,r24
+  83               	.LVL4:
+  84               	.L2:
+  85               	.LBB137:
+  86               	.LBB138:
+  87               	.LBB139:
+  88               	.LBB140:
+  89               	.LM6:
+  90 0056 80EF      		ldi r24,lo8(-16)
+  91               	.LVL5:
+  92               	/* #APP */
+  93               	 ;  83 "c:/winavr/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  94 0058 8A95      		1: dec r24
+  95 005a 01F4      		brne 1b
+  96               	 ;  0 "" 2
+  97               	/* #NOAPP */
+  98               	.LBE140:
+  99               	.LBE139:
+ 100               	.LBE138:
+ 101               	.LBE137:
+ 102               	.LM7:
+ 103 005c 3AB1      		in r19,42-32
+ 104 005e 2091 0000 		lds r18,THERM_DQ
+ 105 0062 81E0      		ldi r24,lo8(1)
+ 106 0064 90E0      		ldi r25,hi8(1)
+ 107               	.LVL6:
+ 108 0066 00C0      		rjmp 2f
+ 109 0068 880F      	1:	lsl r24
+ 110 006a 991F      		rol r25
+ 111 006c 2A95      	2:	dec r18
+ 112 006e 02F4      		brpl 1b
+ 113 0070 8095      		com r24
+ 114 0072 8323      		and r24,r19
+ 115 0074 8AB9      		out 42-32,r24
+ 116               	/* epilogue start */
+ 117               	.LM8:
+ 118 0076 0895      		ret
+ 119               	.LFE9:
+ 121               	.global	therm_read_bit
+ 123               	therm_read_bit:
+ 124               	.LFB10:
+ 125               	.LM9:
+ 126               	/* prologue: function */
+ 127               	/* frame size = 0 */
+ 128               	.LM10:
+ 129 0078 4BB1      		in r20,43-32
+ 130 007a 8091 0000 		lds r24,THERM_DQ
+ 131 007e 21E0      		ldi r18,lo8(1)
+ 132 0080 30E0      		ldi r19,hi8(1)
+ 133 0082 B901      		movw r22,r18
+ 134 0084 00C0      		rjmp 2f
+ 135 0086 660F      	1:	lsl r22
+ 136 0088 771F      		rol r23
+ 137 008a 8A95      	2:	dec r24
+ 138 008c 02F4      		brpl 1b
+ 139 008e CB01      		movw r24,r22
+ 140 0090 8095      		com r24
+ 141 0092 8423      		and r24,r20
+ 142 0094 8BB9      		out 43-32,r24
+ 143               	.LM11:
+ 144 0096 4AB1      		in r20,42-32
+ 145 0098 8091 0000 		lds r24,THERM_DQ
+ 146 009c B901      		movw r22,r18
+ 147 009e 00C0      		rjmp 2f
+ 148 00a0 660F      	1:	lsl r22
+ 149 00a2 771F      		rol r23
+ 150 00a4 8A95      	2:	dec r24
+ 151 00a6 02F4      		brpl 1b
+ 152 00a8 462B      		or r20,r22
+ 153 00aa 4AB9      		out 42-32,r20
+ 154               	.LBB141:
+ 155               	.LBB142:
+ 156               	.LBB143:
+ 157               	.LBB144:
+ 158               	.LM12:
+ 159 00ac 84E0      		ldi r24,lo8(4)
+ 160               	.LVL7:
+ 161               	/* #APP */
+ 162               	 ;  83 "c:/winavr/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 163 00ae 8A95      		1: dec r24
+ 164 00b0 01F4      		brne 1b
+ 165               	 ;  0 "" 2
+ 166               	/* #NOAPP */
+ 167               	.LBE144:
+ 168               	.LBE143:
+ 169               	.LBE142:
+ 170               	.LBE141:
+ 171               	.LM13:
+ 172 00b2 9AB1      		in r25,42-32
+ 173 00b4 8091 0000 		lds r24,THERM_DQ
+ 174               	.LVL8:
+ 175 00b8 00C0      		rjmp 2f
+ 176 00ba 220F      	1:	lsl r18
+ 177 00bc 331F      		rol r19
+ 178 00be 8A95      	2:	dec r24
+ 179 00c0 02F4      		brpl 1b
+ 180 00c2 2095      		com r18
+ 181 00c4 2923      		and r18,r25
+ 182 00c6 2AB9      		out 42-32,r18
+ 183               	.LBB145:
+ 184               	.LBB146:
+ 185               	.LBB147:
+ 186               	.LBB148:
+ 187               	.LM14:
+ 188 00c8 88E3      		ldi r24,lo8(56)
+ 189               	.LVL9:
+ 190               	/* #APP */
+ 191               	 ;  83 "c:/winavr/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 192 00ca 8A95      		1: dec r24
+ 193 00cc 01F4      		brne 1b
+ 194               	 ;  0 "" 2
+ 195               	/* #NOAPP */
+ 196               	.LBE148:
+ 197               	.LBE147:
+ 198               	.LBE146:
+ 199               	.LBE145:
+ 200               	.LM15:
+ 201 00ce 89B1      		in r24,41-32
+ 202               	.LVL10:
+ 203 00d0 2091 0000 		lds r18,THERM_DQ
+ 204               	.LBB149:
+ 205               	.LBB150:
+ 206               	.LBB151:
+ 207               	.LBB152:
+ 208               	.LM16:
+ 209 00d4 94EB      		ldi r25,lo8(-76)
+ 210               	.LVL11:
+ 211               	/* #APP */
+ 212               	 ;  83 "c:/winavr/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 213 00d6 9A95      		1: dec r25
+ 214 00d8 01F4      		brne 1b
+ 215               	 ;  0 "" 2
+ 216               	/* #NOAPP */
+ 217 00da 90E0      		ldi r25,lo8(0)
+ 218               	.LVL12:
+ 219 00dc 00C0      		rjmp 2f
+ 220 00de 9595      	1:	asr r25
+ 221 00e0 8795      		ror r24
+ 222 00e2 2A95      	2:	dec r18
+ 223 00e4 02F4      		brpl 1b
+ 224               	.LBE152:
+ 225               	.LBE151:
+ 226               	.LBE150:
+ 227               	.LBE149:
+ 228               	.LM17:
+ 229 00e6 8170      		andi r24,lo8(1)
+ 230               	/* epilogue start */
+ 231 00e8 0895      		ret
+ 232               	.LFE10:
+ 234               	.global	other_function1
+ 236               	other_function1:
+ 237               	.LFB7:
+ 238               	.LM18:
+ 239               	/* prologue: function */
+ 240               	/* frame size = 0 */
+ 241               	.LM19:
+ 242 00ea 00D0      		rcall usbPoll
+ 243               	/* epilogue start */
+ 244               	.LM20:
+ 245 00ec 0895      		ret
+ 246               	.LFE7:
+ 248               	.global	therm_write_byte
+ 250               	therm_write_byte:
+ 251               	.LFB12:
+ 252               	.LM21:
+ 253               	.LVL13:
+ 254 00ee 0F93      		push r16
+ 255 00f0 1F93      		push r17
+ 256               	/* prologue: function */
+ 257               	/* frame size = 0 */
+ 258 00f2 082F      		mov r16,r24
+ 259               	.LM22:
+ 260 00f4 18E0      		ldi r17,lo8(8)
+ 261               	.LVL14:
+ 262 00f6 00C0      		rjmp .L9
+ 263               	.LVL15:
+ 264               	.L10:
+ 265               	.LM23:
+ 266 00f8 802F      		mov r24,r16
+ 267 00fa 8170      		andi r24,lo8(1)
+ 268 00fc 00D0      		rcall therm_write_bit
+ 269               	.LM24:
+ 270 00fe 0695      		lsr r16
+ 271               	.LBB153:
+ 272               	.LBB154:
+ 273               	.LM25:
+ 274 0100 00D0      		rcall usbPoll
+ 275               	.LVL16:
+ 276               	.L9:
+ 277               	.LBE154:
+ 278               	.LBE153:
+ 279               	.LM26:
+ 280 0102 1150      		subi r17,1
+ 281 0104 00F4      		brcc .L10
+ 282               	/* epilogue start */
+ 283               	.LM27:
+ 284 0106 1F91      		pop r17
+ 285               	.LVL17:
+ 286 0108 0F91      		pop r16
+ 287               	.LVL18:
+ 288 010a 0895      		ret
+ 289               	.LFE12:
+ 291               	.global	search_ROM
+ 293               	search_ROM:
+ 294               	.LFB14:
+ 295               	.LM28:
+ 296 010c FF92      		push r15
+ 297 010e 0F93      		push r16
+ 298 0110 1F93      		push r17
+ 299               	/* prologue: function */
+ 300               	/* frame size = 0 */
+ 301               	.LM29:
+ 302 0112 80EF      		ldi r24,lo8(-16)
+ 303 0114 00D0      		rcall therm_write_byte
+ 304 0116 FF24      		clr r15
+ 305               	.LVL19:
+ 306 0118 00C0      		rjmp .L13
+ 307               	.LVL20:
+ 308               	.L14:
+ 309               	.LBB155:
+ 310               	.LBB156:
+ 311               	.LM30:
+ 312 011a 00D0      		rcall therm_read_bit
+ 313 011c 182F      		mov r17,r24
+ 314               	.LM31:
+ 315 011e 00D0      		rcall therm_read_bit
+ 316               	.LM32:
+ 317 0120 812F      		mov r24,r17
+ 318 0122 00D0      		rcall therm_write_bit
+ 319               	.LM33:
+ 320 0124 0F5F      		subi r16,lo8(-(1))
+ 321 0126 0830      		cpi r16,lo8(8)
+ 322 0128 01F4      		brne .L14
+ 323               	.LBE156:
+ 324               	.LM34:
+ 325 012a F394      		inc r15
+ 326 012c 88E0      		ldi r24,lo8(8)
+ 327 012e F816      		cp r15,r24
+ 328 0130 01F0      		breq .L15
+ 329               	.L13:
+ 330 0132 00E0      		ldi r16,lo8(0)
+ 331 0134 00C0      		rjmp .L14
+ 332               	.L15:
+ 333 0136 80E4      		ldi r24,lo8(-25536)
+ 334 0138 9CE9      		ldi r25,hi8(-25536)
+ 335               	.LVL21:
+ 336               	.LBE155:
+ 337               	.LBB157:
+ 338               	.LBB158:
+ 339               	.LBB159:
+ 340               	.LBB160:
+ 341               	.LM35:
+ 342 013a 2CE2      		ldi r18,lo8(300)
+ 343 013c 31E0      		ldi r19,hi8(300)
+ 344               	.L16:
+ 345 013e F901      		movw r30,r18
+ 346               	.LVL22:
+ 347               	/* #APP */
+ 348               	 ;  105 "c:/winavr/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 349 0140 3197      		1: sbiw r30,1
+ 350 0142 01F4      		brne 1b
+ 351               	 ;  0 "" 2
+ 352               	/* #NOAPP */
+ 353               	.LBE160:
+ 354               	.LBE159:
+ 355               	.LM36:
+ 356 0144 0197      		sbiw r24,1
+ 357               	.LM37:
+ 358 0146 01F4      		brne .L16
+ 359               	/* epilogue start */
+ 360               	.LBE158:
+ 361               	.LBE157:
+ 362               	.LM38:
+ 363 0148 1F91      		pop r17
+ 364               	.LVL23:
+ 365 014a 0F91      		pop r16
+ 366               	.LVL24:
+ 367 014c FF90      		pop r15
+ 368               	.LVL25:
+ 369 014e 0895      		ret
+ 370               	.LFE14:
+ 372               	.global	therm_read_byte
+ 374               	therm_read_byte:
+ 375               	.LFB11:
+ 376               	.LM39:
+ 377 0150 0F93      		push r16
+ 378 0152 1F93      		push r17
+ 379               	/* prologue: function */
+ 380               	/* frame size = 0 */
+ 381               	.LM40:
+ 382 0154 08E0      		ldi r16,lo8(8)
+ 383               	.LVL26:
+ 384 0156 10E0      		ldi r17,lo8(0)
+ 385               	.LVL27:
+ 386 0158 00C0      		rjmp .L21
+ 387               	.L22:
+ 388               	.LM41:
+ 389 015a 00D0      		rcall therm_read_bit
+ 390 015c 912F      		mov r25,r17
+ 391 015e 9695      		lsr r25
+ 392 0160 182F      		mov r17,r24
+ 393 0162 1795      		ror r17
+ 394 0164 1127      		clr r17
+ 395 0166 1795      		ror r17
+ 396 0168 192B      		or r17,r25
+ 397               	.LBB161:
+ 398               	.LBB162:
+ 399               	.LM42:
+ 400 016a 00D0      		rcall usbPoll
+ 401               	.L21:
+ 402               	.LBE162:
+ 403               	.LBE161:
+ 404               	.LM43:
+ 405 016c 0150      		subi r16,1
+ 406 016e 00F4      		brcc .L22
+ 407               	.LM44:
+ 408 0170 812F      		mov r24,r17
+ 409               	/* epilogue start */
+ 410 0172 1F91      		pop r17
+ 411               	.LVL28:
+ 412 0174 0F91      		pop r16
+ 413               	.LVL29:
+ 414 0176 0895      		ret
+ 415               	.LFE11:
+ 417               	.global	therm_reset
+ 419               	therm_reset:
+ 420               	.LFB8:
+ 421               	.LM45:
+ 422 0178 EF92      		push r14
+ 423 017a FF92      		push r15
+ 424 017c 0F93      		push r16
+ 425 017e 1F93      		push r17
+ 426               	/* prologue: function */
+ 427               	/* frame size = 0 */
+ 428               	.LM46:
+ 429 0180 2BB1      		in r18,43-32
+ 430 0182 8091 0000 		lds r24,THERM_DQ
+ 431 0186 01E0      		ldi r16,lo8(1)
+ 432 0188 10E0      		ldi r17,hi8(1)
+ 433 018a A801      		movw r20,r16
+ 434 018c 00C0      		rjmp 2f
+ 435 018e 440F      	1:	lsl r20
+ 436 0190 551F      		rol r21
+ 437 0192 8A95      	2:	dec r24
+ 438 0194 02F4      		brpl 1b
+ 439 0196 CA01      		movw r24,r20
+ 440 0198 8095      		com r24
+ 441 019a 8223      		and r24,r18
+ 442 019c 8BB9      		out 43-32,r24
+ 443               	.LM47:
+ 444 019e 2AB1      		in r18,42-32
+ 445 01a0 8091 0000 		lds r24,THERM_DQ
+ 446 01a4 A801      		movw r20,r16
+ 447 01a6 00C0      		rjmp 2f
+ 448 01a8 440F      	1:	lsl r20
+ 449 01aa 551F      		rol r21
+ 450 01ac 8A95      	2:	dec r24
+ 451 01ae 02F4      		brpl 1b
+ 452 01b0 242B      		or r18,r20
+ 453 01b2 2AB9      		out 42-32,r18
+ 454               	.LBB163:
+ 455               	.LBB164:
+ 456               	.LM48:
+ 457 01b4 00D0      		rcall usbPoll
+ 458               	.LBE164:
+ 459               	.LBE163:
+ 460               	.LBB165:
+ 461               	.LBB166:
+ 462               	.LBB167:
+ 463               	.LBB168:
+ 464               	.LBB169:
+ 465               	.LBB170:
+ 466               	.LM49:
+ 467 01b6 80EA      		ldi r24,lo8(1440)
+ 468 01b8 95E0      		ldi r25,hi8(1440)
+ 469               	.LVL30:
+ 470               	/* #APP */
+ 471               	 ;  105 "c:/winavr/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 472 01ba 0197      		1: sbiw r24,1
+ 473 01bc 01F4      		brne 1b
+ 474               	 ;  0 "" 2
+ 475               	/* #NOAPP */
+ 476               	.LBE170:
+ 477               	.LBE169:
+ 478               	.LBE168:
+ 479               	.LBE167:
+ 480               	.LBE166:
+ 481               	.LBE165:
+ 482               	.LBB171:
+ 483               	.LBB172:
+ 484               	.LM50:
+ 485 01be 00D0      		rcall usbPoll
+ 486               	.LVL31:
+ 487               	.LBE172:
+ 488               	.LBE171:
+ 489               	.LM51:
+ 490 01c0 2AB1      		in r18,42-32
+ 491 01c2 8091 0000 		lds r24,THERM_DQ
+ 492 01c6 A801      		movw r20,r16
+ 493 01c8 00C0      		rjmp 2f
+ 494 01ca 440F      	1:	lsl r20
+ 495 01cc 551F      		rol r21
+ 496 01ce 8A95      	2:	dec r24
+ 497 01d0 02F4      		brpl 1b
+ 498 01d2 CA01      		movw r24,r20
+ 499 01d4 8095      		com r24
+ 500 01d6 8223      		and r24,r18
+ 501 01d8 8AB9      		out 42-32,r24
+ 502               	.LBB173:
+ 503               	.LBB174:
+ 504               	.LBB175:
+ 505               	.LBB176:
+ 506               	.LM52:
+ 507 01da 80EF      		ldi r24,lo8(-16)
+ 508               	.LVL32:
+ 509               	/* #APP */
+ 510               	 ;  83 "c:/winavr/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 511 01dc 8A95      		1: dec r24
+ 512 01de 01F4      		brne 1b
+ 513               	 ;  0 "" 2
+ 514               	/* #NOAPP */
+ 515               	.LBE176:
+ 516               	.LBE175:
+ 517               	.LBE174:
+ 518               	.LBE173:
+ 519               	.LM53:
+ 520 01e0 E9B0      		in r14,41-32
+ 521 01e2 F090 0000 		lds r15,THERM_DQ
+ 522               	.LBB177:
+ 523               	.LBB178:
+ 524               	.LBB179:
+ 525               	.LBB180:
+ 526               	.LBB181:
+ 527               	.LBB182:
+ 528               	.LM54:
+ 529 01e6 8CEE      		ldi r24,lo8(1260)
+ 530 01e8 94E0      		ldi r25,hi8(1260)
+ 531               	.LVL33:
+ 532               	/* #APP */
+ 533               	 ;  105 "c:/winavr/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 534 01ea 0197      		1: sbiw r24,1
+ 535 01ec 01F4      		brne 1b
+ 536               	 ;  0 "" 2
+ 537               	/* #NOAPP */
+ 538               	.LBE182:
+ 539               	.LBE181:
+ 540               	.LBE180:
+ 541               	.LBE179:
+ 542               	.LBE178:
+ 543               	.LBE177:
+ 544               	.LBB183:
+ 545               	.LBB184:
+ 546               	.LM55:
+ 547 01ee 00D0      		rcall usbPoll
+ 548               	.LVL34:
+ 549 01f0 00C0      		rjmp 2f
+ 550 01f2 000F      	1:	lsl r16
+ 551 01f4 111F      		rol r17
+ 552 01f6 FA94      	2:	dec r15
+ 553 01f8 02F4      		brpl 1b
+ 554               	.LBE184:
+ 555               	.LBE183:
+ 556               	.LM56:
+ 557 01fa 8E2D      		mov r24,r14
+ 558 01fc 8023      		and r24,r16
+ 559               	/* epilogue start */
+ 560 01fe 1F91      		pop r17
+ 561 0200 0F91      		pop r16
+ 562 0202 FF90      		pop r15
+ 563 0204 EF90      		pop r14
+ 564 0206 0895      		ret
+ 565               	.LFE8:
+ 567               	.global	therm_read_temperature
+ 569               	therm_read_temperature:
+ 570               	.LFB13:
+ 571               	.LM57:
+ 572               	.LVL35:
+ 573 0208 AF92      		push r10
+ 574 020a BF92      		push r11
+ 575 020c CF92      		push r12
+ 576 020e DF92      		push r13
+ 577 0210 EF92      		push r14
+ 578 0212 FF92      		push r15
+ 579 0214 0F93      		push r16
+ 580 0216 1F93      		push r17
+ 581 0218 DF93      		push r29
+ 582 021a CF93      		push r28
+ 583 021c CDB7      		in r28,__SP_L__
+ 584 021e DEB7      		in r29,__SP_H__
+ 585 0220 2897      		sbiw r28,8
+ 586 0222 0FB6      		in __tmp_reg__,__SREG__
+ 587 0224 F894      		cli
+ 588 0226 DEBF      		out __SP_H__,r29
+ 589 0228 0FBE      		out __SREG__,__tmp_reg__
+ 590 022a CDBF      		out __SP_L__,r28
+ 591               	/* prologue: function */
+ 592               	/* frame size = 8 */
+ 593 022c 5C01      		movw r10,r24
+ 594               	.LM58:
+ 595 022e 6093 0000 		sts THERM_DQ,r22
+ 596               	.LM59:
+ 597 0232 00D0      		rcall therm_reset
+ 598               	.LVL36:
+ 599               	.LM60:
+ 600 0234 8CEC      		ldi r24,lo8(-52)
+ 601 0236 00D0      		rcall therm_write_byte
+ 602               	.LM61:
+ 603 0238 84E4      		ldi r24,lo8(68)
+ 604 023a 00D0      		rcall therm_write_byte
+ 605 023c 00C0      		rjmp .L27
+ 606               	.L28:
+ 607               	.LBB185:
+ 608               	.LBB186:
+ 609               	.LM62:
+ 610 023e 00D0      		rcall usbPoll
+ 611               	.L27:
+ 612               	.LBE186:
+ 613               	.LBE185:
+ 614               	.LM63:
+ 615 0240 00D0      		rcall therm_read_bit
+ 616 0242 8823      		tst r24
+ 617 0244 01F0      		breq .L28
+ 618               	.LM64:
+ 619 0246 00D0      		rcall therm_reset
+ 620               	.LBB187:
+ 621               	.LBB188:
+ 622               	.LM65:
+ 623 0248 00D0      		rcall usbPoll
+ 624               	.LBE188:
+ 625               	.LBE187:
+ 626               	.LM66:
+ 627 024a 8CEC      		ldi r24,lo8(-52)
+ 628 024c 00D0      		rcall therm_write_byte
+ 629               	.LM67:
+ 630 024e 8EEB      		ldi r24,lo8(-66)
+ 631 0250 00D0      		rcall therm_write_byte
+ 632               	.LM68:
+ 633 0252 00D0      		rcall therm_read_byte
+ 634 0254 F82E      		mov r15,r24
+ 635               	.LBB189:
+ 636               	.LBB190:
+ 637               	.LM69:
+ 638 0256 00D0      		rcall usbPoll
+ 639               	.LBE190:
+ 640               	.LBE189:
+ 641               	.LM70:
+ 642 0258 00D0      		rcall therm_read_byte
+ 643 025a 082F      		mov r16,r24
+ 644               	.LBB191:
+ 645               	.LBB192:
+ 646               	.LM71:
+ 647 025c 00D0      		rcall usbPoll
+ 648               	.LBE192:
+ 649               	.LBE191:
+ 650               	.LM72:
+ 651 025e 00D0      		rcall therm_reset
+ 652               	.LBB193:
+ 653               	.LBB194:
+ 654               	.LM73:
+ 655 0260 00D0      		rcall usbPoll
+ 656               	.LBE194:
+ 657               	.LBE193:
+ 658               	.LM74:
+ 659 0262 EF2C      		mov r14,r15
+ 660               	.LVL37:
+ 661 0264 E294      		swap r14
+ 662 0266 6FE0      		ldi r22,lo8(15)
+ 663 0268 E622      		and r14,r22
+ 664               	.LM75:
+ 665 026a 802F      		mov r24,r16
+ 666 026c 90E0      		ldi r25,lo8(0)
+ 667 026e 8770      		andi r24,lo8(7)
+ 668 0270 9070      		andi r25,hi8(7)
+ 669 0272 54E0      		ldi r21,4
+ 670 0274 880F      	1:	lsl r24
+ 671 0276 991F      		rol r25
+ 672 0278 5A95      		dec r21
+ 673 027a 01F4      		brne 1b
+ 674 027c E82A      		or r14,r24
+ 675               	.LM76:
+ 676 027e 8F2D      		mov r24,r15
+ 677               	.LVL38:
+ 678 0280 90E0      		ldi r25,lo8(0)
+ 679               	.LVL39:
+ 680 0282 8F70      		andi r24,lo8(15)
+ 681 0284 9070      		andi r25,hi8(15)
+ 682               	.LVL40:
+ 683               	.LM77:
+ 684 0286 9C01      		movw r18,r24
+ 685 0288 220F      		lsl r18
+ 686 028a 331F      		rol r19
+ 687 028c 220F      		lsl r18
+ 688 028e 331F      		rol r19
+ 689 0290 280F      		add r18,r24
+ 690 0292 391F      		adc r19,r25
+ 691 0294 D22E      		mov r13,r18
+ 692               	.LVL41:
+ 693 0296 C32E      		mov r12,r19
+ 694               	.LVL42:
+ 695               	.LBB195:
+ 696               	.LBB196:
+ 697               	.LM78:
+ 698 0298 00D0      		rcall usbPoll
+ 699               	.LBE196:
+ 700               	.LBE195:
+ 701               	.LM79:
+ 702 029a 0C3F      		cpi r16,lo8(-4)
+ 703 029c 00F0      		brlo .L29
+ 704               	.LM80:
+ 705 029e 8FE7      		ldi r24,lo8(127)
+ 706 02a0 8E19      		sub r24,r14
+ 707 02a2 E82E      		mov r14,r24
+ 708               	.LM81:
+ 709 02a4 8DE2      		ldi r24,lo8(45)
+ 710 02a6 D501      		movw r26,r10
+ 711 02a8 1896      		adiw r26,8
+ 712 02aa 8C93      		st X,r24
+ 713 02ac 00C0      		rjmp .L30
+ 714               	.L29:
+ 715               	.LM82:
+ 716 02ae FF20      		tst r15
+ 717 02b0 01F4      		brne .L31
+ 718 02b2 0023      		tst r16
+ 719 02b4 01F4      		brne .L31
+ 720 02b6 80E2      		ldi r24,lo8(32)
+ 721 02b8 F501      		movw r30,r10
+ 722 02ba 8083      		st Z,r24
+ 723 02bc 00C0      		rjmp .L30
+ 724               	.L31:
+ 725 02be 8BE2      		ldi r24,lo8(43)
+ 726 02c0 D501      		movw r26,r10
+ 727 02c2 8C93      		st X,r24
+ 728               	.L30:
+ 729               	.LM83:
+ 730 02c4 FE01      		movw r30,r28
+ 731 02c6 3196      		adiw r30,1
+ 732 02c8 88E0      		ldi r24,lo8(8)
+ 733 02ca DF01      		movw r26,r30
+ 734 02cc 1D92      		st X+,__zero_reg__
+ 735 02ce 8A95      	        dec r24
+ 736 02d0 01F4      		brne .-6
+ 737               	.LM84:
+ 738 02d2 8E2D      		mov r24,r14
+ 739 02d4 6AE0      		ldi r22,lo8(10)
+ 740 02d6 00D0      		rcall __divmodqi4
+ 741 02d8 805D      		subi r24,lo8(-(48))
+ 742 02da F501      		movw r30,r10
+ 743 02dc 8183      		std Z+1,r24
+ 744               	.LM85:
+ 745 02de 8E2D      		mov r24,r14
+ 746 02e0 6AE0      		ldi r22,lo8(10)
+ 747 02e2 00D0      		rcall __divmodqi4
+ 748 02e4 905D      		subi r25,lo8(-(48))
+ 749 02e6 9283      		std Z+2,r25
+ 750               	.LM86:
+ 751 02e8 8EE2      		ldi r24,lo8(46)
+ 752 02ea 8383      		std Z+3,r24
+ 753               	.LM87:
+ 754 02ec 8D2D      		mov r24,r13
+ 755 02ee 9C2D      		mov r25,r12
+ 756 02f0 6AE0      		ldi r22,lo8(10)
+ 757 02f2 70E0      		ldi r23,hi8(10)
+ 758 02f4 00D0      		rcall __udivmodhi4
+ 759 02f6 605D      		subi r22,lo8(-(48))
+ 760 02f8 6483      		std Z+4,r22
+ 761               	.LM88:
+ 762 02fa 8D2D      		mov r24,r13
+ 763 02fc 9C2D      		mov r25,r12
+ 764 02fe 6AE0      		ldi r22,lo8(10)
+ 765 0300 70E0      		ldi r23,hi8(10)
+ 766 0302 00D0      		rcall __udivmodhi4
+ 767 0304 805D      		subi r24,lo8(-(48))
+ 768 0306 8583      		std Z+5,r24
+ 769               	.LBB197:
+ 770               	.LBB198:
+ 771               	.LM89:
+ 772 0308 00D0      		rcall usbPoll
+ 773               	.LBE198:
+ 774               	.LBE197:
+ 775               	.LM90:
+ 776 030a 00D0      		rcall therm_reset
+ 777               	.LM91:
+ 778 030c 80EF      		ldi r24,lo8(-16)
+ 779 030e 00D0      		rcall therm_write_byte
+ 780               	.LBB199:
+ 781               	.LBB200:
+ 782               	.LM92:
+ 783 0310 00D0      		rcall usbPoll
+ 784 0312 88E0      		ldi r24,lo8(8)
+ 785 0314 C82E      		mov r12,r24
+ 786 0316 D12C      		mov r13,__zero_reg__
+ 787               	.LVL43:
+ 788 0318 CC0E      		add r12,r28
+ 789 031a DD1E      		adc r13,r29
+ 790 031c 00C0      		rjmp .L32
+ 791               	.LVL44:
+ 792               	.L33:
+ 793               	.LBE200:
+ 794               	.LBE199:
+ 795               	.LBB201:
+ 796               	.LBB202:
+ 797               	.LM93:
+ 798 031e 00D0      		rcall therm_read_bit
+ 799 0320 082F      		mov r16,r24
+ 800               	.LVL45:
+ 801               	.LM94:
+ 802 0322 00D0      		rcall therm_read_bit
+ 803               	.LM95:
+ 804 0324 802F      		mov r24,r16
+ 805 0326 00D0      		rcall therm_write_bit
+ 806               	.LM96:
+ 807 0328 10E0      		ldi r17,lo8(0)
+ 808 032a 0E2C      		mov r0,r14
+ 809 032c 00C0      		rjmp 2f
+ 810 032e 000F      	1:	lsl r16
+ 811 0330 111F      		rol r17
+ 812 0332 0A94      	2:	dec r0
+ 813 0334 02F4      		brpl 1b
+ 814               	.LVL46:
+ 815 0336 005D      		subi r16,lo8(-(48))
+ 816               	.LVL47:
+ 817 0338 D601      		movw r26,r12
+ 818 033a 8C91      		ld r24,X
+ 819 033c 802B      		or r24,r16
+ 820 033e 8C93      		st X,r24
+ 821 0340 0894      		sec
+ 822 0342 E11C      		adc r14,__zero_reg__
+ 823 0344 F11C      		adc r15,__zero_reg__
+ 824               	.LM97:
+ 825 0346 B8E0      		ldi r27,lo8(8)
+ 826 0348 EB16      		cp r14,r27
+ 827 034a F104      		cpc r15,__zero_reg__
+ 828 034c 01F4      		brne .L33
+ 829 034e 0894      		sec
+ 830 0350 C108      		sbc r12,__zero_reg__
+ 831 0352 D108      		sbc r13,__zero_reg__
+ 832               	.LBE202:
+ 833               	.LM98:
+ 834 0354 CC16      		cp r12,r28
+ 835 0356 DD06      		cpc r13,r29
+ 836 0358 01F0      		breq .L34
+ 837               	.LVL48:
+ 838               	.L32:
+ 839 035a EE24      		clr r14
+ 840 035c FF24      		clr r15
+ 841               	.LVL49:
+ 842 035e 00C0      		rjmp .L33
+ 843               	.L34:
+ 844               	.LBE201:
+ 845               	.LM99:
+ 846 0360 2981      		ldd r18,Y+1
+ 847 0362 922F      		mov r25,r18
+ 848               	.LVL50:
+ 849 0364 9295      		swap r25
+ 850 0366 9F70      		andi r25,lo8(15)
+ 851               	.LM100:
+ 852 0368 9A30      		cpi r25,lo8(10)
+ 853 036a 00F0      		brlo .L35
+ 854 036c 87E3      		ldi r24,lo8(55)
+ 855 036e 00C0      		rjmp .L36
+ 856               	.L35:
+ 857 0370 80E3      		ldi r24,lo8(48)
+ 858               	.L36:
+ 859               	.LM101:
+ 860 0372 890F      		add r24,r25
+ 861 0374 F501      		movw r30,r10
+ 862 0376 8683      		std Z+6,r24
+ 863               	.LM102:
+ 864 0378 922F      		mov r25,r18
+ 865               	.LVL51:
+ 866 037a 9F70      		andi r25,lo8(15)
+ 867               	.LM103:
+ 868 037c 9A30      		cpi r25,lo8(10)
+ 869 037e 00F0      		brlo .L37
+ 870 0380 87E3      		ldi r24,lo8(55)
+ 871 0382 00C0      		rjmp .L38
+ 872               	.L37:
+ 873 0384 80E3      		ldi r24,lo8(48)
+ 874               	.L38:
+ 875               	.LM104:
+ 876 0386 890F      		add r24,r25
+ 877 0388 D501      		movw r26,r10
+ 878 038a 1796      		adiw r26,7
+ 879 038c 8C93      		st X,r24
+ 880               	.LM105:
+ 881 038e 2A81      		ldd r18,Y+2
+ 882 0390 922F      		mov r25,r18
+ 883               	.LVL52:
+ 884 0392 9295      		swap r25
+ 885 0394 9F70      		andi r25,lo8(15)
+ 886               	.LM106:
+ 887 0396 9A30      		cpi r25,lo8(10)
+ 888 0398 00F0      		brlo .L39
+ 889 039a 87E3      		ldi r24,lo8(55)
+ 890 039c 00C0      		rjmp .L40
+ 891               	.L39:
+ 892 039e 80E3      		ldi r24,lo8(48)
+ 893               	.L40:
+ 894               	.LM107:
+ 895 03a0 890F      		add r24,r25
+ 896 03a2 F501      		movw r30,r10
+ 897 03a4 8087      		std Z+8,r24
+ 898               	.LM108:
+ 899 03a6 922F      		mov r25,r18
+ 900               	.LVL53:
+ 901 03a8 9F70      		andi r25,lo8(15)
+ 902               	.LM109:
+ 903 03aa 9A30      		cpi r25,lo8(10)
+ 904 03ac 00F0      		brlo .L41
+ 905 03ae 87E3      		ldi r24,lo8(55)
+ 906 03b0 00C0      		rjmp .L42
+ 907               	.L41:
+ 908 03b2 80E3      		ldi r24,lo8(48)
+ 909               	.L42:
+ 910               	.LM110:
+ 911 03b4 890F      		add r24,r25
+ 912 03b6 D501      		movw r26,r10
+ 913 03b8 1996      		adiw r26,9
+ 914 03ba 8C93      		st X,r24
+ 915               	.LM111:
+ 916 03bc 2B81      		ldd r18,Y+3
+ 917 03be 922F      		mov r25,r18
+ 918               	.LVL54:
+ 919 03c0 9295      		swap r25
+ 920 03c2 9F70      		andi r25,lo8(15)
+ 921               	.LM112:
+ 922 03c4 9A30      		cpi r25,lo8(10)
+ 923 03c6 00F0      		brlo .L43
+ 924 03c8 87E3      		ldi r24,lo8(55)
+ 925 03ca 00C0      		rjmp .L44
+ 926               	.L43:
+ 927 03cc 80E3      		ldi r24,lo8(48)
+ 928               	.L44:
+ 929               	.LM113:
+ 930 03ce 890F      		add r24,r25
+ 931 03d0 F501      		movw r30,r10
+ 932 03d2 8287      		std Z+10,r24
+ 933               	.LM114:
+ 934 03d4 922F      		mov r25,r18
+ 935               	.LVL55:
+ 936 03d6 9F70      		andi r25,lo8(15)
+ 937               	.LM115:
+ 938 03d8 9A30      		cpi r25,lo8(10)
+ 939 03da 00F0      		brlo .L45
+ 940 03dc 87E3      		ldi r24,lo8(55)
+ 941 03de 00C0      		rjmp .L46
+ 942               	.L45:
+ 943 03e0 80E3      		ldi r24,lo8(48)
+ 944               	.L46:
+ 945               	.LM116:
+ 946 03e2 890F      		add r24,r25
+ 947 03e4 D501      		movw r26,r10
+ 948 03e6 1B96      		adiw r26,11
+ 949 03e8 8C93      		st X,r24
+ 950               	.LM117:
+ 951 03ea 2C81      		ldd r18,Y+4
+ 952 03ec 922F      		mov r25,r18
+ 953               	.LVL56:
+ 954 03ee 9295      		swap r25
+ 955 03f0 9F70      		andi r25,lo8(15)
+ 956               	.LM118:
+ 957 03f2 9A30      		cpi r25,lo8(10)
+ 958 03f4 00F0      		brlo .L47
+ 959 03f6 87E3      		ldi r24,lo8(55)
+ 960 03f8 00C0      		rjmp .L48
+ 961               	.L47:
+ 962 03fa 80E3      		ldi r24,lo8(48)
+ 963               	.L48:
+ 964               	.LM119:
+ 965 03fc 890F      		add r24,r25
+ 966 03fe F501      		movw r30,r10
+ 967 0400 8487      		std Z+12,r24
+ 968               	.LM120:
+ 969 0402 922F      		mov r25,r18
+ 970               	.LVL57:
+ 971 0404 9F70      		andi r25,lo8(15)
+ 972               	.LM121:
+ 973 0406 9A30      		cpi r25,lo8(10)
+ 974 0408 00F0      		brlo .L49
+ 975 040a 87E3      		ldi r24,lo8(55)
+ 976 040c 00C0      		rjmp .L50
+ 977               	.L49:
+ 978 040e 80E3      		ldi r24,lo8(48)
+ 979               	.L50:
+ 980               	.LM122:
+ 981 0410 890F      		add r24,r25
+ 982 0412 D501      		movw r26,r10
+ 983 0414 1D96      		adiw r26,13
+ 984 0416 8C93      		st X,r24
+ 985               	.LBB203:
+ 986               	.LBB204:
+ 987               	.LM123:
+ 988 0418 00D0      		rcall usbPoll
+ 989               	.LVL58:
+ 990               	/* epilogue start */
+ 991               	.LBE204:
+ 992               	.LBE203:
+ 993               	.LM124:
+ 994 041a 2896      		adiw r28,8
+ 995 041c 0FB6      		in __tmp_reg__,__SREG__
+ 996 041e F894      		cli
+ 997 0420 DEBF      		out __SP_H__,r29
+ 998 0422 0FBE      		out __SREG__,__tmp_reg__
+ 999 0424 CDBF      		out __SP_L__,r28
+ 1000 0426 CF91      		pop r28
+ 1001 0428 DF91      		pop r29
+ 1002 042a 1F91      		pop r17
+ 1003               	.LVL59:
+ 1004 042c 0F91      		pop r16
+ 1005 042e FF90      		pop r15
+ 1006 0430 EF90      		pop r14
+ 1007 0432 DF90      		pop r13
+ 1008               	.LVL60:
+ 1009 0434 CF90      		pop r12
+ 1010 0436 BF90      		pop r11
+ 1011 0438 AF90      		pop r10
+ 1012               	.LVL61:
+ 1013 043a 0895      		ret
+ 1014               	.LFE13:
+ 1016               	.global	THERM_DQ
+ 1017               	.global	THERM_DQ
+ 1018               		.section .bss
+ 1021               	THERM_DQ:
+ 1022 0000 00        		.skip 1,0
+ 1103               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 therm_ds18b20.c
+C:\DOCUME~1\LOCALA~1\LOCALS~1\Temp/ccNV5jFb.s:2      *ABS*:0000003f __SREG__
+C:\DOCUME~1\LOCALA~1\LOCALS~1\Temp/ccNV5jFb.s:3      *ABS*:0000003e __SP_H__
+C:\DOCUME~1\LOCALA~1\LOCALS~1\Temp/ccNV5jFb.s:4      *ABS*:0000003d __SP_L__
+C:\DOCUME~1\LOCALA~1\LOCALS~1\Temp/ccNV5jFb.s:5      *ABS*:00000034 __CCP__
+C:\DOCUME~1\LOCALA~1\LOCALS~1\Temp/ccNV5jFb.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOCUME~1\LOCALA~1\LOCALS~1\Temp/ccNV5jFb.s:7      *ABS*:00000001 __zero_reg__
+C:\DOCUME~1\LOCALA~1\LOCALS~1\Temp/ccNV5jFb.s:18     .text:00000000 therm_write_bit
+C:\DOCUME~1\LOCALA~1\LOCALS~1\Temp/ccNV5jFb.s:1021   .bss:00000000 THERM_DQ
+C:\DOCUME~1\LOCALA~1\LOCALS~1\Temp/ccNV5jFb.s:123    .text:00000078 therm_read_bit
+C:\DOCUME~1\LOCALA~1\LOCALS~1\Temp/ccNV5jFb.s:236    .text:000000ea other_function1
+C:\DOCUME~1\LOCALA~1\LOCALS~1\Temp/ccNV5jFb.s:250    .text:000000ee therm_write_byte
+C:\DOCUME~1\LOCALA~1\LOCALS~1\Temp/ccNV5jFb.s:293    .text:0000010c search_ROM
+C:\DOCUME~1\LOCALA~1\LOCALS~1\Temp/ccNV5jFb.s:374    .text:00000150 therm_read_byte
+C:\DOCUME~1\LOCALA~1\LOCALS~1\Temp/ccNV5jFb.s:419    .text:00000178 therm_reset
+C:\DOCUME~1\LOCALA~1\LOCALS~1\Temp/ccNV5jFb.s:569    .text:00000208 therm_read_temperature
+
+UNDEFINED SYMBOLS
+usbPoll
+__divmodqi4
+__udivmodhi4
+__do_clear_bss

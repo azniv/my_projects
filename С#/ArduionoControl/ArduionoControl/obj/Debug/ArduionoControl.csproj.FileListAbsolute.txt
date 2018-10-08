@@ -1,0 +1,15 @@
+C:\Users\formidable\Source\Repos\ArduionoControl\ArduionoControl\bin\Debug\ArduionoControl.exe.config
+C:\Users\formidable\Source\Repos\ArduionoControl\ArduionoControl\bin\Debug\ArduionoControl.exe
+C:\Users\formidable\Source\Repos\ArduionoControl\ArduionoControl\bin\Debug\ArduionoControl.pdb
+C:\Users\formidable\Source\Repos\ArduionoControl\ArduionoControl\obj\Debug\MainWindow.g.cs
+C:\Users\formidable\Source\Repos\ArduionoControl\ArduionoControl\obj\Debug\App.g.cs
+C:\Users\formidable\Source\Repos\ArduionoControl\ArduionoControl\obj\Debug\ArduionoControl_MarkupCompile.cache
+C:\Users\formidable\Source\Repos\ArduionoControl\ArduionoControl\obj\Debug\ArduionoControl_MarkupCompile.lref
+C:\Users\formidable\Source\Repos\ArduionoControl\ArduionoControl\obj\Debug\MainWindow.baml
+C:\Users\formidable\Source\Repos\ArduionoControl\ArduionoControl\obj\Debug\ArduionoControl.g.resources
+C:\Users\formidable\Source\Repos\ArduionoControl\ArduionoControl\obj\Debug\ArduionoControl.Properties.Resources.resources
+C:\Users\formidable\Source\Repos\ArduionoControl\ArduionoControl\obj\Debug\ArduionoControl.csproj.GenerateResource.Cache
+C:\Users\formidable\Source\Repos\ArduionoControl\ArduionoControl\obj\Debug\ArduionoControl.csproj.CoreCompileInputs.cache
+C:\Users\formidable\Source\Repos\ArduionoControl\ArduionoControl\obj\Debug\ArduionoControl.exe
+C:\Users\formidable\Source\Repos\ArduionoControl\ArduionoControl\obj\Debug\ArduionoControl.pdb
+C:\Users\formidable\Source\Repos\ArduionoControl\ArduionoControl\obj\Debug\ArduionoControl.csprojResolveAssemblyReference.cache

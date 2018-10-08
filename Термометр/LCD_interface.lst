@@ -1,0 +1,184 @@
+   1               		.file	"LCD_interface.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	enable
+  18               	enable:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 2D9A      		sbi 37-32,5
+  25               	.LBB34:
+  26               	.LBB35:
+  27               	.LBB36:
+  28               	.LBB37:
+  29               	.LM3:
+  30 0002 85E0      		ldi r24,lo8(5)
+  31               	.LVL0:
+  32               	/* #APP */
+  33               	 ;  83 "d:/winavr/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  34 0004 8A95      		1: dec r24
+  35 0006 01F4      		brne 1b
+  36               	 ;  0 "" 2
+  37               	/* #NOAPP */
+  38               	.LBE37:
+  39               	.LBE36:
+  40               	.LBE35:
+  41               	.LBE34:
+  42               	.LM4:
+  43 0008 2D98      		cbi 37-32,5
+  44               	.LBB38:
+  45               	.LBB39:
+  46               	.LBB40:
+  47               	.LBB41:
+  48               	.LM5:
+  49 000a 8AE6      		ldi r24,lo8(106)
+  50               	.LVL1:
+  51               	/* #APP */
+  52               	 ;  83 "d:/winavr/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  53 000c 8A95      		1: dec r24
+  54 000e 01F4      		brne 1b
+  55               	 ;  0 "" 2
+  56               	/* epilogue start */
+  57               	/* #NOAPP */
+  58               	.LBE41:
+  59               	.LBE40:
+  60               	.LBE39:
+  61               	.LBE38:
+  62               	.LM6:
+  63 0010 0895      		ret
+  64               	.LFE6:
+  66               	.global	entering_data_or_command
+  68               	entering_data_or_command:
+  69               	.LFB7:
+  70               	.LM7:
+  71               	.LVL2:
+  72 0012 1F93      		push r17
+  73               	/* prologue: function */
+  74               	/* frame size = 0 */
+  75 0014 182F      		mov r17,r24
+  76               	.LM8:
+  77 0016 85B1      		in r24,37-32
+  78               	.LVL3:
+  79 0018 807F      		andi r24,lo8(-16)
+  80 001a 85B9      		out 37-32,r24
+  81               	.LM9:
+  82 001c 95B1      		in r25,37-32
+  83 001e 812F      		mov r24,r17
+  84 0020 8295      		swap r24
+  85 0022 8F70      		andi r24,lo8(15)
+  86 0024 892B      		or r24,r25
+  87 0026 85B9      		out 37-32,r24
+  88               	.LM10:
+  89 0028 00D0      		rcall enable
+  90               	.LM11:
+  91 002a 85B1      		in r24,37-32
+  92 002c 807F      		andi r24,lo8(-16)
+  93 002e 85B9      		out 37-32,r24
+  94               	.LM12:
+  95 0030 85B1      		in r24,37-32
+  96 0032 1F70      		andi r17,lo8(15)
+  97 0034 812B      		or r24,r17
+  98 0036 85B9      		out 37-32,r24
+  99               	.LM13:
+ 100 0038 00D0      		rcall enable
+ 101               	/* epilogue start */
+ 102               	.LM14:
+ 103 003a 1F91      		pop r17
+ 104               	.LVL4:
+ 105 003c 0895      		ret
+ 106               	.LFE7:
+ 108               	.global	LCD_send_data
+ 110               	LCD_send_data:
+ 111               	.LFB8:
+ 112               	.LM15:
+ 113               	.LVL5:
+ 114               	/* prologue: function */
+ 115               	/* frame size = 0 */
+ 116               	.LM16:
+ 117 003e 2C9A      		sbi 37-32,4
+ 118               	.LM17:
+ 119 0040 00D0      		rcall entering_data_or_command
+ 120               	.LVL6:
+ 121               	/* epilogue start */
+ 122               	.LM18:
+ 123 0042 0895      		ret
+ 124               	.LFE8:
+ 126               	.global	LCD_send_cmd
+ 128               	LCD_send_cmd:
+ 129               	.LFB9:
+ 130               	.LM19:
+ 131               	.LVL7:
+ 132               	/* prologue: function */
+ 133               	/* frame size = 0 */
+ 134               	.LM20:
+ 135 0044 2C98      		cbi 37-32,4
+ 136               	.LM21:
+ 137 0046 00D0      		rcall entering_data_or_command
+ 138               	.LVL8:
+ 139               	/* epilogue start */
+ 140               	.LM22:
+ 141 0048 0895      		ret
+ 142               	.LFE9:
+ 144               	.global	LCD_putstring
+ 146               	LCD_putstring:
+ 147               	.LFB10:
+ 148               	.LM23:
+ 149               	.LVL9:
+ 150 004a 1F93      		push r17
+ 151 004c CF93      		push r28
+ 152 004e DF93      		push r29
+ 153               	/* prologue: function */
+ 154               	/* frame size = 0 */
+ 155 0050 EC01      		movw r28,r24
+ 156               	.LM24:
+ 157 0052 10E0      		ldi r17,lo8(0)
+ 158               	.LVL10:
+ 159 0054 00C0      		rjmp .L10
+ 160               	.LVL11:
+ 161               	.L11:
+ 162               	.LBB42:
+ 163               	.LM25:
+ 164 0056 00D0      		rcall LCD_send_data
+ 165               	.LM26:
+ 166 0058 1F5F      		subi r17,lo8(-(1))
+ 167               	.LVL12:
+ 168               	.L10:
+ 169 005a FE01      		movw r30,r28
+ 170 005c E10F      		add r30,r17
+ 171 005e F11D      		adc r31,__zero_reg__
+ 172 0060 8081      		ld r24,Z
+ 173 0062 8823      		tst r24
+ 174 0064 01F4      		brne .L11
+ 175               	/* epilogue start */
+ 176               	.LBE42:
+ 177               	.LM27:
+ 178 0066 DF91      		pop r29
+ 179 0068 CF91      		pop r28
+ 180               	.LVL13:
+ 181 006a 1F91      		pop r17
+ 182               	.LVL14:
+ 183 006c 0895      		ret
+ 184               	.LFE10:
+ 242               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 LCD_interface.c
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cceHgrnm.s:2      *ABS*:0000003f __SREG__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cceHgrnm.s:3      *ABS*:0000003e __SP_H__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cceHgrnm.s:4      *ABS*:0000003d __SP_L__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cceHgrnm.s:5      *ABS*:00000034 __CCP__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cceHgrnm.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cceHgrnm.s:7      *ABS*:00000001 __zero_reg__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cceHgrnm.s:18     .text:00000000 enable
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cceHgrnm.s:68     .text:00000012 entering_data_or_command
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cceHgrnm.s:110    .text:0000003e LCD_send_data
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cceHgrnm.s:128    .text:00000044 LCD_send_cmd
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cceHgrnm.s:146    .text:0000004a LCD_putstring
+
+NO UNDEFINED SYMBOLS

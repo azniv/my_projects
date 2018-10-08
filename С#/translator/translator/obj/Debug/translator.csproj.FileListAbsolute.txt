@@ -1,0 +1,13 @@
+C:\Users\formidable\Source\Repos\translator\translator\bin\Debug\translator.exe.config
+C:\Users\formidable\Source\Repos\translator\translator\bin\Debug\translator.exe
+C:\Users\formidable\Source\Repos\translator\translator\bin\Debug\translator.pdb
+C:\Users\formidable\Source\Repos\translator\translator\bin\Debug\RestSharp.dll
+C:\Users\formidable\Source\Repos\translator\translator\bin\Debug\YandexLinguistics.NET.dll
+C:\Users\formidable\Source\Repos\translator\translator\bin\Debug\RestSharp.xml
+C:\Users\formidable\Source\Repos\translator\translator\obj\Debug\translator.csprojResolveAssemblyReference.cache
+C:\Users\formidable\Source\Repos\translator\translator\obj\Debug\translator.Form1.resources
+C:\Users\formidable\Source\Repos\translator\translator\obj\Debug\translator.Properties.Resources.resources
+C:\Users\formidable\Source\Repos\translator\translator\obj\Debug\translator.csproj.GenerateResource.Cache
+C:\Users\formidable\Source\Repos\translator\translator\obj\Debug\translator.csproj.CoreCompileInputs.cache
+C:\Users\formidable\Source\Repos\translator\translator\obj\Debug\translator.exe
+C:\Users\formidable\Source\Repos\translator\translator\obj\Debug\translator.pdb

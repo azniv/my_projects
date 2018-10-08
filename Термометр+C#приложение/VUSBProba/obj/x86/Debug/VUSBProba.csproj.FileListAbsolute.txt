@@ -1,0 +1,59 @@
+C:\Users\Anton\AppData\Local\Temporary Projects\VUSBProba\bin\Debug\VUSBProba.exe
+C:\Users\Anton\AppData\Local\Temporary Projects\VUSBProba\bin\Debug\VUSBProba.pdb
+C:\Users\Anton\AppData\Local\Temporary Projects\VUSBProba\bin\Debug\LibUsbDotNet.dll
+C:\Users\Anton\AppData\Local\Temporary Projects\VUSBProba\bin\Debug\LibUsbDotNet.xml
+C:\Users\Anton\AppData\Local\Temporary Projects\VUSBProba\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Anton\AppData\Local\Temporary Projects\VUSBProba\obj\x86\Debug\VUSBProba.Form1.resources
+C:\Users\Anton\AppData\Local\Temporary Projects\VUSBProba\obj\x86\Debug\VUSBProba.Properties.Resources.resources
+C:\Users\Anton\AppData\Local\Temporary Projects\VUSBProba\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Anton\AppData\Local\Temporary Projects\VUSBProba\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Anton\AppData\Local\Temporary Projects\VUSBProba\obj\x86\Debug\VUSBProba.exe
+C:\Users\Anton\AppData\Local\Temporary Projects\VUSBProba\obj\x86\Debug\VUSBProba.pdb
+C:\AtmelProject\VUSBProba\VUSBProba\obj\x86\Debug\VUSBProba.exe
+C:\AtmelProject\VUSBProba\VUSBProba\obj\x86\Debug\VUSBProba.pdb
+C:\AtmelProject\VUSBProba\VUSBProba\bin\Debug\VUSBProba.exe
+C:\AtmelProject\VUSBProba\VUSBProba\bin\Debug\VUSBProba.pdb
+C:\AtmelProject\VUSBProba\VUSBProba\bin\Debug\LibUsbDotNet.dll
+C:\AtmelProject\VUSBProba\VUSBProba\bin\Debug\LibUsbDotNet.xml
+C:\AtmelProject\VUSBProba\VUSBProba\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\AtmelProject\VUSBProba\VUSBProba\obj\x86\Debug\VUSBProba.Form1.resources
+C:\AtmelProject\VUSBProba\VUSBProba\obj\x86\Debug\VUSBProba.Properties.Resources.resources
+C:\AtmelProject\VUSBProba\VUSBProba\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\AtmelProject\VUSBProba\VUSBProba\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Администратор\Desktop\software\VUSBProba\obj\x86\Debug\VUSBProba.exe
+C:\Users\Администратор\Desktop\software\VUSBProba\obj\x86\Debug\VUSBProba.pdb
+C:\Users\Администратор\Desktop\software\VUSBProba\bin\Debug\VUSBProba.exe
+C:\Users\Администратор\Desktop\software\VUSBProba\bin\Debug\VUSBProba.pdb
+C:\Users\Администратор\Desktop\software\VUSBProba\bin\Debug\LibUsbDotNet.xml
+C:\Users\Администратор\Desktop\software\VUSBProba\obj\x86\Debug\VUSBProba.csprojResolveAssemblyReference.cache
+C:\Users\Администратор\Desktop\software\VUSBProba\obj\x86\Debug\VUSBProba.Form1.resources
+C:\Users\Администратор\Desktop\software\VUSBProba\obj\x86\Debug\VUSBProba.Properties.Resources.resources
+C:\Users\Администратор\Desktop\software\VUSBProba\obj\x86\Debug\VUSBProba.csproj.GenerateResource.Cache
+C:\Users\C\Desktop\USB-HID-and-LibUsbDotNet\software\VUSBProba\obj\x86\Debug\VUSBProba.exe
+C:\Users\C\Desktop\USB-HID-and-LibUsbDotNet\software\VUSBProba\obj\x86\Debug\VUSBProba.pdb
+C:\Users\C\Desktop\USB-HID-and-LibUsbDotNet\software\VUSBProba\bin\Debug\VUSBProba.exe
+C:\Users\C\Desktop\USB-HID-and-LibUsbDotNet\software\VUSBProba\bin\Debug\VUSBProba.pdb
+C:\Users\C\Desktop\USB-HID-and-LibUsbDotNet\software\VUSBProba\bin\Debug\LibUsbDotNet.xml
+C:\Users\C\Desktop\USB-HID-and-LibUsbDotNet\software\VUSBProba\obj\x86\Debug\VUSBProba.csprojResolveAssemblyReference.cache
+C:\Users\C\Desktop\USB-HID-and-LibUsbDotNet\software\VUSBProba\obj\x86\Debug\VUSBProba.Form1.resources
+C:\Users\C\Desktop\USB-HID-and-LibUsbDotNet\software\VUSBProba\obj\x86\Debug\VUSBProba.Properties.Resources.resources
+C:\Users\C\Desktop\USB-HID-and-LibUsbDotNet\software\VUSBProba\obj\x86\Debug\VUSBProba.csproj.GenerateResource.Cache
+C:\Users\C\Desktop\Новая папка (2)\USB!!!!!!!!!!!!!!!!!!!!!!1\software\VUSBProba\obj\x86\Debug\VUSBProba.exe
+C:\Users\C\Desktop\Новая папка (2)\USB!!!!!!!!!!!!!!!!!!!!!!1\software\VUSBProba\obj\x86\Debug\VUSBProba.pdb
+C:\Users\C\Desktop\Новая папка (2)\USB!!!!!!!!!!!!!!!!!!!!!!1\software\VUSBProba\obj\x86\Debug\VUSBProba.csprojResolveAssemblyReference.cache
+C:\Users\C\Desktop\Новая папка (2)\USB!!!!!!!!!!!!!!!!!!!!!!1\software\VUSBProba\obj\x86\Debug\VUSBProba.Form1.resources
+C:\Users\C\Desktop\Новая папка (2)\USB!!!!!!!!!!!!!!!!!!!!!!1\software\VUSBProba\obj\x86\Debug\VUSBProba.Properties.Resources.resources
+C:\Users\C\Desktop\Новая папка (2)\USB!!!!!!!!!!!!!!!!!!!!!!1\software\VUSBProba\obj\x86\Debug\VUSBProba.csproj.GenerateResource.Cache
+C:\Users\C\Desktop\Новая папка (2)\USB!!!!!!!!!!!!!!!!!!!!!!1\software\VUSBProba\bin\Debug\VUSBProba.exe
+C:\Users\C\Desktop\Новая папка (2)\USB!!!!!!!!!!!!!!!!!!!!!!1\software\VUSBProba\bin\Debug\VUSBProba.pdb
+C:\Users\C\Desktop\Новая папка (2)\USB!!!!!!!!!!!!!!!!!!!!!!1\software\VUSBProba\bin\Debug\LibUsbDotNet.xml
+\\8307-405\личные документы\Смбатян\USB\C#\VUSBProba\obj\x86\Debug\VUSBProba.exe
+\\8307-405\личные документы\Смбатян\USB\C#\VUSBProba\obj\x86\Debug\VUSBProba.pdb
+\\8307-405\личные документы\Смбатян\USB\C#\VUSBProba\bin\Debug\VUSBProba.exe
+\\8307-405\личные документы\Смбатян\USB\C#\VUSBProba\bin\Debug\VUSBProba.pdb
+\\8307-405\личные документы\Смбатян\USB\C#\VUSBProba\bin\Debug\LibUsbDotNet.xml
+\\8307-405\личные документы\Смбатян\USB\C#\VUSBProba\obj\x86\Debug\ResolveAssemblyReference.cache
+\\8307-405\личные документы\Смбатян\USB\C#\VUSBProba\obj\x86\Debug\VUSBProba.Form1.resources
+\\8307-405\личные документы\Смбатян\USB\C#\VUSBProba\obj\x86\Debug\VUSBProba.Properties.Resources.resources
+\\8307-405\личные документы\Смбатян\USB\C#\VUSBProba\obj\x86\Debug\GenerateResource.read.1.tlog
+\\8307-405\личные документы\Смбатян\USB\C#\VUSBProba\obj\x86\Debug\GenerateResource.write.1.tlog

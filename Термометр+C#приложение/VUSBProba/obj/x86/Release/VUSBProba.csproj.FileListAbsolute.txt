@@ -1,0 +1,3 @@
+C:\Users\Администратор\Desktop\software\VUSBProba\obj\x86\Release\VUSBProba.Form1.resources
+C:\Users\Администратор\Desktop\software\VUSBProba\obj\x86\Release\VUSBProba.Properties.Resources.resources
+C:\Users\Администратор\Desktop\software\VUSBProba\obj\x86\Release\VUSBProba.csproj.GenerateResource.Cache

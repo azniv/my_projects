@@ -1,0 +1,338 @@
+   1               		.file	"LCD_interface.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	enable
+  18               	enable:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 289A      		sbi 37-32,0
+  25               	.LBB62:
+  26               	.LBB63:
+  27               	.LBB64:
+  28               	.LBB65:
+  29               	.LM3:
+  30 0002 85E0      		ldi r24,lo8(5)
+  31               	.LVL0:
+  32               	/* #APP */
+  33               	 ;  83 "d:/winavr/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  34 0004 8A95      		1: dec r24
+  35 0006 01F4      		brne 1b
+  36               	 ;  0 "" 2
+  37               	/* #NOAPP */
+  38               	.LBE65:
+  39               	.LBE64:
+  40               	.LBE63:
+  41               	.LBE62:
+  42               	.LM4:
+  43 0008 2898      		cbi 37-32,0
+  44               	.LBB66:
+  45               	.LBB67:
+  46               	.LBB68:
+  47               	.LBB69:
+  48               	.LM5:
+  49 000a 8AE6      		ldi r24,lo8(106)
+  50               	.LVL1:
+  51               	/* #APP */
+  52               	 ;  83 "d:/winavr/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  53 000c 8A95      		1: dec r24
+  54 000e 01F4      		brne 1b
+  55               	 ;  0 "" 2
+  56               	/* epilogue start */
+  57               	/* #NOAPP */
+  58               	.LBE69:
+  59               	.LBE68:
+  60               	.LBE67:
+  61               	.LBE66:
+  62               	.LM6:
+  63 0010 0895      		ret
+  64               	.LFE6:
+  66               	.global	entering_data_or_command
+  68               	entering_data_or_command:
+  69               	.LFB8:
+  70               	.LM7:
+  71               	.LVL2:
+  72 0012 1F93      		push r17
+  73               	/* prologue: function */
+  74               	/* frame size = 0 */
+  75 0014 182F      		mov r17,r24
+  76               	.LM8:
+  77 0016 8BB1      		in r24,43-32
+  78               	.LVL3:
+  79 0018 8F70      		andi r24,lo8(15)
+  80 001a 8BB9      		out 43-32,r24
+  81               	.LM9:
+  82 001c 9BB1      		in r25,43-32
+  83 001e 812F      		mov r24,r17
+  84 0020 807F      		andi r24,lo8(-16)
+  85 0022 892B      		or r24,r25
+  86 0024 8BB9      		out 43-32,r24
+  87               	.LM10:
+  88 0026 00D0      		rcall enable
+  89               	.LM11:
+  90 0028 8BB1      		in r24,43-32
+  91 002a 8F70      		andi r24,lo8(15)
+  92 002c 8BB9      		out 43-32,r24
+  93               	.LM12:
+  94 002e 8BB1      		in r24,43-32
+  95 0030 1295      		swap r17
+  96 0032 107F      		andi r17,lo8(-16)
+  97 0034 812B      		or r24,r17
+  98 0036 8BB9      		out 43-32,r24
+  99               	.LM13:
+ 100 0038 00D0      		rcall enable
+ 101               	/* epilogue start */
+ 102               	.LM14:
+ 103 003a 1F91      		pop r17
+ 104               	.LVL4:
+ 105 003c 0895      		ret
+ 106               	.LFE8:
+ 108               	.global	LCD_send_data
+ 110               	LCD_send_data:
+ 111               	.LFB9:
+ 112               	.LM15:
+ 113               	.LVL5:
+ 114               	/* prologue: function */
+ 115               	/* frame size = 0 */
+ 116               	.LM16:
+ 117 003e 299A      		sbi 37-32,1
+ 118               	.LM17:
+ 119 0040 00D0      		rcall entering_data_or_command
+ 120               	.LVL6:
+ 121               	/* epilogue start */
+ 122               	.LM18:
+ 123 0042 0895      		ret
+ 124               	.LFE9:
+ 126               	.global	LCD_send_cmd
+ 128               	LCD_send_cmd:
+ 129               	.LFB10:
+ 130               	.LM19:
+ 131               	.LVL7:
+ 132               	/* prologue: function */
+ 133               	/* frame size = 0 */
+ 134               	.LM20:
+ 135 0044 2998      		cbi 37-32,1
+ 136               	.LM21:
+ 137 0046 00D0      		rcall entering_data_or_command
+ 138               	.LVL8:
+ 139               	/* epilogue start */
+ 140               	.LM22:
+ 141 0048 0895      		ret
+ 142               	.LFE10:
+ 144               	.global	LCD_init
+ 146               	LCD_init:
+ 147               	.LFB7:
+ 148               	.LM23:
+ 149               	/* prologue: function */
+ 150               	/* frame size = 0 */
+ 151               	.LM24:
+ 152 004a 8BB1      		in r24,43-32
+ 153 004c 8F70      		andi r24,lo8(15)
+ 154 004e 8BB9      		out 43-32,r24
+ 155               	.LM25:
+ 156 0050 8AB1      		in r24,42-32
+ 157 0052 806F      		ori r24,lo8(-16)
+ 158 0054 8AB9      		out 42-32,r24
+ 159               	.LM26:
+ 160 0056 84B1      		in r24,36-32
+ 161 0058 8360      		ori r24,lo8(3)
+ 162 005a 84B9      		out 36-32,r24
+ 163               	.LM27:
+ 164 005c 2998      		cbi 37-32,1
+ 165               	.LBB70:
+ 166               	.LBB71:
+ 167               	.LBB72:
+ 168               	.LBB73:
+ 169               	.LM28:
+ 170 005e 80E3      		ldi r24,lo8(30000)
+ 171 0060 95E7      		ldi r25,hi8(30000)
+ 172               	.LVL9:
+ 173               	/* #APP */
+ 174               	 ;  105 "d:/winavr/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 175 0062 0197      		1: sbiw r24,1
+ 176 0064 01F4      		brne 1b
+ 177               	 ;  0 "" 2
+ 178               	/* #NOAPP */
+ 179               	.LBE73:
+ 180               	.LBE72:
+ 181               	.LBE71:
+ 182               	.LBE70:
+ 183               	.LM29:
+ 184 0066 83E0      		ldi r24,lo8(3)
+ 185               	.LVL10:
+ 186 0068 00D0      		rcall LCD_send_cmd
+ 187               	.LBB74:
+ 188               	.LBB75:
+ 189               	.LBB76:
+ 190               	.LBB77:
+ 191               	.LM30:
+ 192 006a 80E4      		ldi r24,lo8(8000)
+ 193 006c 9FE1      		ldi r25,hi8(8000)
+ 194               	.LVL11:
+ 195               	/* #APP */
+ 196               	 ;  105 "d:/winavr/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 197 006e 0197      		1: sbiw r24,1
+ 198 0070 01F4      		brne 1b
+ 199               	 ;  0 "" 2
+ 200               	/* #NOAPP */
+ 201               	.LBE77:
+ 202               	.LBE76:
+ 203               	.LBE75:
+ 204               	.LBE74:
+ 205               	.LM31:
+ 206 0072 83E0      		ldi r24,lo8(3)
+ 207               	.LVL12:
+ 208 0074 00D0      		rcall LCD_send_cmd
+ 209               	.LBB78:
+ 210               	.LBB79:
+ 211               	.LBB80:
+ 212               	.LBB81:
+ 213               	.LBB82:
+ 214               	.LBB83:
+ 215               	.LM32:
+ 216 0076 88EC      		ldi r24,lo8(200)
+ 217 0078 90E0      		ldi r25,hi8(200)
+ 218               	.LVL13:
+ 219               	/* #APP */
+ 220               	 ;  105 "d:/winavr/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 221 007a 0197      		1: sbiw r24,1
+ 222 007c 01F4      		brne 1b
+ 223               	 ;  0 "" 2
+ 224               	/* #NOAPP */
+ 225               	.LBE83:
+ 226               	.LBE82:
+ 227               	.LBE81:
+ 228               	.LBE80:
+ 229               	.LBE79:
+ 230               	.LBE78:
+ 231               	.LM33:
+ 232 007e 83E0      		ldi r24,lo8(3)
+ 233               	.LVL14:
+ 234 0080 00D0      		rcall LCD_send_cmd
+ 235               	.LM34:
+ 236 0082 82E0      		ldi r24,lo8(2)
+ 237 0084 00D0      		rcall LCD_send_cmd
+ 238               	.LM35:
+ 239 0086 8CE2      		ldi r24,lo8(44)
+ 240 0088 00D0      		rcall LCD_send_cmd
+ 241               	.LM36:
+ 242 008a 8CE0      		ldi r24,lo8(12)
+ 243 008c 00D0      		rcall LCD_send_cmd
+ 244               	.LM37:
+ 245 008e 81E0      		ldi r24,lo8(1)
+ 246 0090 00D0      		rcall LCD_send_cmd
+ 247               	.LBB84:
+ 248               	.LBB85:
+ 249               	.LBB86:
+ 250               	.LBB87:
+ 251               	.LM38:
+ 252 0092 80E1      		ldi r24,lo8(10000)
+ 253 0094 97E2      		ldi r25,hi8(10000)
+ 254               	.LVL15:
+ 255               	/* #APP */
+ 256               	 ;  105 "d:/winavr/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 257 0096 0197      		1: sbiw r24,1
+ 258 0098 01F4      		brne 1b
+ 259               	 ;  0 "" 2
+ 260               	/* #NOAPP */
+ 261               	.LBE87:
+ 262               	.LBE86:
+ 263               	.LBE85:
+ 264               	.LBE84:
+ 265               	.LM39:
+ 266 009a 86E0      		ldi r24,lo8(6)
+ 267               	.LVL16:
+ 268 009c 00D0      		rcall LCD_send_cmd
+ 269               	/* epilogue start */
+ 270               	.LM40:
+ 271 009e 0895      		ret
+ 272               	.LFE7:
+ 274               	.global	LCD_gotoXY
+ 276               	LCD_gotoXY:
+ 277               	.LFB11:
+ 278               	.LM41:
+ 279               	.LVL17:
+ 280               	/* prologue: function */
+ 281               	/* frame size = 0 */
+ 282               	.LM42:
+ 283 00a0 6295      		swap r22
+ 284               	.LVL18:
+ 285 00a2 660F      		lsl r22
+ 286 00a4 660F      		lsl r22
+ 287 00a6 607C      		andi r22,lo8(-64)
+ 288 00a8 680F      		add r22,r24
+ 289               	.LM43:
+ 290 00aa 862F      		mov r24,r22
+ 291               	.LVL19:
+ 292 00ac 8068      		ori r24,lo8(-128)
+ 293 00ae 00D0      		rcall LCD_send_cmd
+ 294               	.LVL20:
+ 295               	/* epilogue start */
+ 296               	.LM44:
+ 297 00b0 0895      		ret
+ 298               	.LFE11:
+ 300               	.global	LCD_putstring
+ 302               	LCD_putstring:
+ 303               	.LFB12:
+ 304               	.LM45:
+ 305               	.LVL21:
+ 306 00b2 1F93      		push r17
+ 307 00b4 CF93      		push r28
+ 308 00b6 DF93      		push r29
+ 309               	/* prologue: function */
+ 310               	/* frame size = 0 */
+ 311 00b8 EC01      		movw r28,r24
+ 312               	.LM46:
+ 313 00ba 10E0      		ldi r17,lo8(0)
+ 314               	.LVL22:
+ 315 00bc 00C0      		rjmp .L14
+ 316               	.LVL23:
+ 317               	.L15:
+ 318               	.LBB88:
+ 319               	.LM47:
+ 320 00be 00D0      		rcall LCD_send_data
+ 321               	.LM48:
+ 322 00c0 1F5F      		subi r17,lo8(-(1))
+ 323               	.LVL24:
+ 324               	.L14:
+ 325 00c2 FE01      		movw r30,r28
+ 326 00c4 E10F      		add r30,r17
+ 327 00c6 F11D      		adc r31,__zero_reg__
+ 328 00c8 8081      		ld r24,Z
+ 329 00ca 8823      		tst r24
+ 330 00cc 01F4      		brne .L15
+ 331               	/* epilogue start */
+ 332               	.LBE88:
+ 333               	.LM49:
+ 334 00ce DF91      		pop r29
+ 335 00d0 CF91      		pop r28
+ 336               	.LVL25:
+ 337 00d2 1F91      		pop r17
+ 338               	.LVL26:
+ 339 00d4 0895      		ret
+ 340               	.LFE12:
+ 414               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 LCD_interface.c
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cc17dtaj.s:2      *ABS*:0000003f __SREG__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cc17dtaj.s:3      *ABS*:0000003e __SP_H__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cc17dtaj.s:4      *ABS*:0000003d __SP_L__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cc17dtaj.s:5      *ABS*:00000034 __CCP__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cc17dtaj.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cc17dtaj.s:7      *ABS*:00000001 __zero_reg__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cc17dtaj.s:18     .text:00000000 enable
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cc17dtaj.s:68     .text:00000012 entering_data_or_command
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cc17dtaj.s:110    .text:0000003e LCD_send_data
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cc17dtaj.s:128    .text:00000044 LCD_send_cmd
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cc17dtaj.s:146    .text:0000004a LCD_init
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cc17dtaj.s:276    .text:000000a0 LCD_gotoXY
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/cc17dtaj.s:302    .text:000000b2 LCD_putstring
+
+NO UNDEFINED SYMBOLS

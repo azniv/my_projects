@@ -1,0 +1,1015 @@
+
+main.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         0000000a  00800100  000004e8  0000057c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000004e8  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          0000000b  0080010a  0080010a  00000586  2**0
+                  ALLOC
+  3 .debug_aranges 000000a0  00000000  00000000  00000586  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_pubnames 00000254  00000000  00000000  00000626  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000967  00000000  00000000  0000087a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000004a0  00000000  00000000  000011e1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000850  00000000  00000000  00001681  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000190  00000000  00000000  00001ed4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000002bf  00000000  00000000  00002064  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    0000024b  00000000  00000000  00002323  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	1d c0       	rjmp	.+58     	; 0x3c <__ctors_end>
+   2:	37 c0       	rjmp	.+110    	; 0x72 <__bad_interrupt>
+   4:	36 c0       	rjmp	.+108    	; 0x72 <__bad_interrupt>
+   6:	35 c0       	rjmp	.+106    	; 0x72 <__bad_interrupt>
+   8:	4a c0       	rjmp	.+148    	; 0x9e <__vector_4>
+   a:	33 c0       	rjmp	.+102    	; 0x72 <__bad_interrupt>
+   c:	32 c0       	rjmp	.+100    	; 0x72 <__bad_interrupt>
+   e:	31 c0       	rjmp	.+98     	; 0x72 <__bad_interrupt>
+  10:	30 c0       	rjmp	.+96     	; 0x72 <__bad_interrupt>
+  12:	2f c0       	rjmp	.+94     	; 0x72 <__bad_interrupt>
+  14:	2e c0       	rjmp	.+92     	; 0x72 <__bad_interrupt>
+  16:	2d c0       	rjmp	.+90     	; 0x72 <__bad_interrupt>
+  18:	2c c0       	rjmp	.+88     	; 0x72 <__bad_interrupt>
+  1a:	2b c0       	rjmp	.+86     	; 0x72 <__bad_interrupt>
+  1c:	2a c0       	rjmp	.+84     	; 0x72 <__bad_interrupt>
+  1e:	29 c0       	rjmp	.+82     	; 0x72 <__bad_interrupt>
+  20:	29 c0       	rjmp	.+82     	; 0x74 <__vector_16>
+  22:	27 c0       	rjmp	.+78     	; 0x72 <__bad_interrupt>
+  24:	26 c0       	rjmp	.+76     	; 0x72 <__bad_interrupt>
+  26:	25 c0       	rjmp	.+74     	; 0x72 <__bad_interrupt>
+  28:	24 c0       	rjmp	.+72     	; 0x72 <__bad_interrupt>
+  2a:	23 c0       	rjmp	.+70     	; 0x72 <__bad_interrupt>
+  2c:	22 c0       	rjmp	.+68     	; 0x72 <__bad_interrupt>
+  2e:	21 c0       	rjmp	.+66     	; 0x72 <__bad_interrupt>
+  30:	20 c0       	rjmp	.+64     	; 0x72 <__bad_interrupt>
+  32:	1f c0       	rjmp	.+62     	; 0x72 <__bad_interrupt>
+
+00000034 <FOR_INIT>:
+  34:	03 03 03 02 2c 0c 01 06                             ....,...
+
+0000003c <__ctors_end>:
+  3c:	11 24       	eor	r1, r1
+  3e:	1f be       	out	0x3f, r1	; 63
+  40:	cf ef       	ldi	r28, 0xFF	; 255
+  42:	d2 e0       	ldi	r29, 0x02	; 2
+  44:	de bf       	out	0x3e, r29	; 62
+  46:	cd bf       	out	0x3d, r28	; 61
+
+00000048 <__do_copy_data>:
+  48:	11 e0       	ldi	r17, 0x01	; 1
+  4a:	a0 e0       	ldi	r26, 0x00	; 0
+  4c:	b1 e0       	ldi	r27, 0x01	; 1
+  4e:	e8 ee       	ldi	r30, 0xE8	; 232
+  50:	f4 e0       	ldi	r31, 0x04	; 4
+  52:	02 c0       	rjmp	.+4      	; 0x58 <.do_copy_data_start>
+
+00000054 <.do_copy_data_loop>:
+  54:	05 90       	lpm	r0, Z+
+  56:	0d 92       	st	X+, r0
+
+00000058 <.do_copy_data_start>:
+  58:	aa 30       	cpi	r26, 0x0A	; 10
+  5a:	b1 07       	cpc	r27, r17
+  5c:	d9 f7       	brne	.-10     	; 0x54 <.do_copy_data_loop>
+
+0000005e <__do_clear_bss>:
+  5e:	11 e0       	ldi	r17, 0x01	; 1
+  60:	aa e0       	ldi	r26, 0x0A	; 10
+  62:	b1 e0       	ldi	r27, 0x01	; 1
+  64:	01 c0       	rjmp	.+2      	; 0x68 <.do_clear_bss_start>
+
+00000066 <.do_clear_bss_loop>:
+  66:	1d 92       	st	X+, r1
+
+00000068 <.do_clear_bss_start>:
+  68:	a5 31       	cpi	r26, 0x15	; 21
+  6a:	b1 07       	cpc	r27, r17
+  6c:	e1 f7       	brne	.-8      	; 0x66 <.do_clear_bss_loop>
+  6e:	fd d0       	rcall	.+506    	; 0x26a <main>
+  70:	39 c2       	rjmp	.+1138   	; 0x4e4 <_exit>
+
+00000072 <__bad_interrupt>:
+  72:	c6 cf       	rjmp	.-116    	; 0x0 <__vectors>
+
+00000074 <__vector_16>:
+void display_measurement(void);   //вывод измерений
+
+static inline  void display_temp(void);
+static inline  void display_volt(void);
+
+ISR(TIMER0_OVF_vect) {
+  74:	1f 92       	push	r1
+  76:	0f 92       	push	r0
+  78:	0f b6       	in	r0, 0x3f	; 63
+  7a:	0f 92       	push	r0
+  7c:	11 24       	eor	r1, r1
+  7e:	8f 93       	push	r24
+    if (timer)
+  80:	80 91 0c 01 	lds	r24, 0x010C
+  84:	88 23       	and	r24, r24
+  86:	29 f0       	breq	.+10     	; 0x92 <__vector_16+0x1e>
+        timer--;
+  88:	80 91 0c 01 	lds	r24, 0x010C
+  8c:	81 50       	subi	r24, 0x01	; 1
+  8e:	80 93 0c 01 	sts	0x010C, r24
+}
+  92:	8f 91       	pop	r24
+  94:	0f 90       	pop	r0
+  96:	0f be       	out	0x3f, r0	; 63
+  98:	0f 90       	pop	r0
+  9a:	1f 90       	pop	r1
+  9c:	18 95       	reti
+
+0000009e <__vector_4>:
+
+
+//прерывания от кнопок
+ISR(PCINT1_vect){
+  9e:	1f 92       	push	r1
+  a0:	0f 92       	push	r0
+  a2:	0f b6       	in	r0, 0x3f	; 63
+  a4:	0f 92       	push	r0
+  a6:	11 24       	eor	r1, r1
+	if (BUTTON_PRESSED(1)){
+  a8:	31 99       	sbic	0x06, 1	; 6
+  aa:	05 c0       	rjmp	.+10     	; 0xb6 <__vector_4+0x18>
+		SLEEP_AND_POWER_OFF();
+  ac:	1b b8       	out	0x0b, r1	; 11
+  ae:	15 b8       	out	0x05, r1	; 5
+  b0:	00 00       	nop
+  b2:	00 00       	nop
+  b4:	88 95       	sleep
+	}
+}
+  b6:	0f 90       	pop	r0
+  b8:	0f be       	out	0x3f, r0	; 63
+  ba:	0f 90       	pop	r0
+  bc:	1f 90       	pop	r1
+  be:	18 95       	reti
+
+000000c0 <display_measurement>:
+	LCD_send_data(battery_pr / 10 % 10 + '0');
+	LCD_send_data(battery_pr % 10 + '0');
+	LCD_send_data('%');
+        _delay_ms(500);
+}
+ void display_measurement(void){
+  c0:	0f 93       	push	r16
+  c2:	1f 93       	push	r17
+	
+
+	if (timer){
+  c4:	80 91 0c 01 	lds	r24, 0x010C
+  c8:	88 23       	and	r24, r24
+  ca:	09 f4       	brne	.+2      	; 0xce <display_measurement+0xe>
+  cc:	7b c0       	rjmp	.+246    	; 0x1c4 <display_measurement+0x104>
+		sensor_found= 1;
+  ce:	81 e0       	ldi	r24, 0x01	; 1
+  d0:	80 93 0f 01 	sts	0x010F, r24
+}
+
+
+//вывод значения температуры 
+static inline void display_temp(void){
+	LCD_SET_POSITION(0,0); 
+  d4:	80 e8       	ldi	r24, 0x80	; 128
+  d6:	1e d1       	rcall	.+572    	; 0x314 <LCD_send_cmd>
+	LCD_send_data('t');
+  d8:	84 e7       	ldi	r24, 0x74	; 116
+  da:	19 d1       	rcall	.+562    	; 0x30e <LCD_send_data>
+	LCD_send_data('=');
+  dc:	8d e3       	ldi	r24, 0x3D	; 61
+  de:	17 d1       	rcall	.+558    	; 0x30e <LCD_send_data>
+	
+	//выводим знак
+	// температура > 0
+	if (int_part > 0){
+  e0:	80 91 10 01 	lds	r24, 0x0110
+  e4:	88 23       	and	r24, r24
+  e6:	21 f0       	breq	.+8      	; 0xf0 <display_measurement+0x30>
+		LCD_SET_POSITION(2,0); 
+  e8:	82 e8       	ldi	r24, 0x82	; 130
+  ea:	14 d1       	rcall	.+552    	; 0x314 <LCD_send_cmd>
+		LCD_send_data('+');
+  ec:	8b e2       	ldi	r24, 0x2B	; 43
+  ee:	0f d1       	rcall	.+542    	; 0x30e <LCD_send_data>
+	if (int_part < 0){
+		LCD_SET_POSITION(2,0); 
+		LCD_send_data('-');
+	}
+	//выводим температуру
+	LCD_SET_POSITION(3,0);
+  f0:	83 e8       	ldi	r24, 0x83	; 131
+  f2:	10 d1       	rcall	.+544    	; 0x314 <LCD_send_cmd>
+	//если трехзначное число 	
+	if (int_part/100)
+  f4:	80 91 10 01 	lds	r24, 0x0110
+  f8:	84 36       	cpi	r24, 0x64	; 100
+  fa:	20 f0       	brcs	.+8      	; 0x104 <display_measurement+0x44>
+		LCD_send_data(int_part/100+'0');
+  fc:	64 e6       	ldi	r22, 0x64	; 100
+  fe:	d2 d1       	rcall	.+932    	; 0x4a4 <__udivmodqi4>
+ 100:	80 5d       	subi	r24, 0xD0	; 208
+ 102:	05 d1       	rcall	.+522    	; 0x30e <LCD_send_data>
+	LCD_send_data(int_part%100/10+'0');
+ 104:	80 91 10 01 	lds	r24, 0x0110
+ 108:	64 e6       	ldi	r22, 0x64	; 100
+ 10a:	cc d1       	rcall	.+920    	; 0x4a4 <__udivmodqi4>
+ 10c:	89 2f       	mov	r24, r25
+ 10e:	6a e0       	ldi	r22, 0x0A	; 10
+ 110:	c9 d1       	rcall	.+914    	; 0x4a4 <__udivmodqi4>
+ 112:	80 5d       	subi	r24, 0xD0	; 208
+ 114:	fc d0       	rcall	.+504    	; 0x30e <LCD_send_data>
+	LCD_send_data(int_part%10+'0');
+ 116:	80 91 10 01 	lds	r24, 0x0110
+ 11a:	6a e0       	ldi	r22, 0x0A	; 10
+ 11c:	c3 d1       	rcall	.+902    	; 0x4a4 <__udivmodqi4>
+ 11e:	89 2f       	mov	r24, r25
+ 120:	80 5d       	subi	r24, 0xD0	; 208
+ 122:	f5 d0       	rcall	.+490    	; 0x30e <LCD_send_data>
+	LCD_send_data('.');
+ 124:	8e e2       	ldi	r24, 0x2E	; 46
+ 126:	f3 d0       	rcall	.+486    	; 0x30e <LCD_send_data>
+	LCD_send_data(decimal_part%10+'0');
+ 128:	80 91 14 01 	lds	r24, 0x0114
+ 12c:	6a e0       	ldi	r22, 0x0A	; 10
+ 12e:	ba d1       	rcall	.+884    	; 0x4a4 <__udivmodqi4>
+ 130:	89 2f       	mov	r24, r25
+ 132:	80 5d       	subi	r24, 0xD0	; 208
+ 134:	ec d0       	rcall	.+472    	; 0x30e <LCD_send_data>
+ 136:	80 ed       	ldi	r24, 0xD0	; 208
+ 138:	97 e0       	ldi	r25, 0x07	; 7
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 13a:	28 ec       	ldi	r18, 0xC8	; 200
+ 13c:	30 e0       	ldi	r19, 0x00	; 0
+ 13e:	f9 01       	movw	r30, r18
+ 140:	31 97       	sbiw	r30, 0x01	; 1
+ 142:	f1 f7       	brne	.-4      	; 0x140 <display_measurement+0x80>
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 144:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 146:	d9 f7       	brne	.-10     	; 0x13e <display_measurement+0x7e>
+
+}
+
+//вывод значения напряжения 
+static inline void display_volt(void){
+	LCD_SET_POSITION(0,1);
+ 148:	80 ec       	ldi	r24, 0xC0	; 192
+ 14a:	e4 d0       	rcall	.+456    	; 0x314 <LCD_send_cmd>
+	LCD_send_data('V');
+ 14c:	86 e5       	ldi	r24, 0x56	; 86
+ 14e:	df d0       	rcall	.+446    	; 0x30e <LCD_send_data>
+	LCD_send_data('=');
+ 150:	8d e3       	ldi	r24, 0x3D	; 61
+ 152:	dd d0       	rcall	.+442    	; 0x30e <LCD_send_data>
+	 //индикация значения напряжения на PC3    
+	LCD_send_data(volt/1000 + '0');      //целая часть volt[В]
+ 154:	80 91 11 01 	lds	r24, 0x0111
+ 158:	90 91 12 01 	lds	r25, 0x0112
+ 15c:	68 ee       	ldi	r22, 0xE8	; 232
+ 15e:	73 e0       	ldi	r23, 0x03	; 3
+ 160:	ad d1       	rcall	.+858    	; 0x4bc <__udivmodhi4>
+ 162:	86 2f       	mov	r24, r22
+ 164:	80 5d       	subi	r24, 0xD0	; 208
+ 166:	d3 d0       	rcall	.+422    	; 0x30e <LCD_send_data>
+	LCD_send_data('.');        
+ 168:	8e e2       	ldi	r24, 0x2E	; 46
+ 16a:	d1 d0       	rcall	.+418    	; 0x30e <LCD_send_data>
+	LCD_send_data(volt%1000/100 + '0');  //после запятой
+ 16c:	80 91 11 01 	lds	r24, 0x0111
+ 170:	90 91 12 01 	lds	r25, 0x0112
+ 174:	68 ee       	ldi	r22, 0xE8	; 232
+ 176:	73 e0       	ldi	r23, 0x03	; 3
+ 178:	a1 d1       	rcall	.+834    	; 0x4bc <__udivmodhi4>
+ 17a:	64 e6       	ldi	r22, 0x64	; 100
+ 17c:	70 e0       	ldi	r23, 0x00	; 0
+ 17e:	9e d1       	rcall	.+828    	; 0x4bc <__udivmodhi4>
+ 180:	86 2f       	mov	r24, r22
+ 182:	80 5d       	subi	r24, 0xD0	; 208
+ 184:	c4 d0       	rcall	.+392    	; 0x30e <LCD_send_data>
+	LCD_send_data(volt%100/10 + '0');
+ 186:	80 91 11 01 	lds	r24, 0x0111
+ 18a:	90 91 12 01 	lds	r25, 0x0112
+ 18e:	64 e6       	ldi	r22, 0x64	; 100
+ 190:	70 e0       	ldi	r23, 0x00	; 0
+ 192:	94 d1       	rcall	.+808    	; 0x4bc <__udivmodhi4>
+ 194:	6a e0       	ldi	r22, 0x0A	; 10
+ 196:	70 e0       	ldi	r23, 0x00	; 0
+ 198:	91 d1       	rcall	.+802    	; 0x4bc <__udivmodhi4>
+ 19a:	86 2f       	mov	r24, r22
+ 19c:	80 5d       	subi	r24, 0xD0	; 208
+ 19e:	b7 d0       	rcall	.+366    	; 0x30e <LCD_send_data>
+	LCD_send_data(volt%10 + '0');
+ 1a0:	80 91 11 01 	lds	r24, 0x0111
+ 1a4:	90 91 12 01 	lds	r25, 0x0112
+ 1a8:	6a e0       	ldi	r22, 0x0A	; 10
+ 1aa:	70 e0       	ldi	r23, 0x00	; 0
+ 1ac:	87 d1       	rcall	.+782    	; 0x4bc <__udivmodhi4>
+ 1ae:	80 5d       	subi	r24, 0xD0	; 208
+ 1b0:	ae d0       	rcall	.+348    	; 0x30e <LCD_send_data>
+ 1b2:	80 e1       	ldi	r24, 0x10	; 16
+ 1b4:	97 e2       	ldi	r25, 0x27	; 39
+ 1b6:	28 ec       	ldi	r18, 0xC8	; 200
+ 1b8:	30 e0       	ldi	r19, 0x00	; 0
+ 1ba:	f9 01       	movw	r30, r18
+ 1bc:	31 97       	sbiw	r30, 0x01	; 1
+ 1be:	f1 f7       	brne	.-4      	; 0x1bc <display_measurement+0xfc>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 1c0:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 1c2:	d9 f7       	brne	.-10     	; 0x1ba <display_measurement+0xfa>
+		display_volt();
+		_delay_ms(1000);
+
+	}
+	//sleep_and_power_off();
+	if (!sensor_found) {
+ 1c4:	80 91 0f 01 	lds	r24, 0x010F
+ 1c8:	88 23       	and	r24, r24
+ 1ca:	a1 f4       	brne	.+40     	; 0x1f4 <display_measurement+0x134>
+		LCD_send_cmd(CMD_DISPLAY_CLEAR);
+ 1cc:	81 e0       	ldi	r24, 0x01	; 1
+ 1ce:	a2 d0       	rcall	.+324    	; 0x314 <LCD_send_cmd>
+ 1d0:	00 e3       	ldi	r16, 0x30	; 48
+ 1d2:	15 e7       	ldi	r17, 0x75	; 117
+ 1d4:	c8 01       	movw	r24, r16
+ 1d6:	01 97       	sbiw	r24, 0x01	; 1
+ 1d8:	f1 f7       	brne	.-4      	; 0x1d6 <display_measurement+0x116>
+		_delay_ms(15);
+		LCD_SET_POSITION(0,0);
+ 1da:	80 e8       	ldi	r24, 0x80	; 128
+ 1dc:	9b d0       	rcall	.+310    	; 0x314 <LCD_send_cmd>
+		LCD_putstring ((uint8_t*)"NO");
+ 1de:	80 e0       	ldi	r24, 0x00	; 0
+ 1e0:	91 e0       	ldi	r25, 0x01	; 1
+ 1e2:	9b d0       	rcall	.+310    	; 0x31a <LCD_putstring>
+		LCD_SET_POSITION(0,1);
+ 1e4:	80 ec       	ldi	r24, 0xC0	; 192
+ 1e6:	96 d0       	rcall	.+300    	; 0x314 <LCD_send_cmd>
+		LCD_putstring ((uint8_t*)"SENSOR");
+ 1e8:	83 e0       	ldi	r24, 0x03	; 3
+ 1ea:	91 e0       	ldi	r25, 0x01	; 1
+ 1ec:	96 d0       	rcall	.+300    	; 0x31a <LCD_putstring>
+ 1ee:	c8 01       	movw	r24, r16
+ 1f0:	01 97       	sbiw	r24, 0x01	; 1
+ 1f2:	f1 f7       	brne	.-4      	; 0x1f0 <display_measurement+0x130>
+		_delay_ms(15);
+	}
+}	
+ 1f4:	1f 91       	pop	r17
+ 1f6:	0f 91       	pop	r16
+ 1f8:	08 95       	ret
+
+000001fa <init_all>:
+	}
+		
+}
+
+
+void init_all(void){
+ 1fa:	0f 93       	push	r16
+ 1fc:	1f 93       	push	r17
+ 1fe:	cf 93       	push	r28
+ 200:	df 93       	push	r29
+	POWER_INIT();			
+ 202:	33 ec       	ldi	r19, 0xC3	; 195
+ 204:	3a b9       	out	0x0a, r19	; 10
+	POWER_ON();
+ 206:	82 e8       	ldi	r24, 0x82	; 130
+ 208:	8b b9       	out	0x0b, r24	; 11
+	SLEEP_MODE();
+ 20a:	95 e0       	ldi	r25, 0x05	; 5
+ 20c:	93 bf       	out	0x33, r25	; 51
+	INTERRUPT_INIT();
+ 20e:	22 e0       	ldi	r18, 0x02	; 2
+ 210:	20 93 68 00 	sts	0x0068, r18
+ 214:	90 93 6c 00 	sts	0x006C, r25
+ 218:	81 e0       	ldi	r24, 0x01	; 1
+ 21a:	80 93 6e 00 	sts	0x006E, r24
+	BUTTONS_INIT();
+ 21e:	98 b9       	out	0x08, r25	; 8
+	PWM_INIT();
+ 220:	81 e8       	ldi	r24, 0x81	; 129
+ 222:	84 bd       	out	0x24, r24	; 36
+ 224:	25 bd       	out	0x25, r18	; 37
+ 226:	84 eb       	ldi	r24, 0xB4	; 180
+ 228:	87 bd       	out	0x27, r24	; 39
+ 22a:	8a b1       	in	r24, 0x0a	; 10
+ 22c:	86 60       	ori	r24, 0x06	; 6
+ 22e:	8a b9       	out	0x0a, r24	; 10
+	ADC_INIT();
+ 230:	30 93 7c 00 	sts	0x007C, r19
+ 234:	87 e8       	ldi	r24, 0x87	; 135
+ 236:	80 93 7a 00 	sts	0x007A, r24
+	TWI_Init();
+ 23a:	aa d0       	rcall	.+340    	; 0x390 <TWI_Init>
+	LCD_INIT();	
+ 23c:	8f e3       	ldi	r24, 0x3F	; 63
+ 23e:	84 b9       	out	0x04, r24	; 4
+ 240:	c4 e3       	ldi	r28, 0x34	; 52
+ 242:	d0 e0       	ldi	r29, 0x00	; 0
+ 244:	00 ed       	ldi	r16, 0xD0	; 208
+ 246:	14 e8       	ldi	r17, 0x84	; 132
+ 248:	c8 01       	movw	r24, r16
+ 24a:	01 97       	sbiw	r24, 0x01	; 1
+ 24c:	f1 f7       	brne	.-4      	; 0x24a <init_all+0x50>
+ 24e:	fe 01       	movw	r30, r28
+ 250:	84 91       	lpm	r24, Z+
+ 252:	60 d0       	rcall	.+192    	; 0x314 <LCD_send_cmd>
+ 254:	21 96       	adiw	r28, 0x01	; 1
+ 256:	f0 e0       	ldi	r31, 0x00	; 0
+ 258:	cc 33       	cpi	r28, 0x3C	; 60
+ 25a:	df 07       	cpc	r29, r31
+ 25c:	a9 f7       	brne	.-22     	; 0x248 <init_all+0x4e>
+	sei();
+ 25e:	78 94       	sei
+}
+ 260:	df 91       	pop	r29
+ 262:	cf 91       	pop	r28
+ 264:	1f 91       	pop	r17
+ 266:	0f 91       	pop	r16
+ 268:	08 95       	ret
+
+0000026a <main>:
+	}
+}
+	
+	
+__attribute__((naked)) int main(void){
+	init_all();
+ 26a:	c7 df       	rcall	.-114    	; 0x1fa <init_all>
+	while (1){
+		sensor_found = 0;									//если  = 0, выводим сообщение об отсутсвии датчика
+		adc  = adc_measurement();							//значение ADC
+		PWM_SET(adc);										//установка контрастности
+        VOLT_MEASUREMENT(adc, volt);						//результат в вольтах
+ 26c:	c9 e8       	ldi	r28, 0x89	; 137
+ 26e:	d0 e0       	ldi	r29, 0x00	; 0
+	
+	
+__attribute__((naked)) int main(void){
+	init_all();
+	while (1){
+		sensor_found = 0;									//если  = 0, выводим сообщение об отсутсвии датчика
+ 270:	10 92 0f 01 	sts	0x010F, r1
+		adc  = adc_measurement();							//значение ADC
+ 274:	d0 d0       	rcall	.+416    	; 0x416 <adc_measurement>
+ 276:	9c 01       	movw	r18, r24
+ 278:	90 93 0e 01 	sts	0x010E, r25
+ 27c:	80 93 0d 01 	sts	0x010D, r24
+		PWM_SET(adc);										//установка контрастности
+ 280:	88 5e       	subi	r24, 0xE8	; 232
+ 282:	87 fd       	sbrc	r24, 7
+ 284:	80 e0       	ldi	r24, 0x00	; 0
+ 286:	87 bd       	out	0x27, r24	; 39
+        VOLT_MEASUREMENT(adc, volt);						//результат в вольтах
+ 288:	2c 9f       	mul	r18, r28
+ 28a:	c0 01       	movw	r24, r0
+ 28c:	2d 9f       	mul	r18, r29
+ 28e:	90 0d       	add	r25, r0
+ 290:	3c 9f       	mul	r19, r28
+ 292:	90 0d       	add	r25, r0
+ 294:	11 24       	eor	r1, r1
+ 296:	23 e0       	ldi	r18, 0x03	; 3
+ 298:	96 95       	lsr	r25
+ 29a:	87 95       	ror	r24
+ 29c:	2a 95       	dec	r18
+ 29e:	e1 f7       	brne	.-8      	; 0x298 <main+0x2e>
+ 2a0:	90 93 12 01 	sts	0x0112, r25
+ 2a4:	80 93 11 01 	sts	0x0111, r24
+		term_obj =  temp_measurement();						//измерение температуры
+ 2a8:	de d0       	rcall	.+444    	; 0x466 <temp_measurement>
+ 2aa:	9c 01       	movw	r18, r24
+ 2ac:	90 93 0b 01 	sts	0x010B, r25
+ 2b0:	80 93 0a 01 	sts	0x010A, r24
+	    decimal_part = term_obj % 50;						//дробная часть  измерения 
+ 2b4:	62 e3       	ldi	r22, 0x32	; 50
+ 2b6:	70 e0       	ldi	r23, 0x00	; 0
+ 2b8:	01 d1       	rcall	.+514    	; 0x4bc <__udivmodhi4>
+ 2ba:	80 93 14 01 	sts	0x0114, r24
+		int_part	 = term_obj / 50 - 273;					//целая часть измерения в градусах цельсия 
+ 2be:	c9 01       	movw	r24, r18
+ 2c0:	62 e3       	ldi	r22, 0x32	; 50
+ 2c2:	70 e0       	ldi	r23, 0x00	; 0
+ 2c4:	fb d0       	rcall	.+502    	; 0x4bc <__udivmodhi4>
+ 2c6:	61 51       	subi	r22, 0x11	; 17
+ 2c8:	60 93 10 01 	sts	0x0110, r22
+		
+		display_measurement();								//вывод измерений 
+ 2cc:	f9 de       	rcall	.-526    	; 0xc0 <display_measurement>
+ 2ce:	d0 cf       	rjmp	.-96     	; 0x270 <main+0x6>
+
+000002d0 <enable>:
+
+//////////////////////////////////////////////////////////////
+//разрешаем обращения к дисплею
+//////////////////////////////////////////////////////////////
+ void enable(void) {
+	PORT_LCD_CONTROL |= (1<<EN_PIN);
+ 2d0:	2d 9a       	sbi	0x05, 5	; 5
+ 2d2:	85 e0       	ldi	r24, 0x05	; 5
+ 2d4:	8a 95       	dec	r24
+ 2d6:	f1 f7       	brne	.-4      	; 0x2d4 <enable+0x4>
+	_delay_us(2);
+	PORT_LCD_CONTROL &= ~(1<<EN_PIN);
+ 2d8:	2d 98       	cbi	0x05, 5	; 5
+ 2da:	8a e6       	ldi	r24, 0x6A	; 106
+ 2dc:	8a 95       	dec	r24
+ 2de:	f1 f7       	brne	.-4      	; 0x2dc <enable+0xc>
+	_delay_us(40);
+}
+ 2e0:	08 95       	ret
+
+000002e2 <entering_data_or_command>:
+
+//////////////////////////////////////////////////////////////
+//функция ввода данных или команд
+//на вход подаем символ или команду
+//////////////////////////////////////////////////////////////
+void entering_data_or_command(uint8_t intering) {
+ 2e2:	1f 93       	push	r17
+ 2e4:	18 2f       	mov	r17, r24
+	#if (IS_8_WIRES)
+		PORT_LCD_DATA = intering;
+		enable();
+	#else
+		PORT_LCD_DATA &= 0xF0;
+ 2e6:	85 b1       	in	r24, 0x05	; 5
+ 2e8:	80 7f       	andi	r24, 0xF0	; 240
+ 2ea:	85 b9       	out	0x05, r24	; 5
+		PORT_LCD_DATA |= (intering >> 4);
+ 2ec:	95 b1       	in	r25, 0x05	; 5
+ 2ee:	81 2f       	mov	r24, r17
+ 2f0:	82 95       	swap	r24
+ 2f2:	8f 70       	andi	r24, 0x0F	; 15
+ 2f4:	89 2b       	or	r24, r25
+ 2f6:	85 b9       	out	0x05, r24	; 5
+		enable();
+ 2f8:	eb df       	rcall	.-42     	; 0x2d0 <enable>
+		PORT_LCD_DATA &= 0xF0;
+ 2fa:	85 b1       	in	r24, 0x05	; 5
+ 2fc:	80 7f       	andi	r24, 0xF0	; 240
+ 2fe:	85 b9       	out	0x05, r24	; 5
+		PORT_LCD_DATA |= (intering & 0x0F);
+ 300:	85 b1       	in	r24, 0x05	; 5
+ 302:	1f 70       	andi	r17, 0x0F	; 15
+ 304:	81 2b       	or	r24, r17
+ 306:	85 b9       	out	0x05, r24	; 5
+		enable();
+ 308:	e3 df       	rcall	.-58     	; 0x2d0 <enable>
+			
+	#endif
+}
+ 30a:	1f 91       	pop	r17
+ 30c:	08 95       	ret
+
+0000030e <LCD_send_data>:
+//////////////////////////////////////////////////////////////
+//ввод данных 
+//////////////////////////////////////////////////////////////
+void LCD_send_data(uint8_t symbol) {
+	//чтобы подавать данные, выставляем RS = 1 
+	PORT_LCD_CONTROL |= (1<<RS_PIN);
+ 30e:	2c 9a       	sbi	0x05, 4	; 5
+	entering_data_or_command(symbol);
+ 310:	e8 df       	rcall	.-48     	; 0x2e2 <entering_data_or_command>
+}
+ 312:	08 95       	ret
+
+00000314 <LCD_send_cmd>:
+//////////////////////////////////////////////////////////////
+//ввод команд
+//////////////////////////////////////////////////////////////
+void LCD_send_cmd(uint8_t cmd) {
+	//чтобы подавать команды, выставляем RS = 0 
+	PORT_LCD_CONTROL &= ~(1<<RS_PIN);
+ 314:	2c 98       	cbi	0x05, 4	; 5
+	entering_data_or_command(cmd);	
+ 316:	e5 df       	rcall	.-54     	; 0x2e2 <entering_data_or_command>
+}
+ 318:	08 95       	ret
+
+0000031a <LCD_putstring>:
+
+
+//////////////////////////////////////////////////////////////
+//преобразование данных в строку для вывод на экран 
+//////////////////////////////////////////////////////////////
+void LCD_putstring (uint8_t* s){
+ 31a:	1f 93       	push	r17
+ 31c:	cf 93       	push	r28
+ 31e:	df 93       	push	r29
+ 320:	ec 01       	movw	r28, r24
+ 322:	10 e0       	ldi	r17, 0x00	; 0
+ 324:	02 c0       	rjmp	.+4      	; 0x32a <LCD_putstring+0x10>
+    for (uint8_t i=0; s[i]; i++)
+	    LCD_send_data(s[i]);
+ 326:	f3 df       	rcall	.-26     	; 0x30e <LCD_send_data>
+
+//////////////////////////////////////////////////////////////
+//преобразование данных в строку для вывод на экран 
+//////////////////////////////////////////////////////////////
+void LCD_putstring (uint8_t* s){
+    for (uint8_t i=0; s[i]; i++)
+ 328:	1f 5f       	subi	r17, 0xFF	; 255
+ 32a:	fe 01       	movw	r30, r28
+ 32c:	e1 0f       	add	r30, r17
+ 32e:	f1 1d       	adc	r31, r1
+ 330:	80 81       	ld	r24, Z
+ 332:	88 23       	and	r24, r24
+ 334:	c1 f7       	brne	.-16     	; 0x326 <LCD_putstring+0xc>
+	    LCD_send_data(s[i]);
+}	
+ 336:	df 91       	pop	r29
+ 338:	cf 91       	pop	r28
+ 33a:	1f 91       	pop	r17
+ 33c:	08 95       	ret
+
+0000033e <TWI_Start>:
+
+#include "twi.h"
+
+// отправка команды СТАРТ
+void TWI_Start(void){
+	timer = ~0;
+ 33e:	8f ef       	ldi	r24, 0xFF	; 255
+ 340:	80 93 0c 01 	sts	0x010C, r24
+	TWCR = (1<<TWINT)|(1<<TWSTA)|(1<<TWEN);
+ 344:	84 ea       	ldi	r24, 0xA4	; 164
+ 346:	80 93 bc 00 	sts	0x00BC, r24
+	while ( timer && !(TWCR & (1<<TWINT)));//ожидание установки бита TWIN
+ 34a:	80 91 0c 01 	lds	r24, 0x010C
+ 34e:	88 23       	and	r24, r24
+ 350:	21 f0       	breq	.+8      	; 0x35a <TWI_Start+0x1c>
+ 352:	80 91 bc 00 	lds	r24, 0x00BC
+ 356:	87 ff       	sbrs	r24, 7
+ 358:	f8 cf       	rjmp	.-16     	; 0x34a <TWI_Start+0xc>
+ 35a:	08 95       	ret
+
+0000035c <TWI_Stop>:
+
+// отправка СТОП
+void TWI_Stop(void){
+	//TWCR = (1<<TWINT)|(1<<TWSTO)|(1<<TWEN);
+	//while((TWCR & (1<<TWINT)));
+	 TWCR = _BV(TWINT)|_BV(TWEN)|_BV(TWSTO);
+ 35c:	84 e9       	ldi	r24, 0x94	; 148
+ 35e:	80 93 bc 00 	sts	0x00BC, r24
+    // wait until stop condition is executed and bus released
+    while(  timer &&(TWCR & _BV(TWSTO)));
+ 362:	80 91 0c 01 	lds	r24, 0x010C
+ 366:	88 23       	and	r24, r24
+ 368:	21 f0       	breq	.+8      	; 0x372 <TWI_Stop+0x16>
+ 36a:	80 91 bc 00 	lds	r24, 0x00BC
+ 36e:	84 fd       	sbrc	r24, 4
+ 370:	f8 cf       	rjmp	.-16     	; 0x362 <TWI_Stop+0x6>
+ 372:	08 95       	ret
+
+00000374 <TWI_SendByte>:
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+}
+
+//отправка байта
+void TWI_SendByte(uint8_t c){
+	TWDR = c;//загрузка значения в регистр данных
+ 374:	80 93 bb 00 	sts	0x00BB, r24
+	TWCR = (1<<TWINT)|(1<<TWEN);//начало передачи байта данных
+ 378:	84 e8       	ldi	r24, 0x84	; 132
+ 37a:	80 93 bc 00 	sts	0x00BC, r24
+	while (timer && !(TWCR & (1<<TWINT)));//ожидание установки бита TWIN
+ 37e:	80 91 0c 01 	lds	r24, 0x010C
+ 382:	88 23       	and	r24, r24
+ 384:	21 f0       	breq	.+8      	; 0x38e <TWI_SendByte+0x1a>
+ 386:	80 91 bc 00 	lds	r24, 0x00BC
+ 38a:	87 ff       	sbrs	r24, 7
+ 38c:	f8 cf       	rjmp	.-16     	; 0x37e <TWI_SendByte+0xa>
+ 38e:	08 95       	ret
+
+00000390 <TWI_Init>:
+}
+
+//инициализация TWI как передатчика
+void TWI_Init (void){
+	TWBR=32;         //скорость передачи
+ 390:	80 e2       	ldi	r24, 0x20	; 32
+ 392:	80 93 b8 00 	sts	0x00B8, r24
+	//_delay_ms(7); 	 //задержка необходима для инизиализации
+
+}
+ 396:	08 95       	ret
+
+00000398 <TWI_SendPocket>:
+
+//отправка SLA_W + байт данных
+void TWI_SendPocket (uint8_t value,uint8_t adres_rw){
+ 398:	0f 93       	push	r16
+ 39a:	1f 93       	push	r17
+ 39c:	08 2f       	mov	r16, r24
+ 39e:	16 2f       	mov	r17, r22
+	TWI_Start(); // генерируем условие СТАРТ
+ 3a0:	ce df       	rcall	.-100    	; 0x33e <TWI_Start>
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+}
+
+//отправка байта
+void TWI_SendByte(uint8_t c){
+	TWDR = c;//загрузка значения в регистр данных
+ 3a2:	10 93 bb 00 	sts	0x00BB, r17
+	TWCR = (1<<TWINT)|(1<<TWEN);//начало передачи байта данных
+ 3a6:	84 e8       	ldi	r24, 0x84	; 132
+ 3a8:	80 93 bc 00 	sts	0x00BC, r24
+	while (timer && !(TWCR & (1<<TWINT)));//ожидание установки бита TWIN
+ 3ac:	80 91 0c 01 	lds	r24, 0x010C
+ 3b0:	88 23       	and	r24, r24
+ 3b2:	21 f0       	breq	.+8      	; 0x3bc <TWI_SendPocket+0x24>
+ 3b4:	80 91 bc 00 	lds	r24, 0x00BC
+ 3b8:	87 ff       	sbrs	r24, 7
+ 3ba:	f8 cf       	rjmp	.-16     	; 0x3ac <TWI_SendPocket+0x14>
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+}
+
+//отправка байта
+void TWI_SendByte(uint8_t c){
+	TWDR = c;//загрузка значения в регистр данных
+ 3bc:	00 93 bb 00 	sts	0x00BB, r16
+	TWCR = (1<<TWINT)|(1<<TWEN);//начало передачи байта данных
+ 3c0:	84 e8       	ldi	r24, 0x84	; 132
+ 3c2:	80 93 bc 00 	sts	0x00BC, r24
+	while (timer && !(TWCR & (1<<TWINT)));//ожидание установки бита TWIN
+ 3c6:	80 91 0c 01 	lds	r24, 0x010C
+ 3ca:	88 23       	and	r24, r24
+ 3cc:	21 f0       	breq	.+8      	; 0x3d6 <TWI_SendPocket+0x3e>
+ 3ce:	80 91 bc 00 	lds	r24, 0x00BC
+ 3d2:	87 ff       	sbrs	r24, 7
+ 3d4:	f8 cf       	rjmp	.-16     	; 0x3c6 <TWI_SendPocket+0x2e>
+//отправка SLA_W + байт данных
+void TWI_SendPocket (uint8_t value,uint8_t adres_rw){
+	TWI_Start(); // генерируем условие СТАРТ
+	TWI_SendByte(adres_rw); //оправляем адрес устройства+бит запись
+	TWI_SendByte(value);//отправляем байт данных
+	TWI_Stop();//генерируем условие СТОП
+ 3d6:	c2 df       	rcall	.-124    	; 0x35c <TWI_Stop>
+}
+ 3d8:	1f 91       	pop	r17
+ 3da:	0f 91       	pop	r16
+ 3dc:	08 95       	ret
+
+000003de <TWI_RecieveByte>:
+
+//добавляем функции чтения по TWI
+//чтение байта
+uint8_t TWI_RecieveByte(void){
+	uint8_t dat;//переменная хранения значения
+	TWCR = (1<<TWINT)|(1<<TWEN)|(1<<TWEA);
+ 3de:	84 ec       	ldi	r24, 0xC4	; 196
+ 3e0:	80 93 bc 00 	sts	0x00BC, r24
+	while (timer && !(TWCR & (1<<TWINT)));//ожидание установки бита TWIN
+ 3e4:	80 91 0c 01 	lds	r24, 0x010C
+ 3e8:	88 23       	and	r24, r24
+ 3ea:	21 f0       	breq	.+8      	; 0x3f4 <TWI_RecieveByte+0x16>
+ 3ec:	80 91 bc 00 	lds	r24, 0x00BC
+ 3f0:	87 ff       	sbrs	r24, 7
+ 3f2:	f8 cf       	rjmp	.-16     	; 0x3e4 <TWI_RecieveByte+0x6>
+	dat = TWDR;//читаем регистр данных
+ 3f4:	80 91 bb 00 	lds	r24, 0x00BB
+	return dat;
+}
+ 3f8:	08 95       	ret
+
+000003fa <TWI_RecieveLastByte>:
+
+//чтение последнего байта
+uint8_t TWI_RecieveLastByte(void){
+	uint8_t dat;//переменная хранения значения	
+	TWCR = (1<<TWINT)|(1<<TWEN);//чтение последнего байта
+ 3fa:	84 e8       	ldi	r24, 0x84	; 132
+ 3fc:	80 93 bc 00 	sts	0x00BC, r24
+	while ( timer && !(TWCR & (1<<TWINT)));//ожидание установки бита TWIN
+ 400:	80 91 0c 01 	lds	r24, 0x010C
+ 404:	88 23       	and	r24, r24
+ 406:	21 f0       	breq	.+8      	; 0x410 <TWI_RecieveLastByte+0x16>
+ 408:	80 91 bc 00 	lds	r24, 0x00BC
+ 40c:	87 ff       	sbrs	r24, 7
+ 40e:	f8 cf       	rjmp	.-16     	; 0x400 <TWI_RecieveLastByte+0x6>
+	dat = TWDR;//читаем регистр данных	
+ 410:	80 91 bb 00 	lds	r24, 0x00BB
+	return dat;
+}	
+ 414:	08 95       	ret
+
+00000416 <adc_measurement>:
+
+//измерение напряжения
+ uint16_t adc_measurement(void){
+ 
+	uint16_t adc;
+	POWER_ON_PIN(POWER_DIV_PIN);   //включаем делитель  
+ 416:	58 9a       	sbi	0x0b, 0	; 11
+	
+	ADCSRA = (1<<ADEN)|(1<<ADSC)|(1<<ADPS2)|(1<<ADPS1)|(1<<ADPS0); // настройка регистров АЦП - канал PC3(ADC3)
+ 418:	87 ec       	ldi	r24, 0xC7	; 199
+ 41a:	80 93 7a 00 	sts	0x007A, r24
+	while (~ADCSRA & (1<<ADIF));           						 //пока не закончится измерение (не поднят флаг
+ 41e:	80 91 7a 00 	lds	r24, 0x007A
+ 422:	84 ff       	sbrs	r24, 4
+ 424:	fc cf       	rjmp	.-8      	; 0x41e <adc_measurement+0x8>
+	ADCSRA = 0;
+ 426:	10 92 7a 00 	sts	0x007A, r1
+	
+    // Снятие питания с резистивного делителя напряжения для экономии батареи
+    POWER_OFF_PIN(POWER_DIV_PIN);  
+ 42a:	58 98       	cbi	0x0b, 0	; 11
+	
+	adc = ADCL;
+ 42c:	20 91 78 00 	lds	r18, 0x0078
+ 430:	30 e0       	ldi	r19, 0x00	; 0
+	adc |= (ADCH<<8);
+ 432:	40 91 79 00 	lds	r20, 0x0079
+ 436:	94 2f       	mov	r25, r20
+ 438:	80 e0       	ldi	r24, 0x00	; 0
+ 43a:	28 2b       	or	r18, r24
+ 43c:	39 2b       	or	r19, r25
+	
+    // Возврат значения регистра ADC
+	return adc;
+	
+}
+ 43e:	c9 01       	movw	r24, r18
+ 440:	08 95       	ret
+
+00000442 <ADC_to_battery_percent>:
+
+// ВЫчисление заряда батареи на основе данных АЦП
+// возвращаемое значение - уроень батареи в процентах
+uint8_t ADC_to_battery_percent(uint16_t adc) {
+    // при значении меньше заданного минимума  - 0 %
+    if (adc <= MIN_BATTERY_ADC)
+ 442:	83 3e       	cpi	r24, 0xE3	; 227
+ 444:	91 05       	cpc	r25, r1
+ 446:	10 f4       	brcc	.+4      	; 0x44c <ADC_to_battery_percent+0xa>
+ 448:	80 e0       	ldi	r24, 0x00	; 0
+ 44a:	08 95       	ret
+        return 0;
+        
+    adc -= MIN_BATTERY_ADC;
+ 44c:	9c 01       	movw	r18, r24
+ 44e:	22 5e       	subi	r18, 0xE2	; 226
+ 450:	30 40       	sbci	r19, 0x00	; 0
+
+    // при значении больше заданного максимума - 100 %
+    if (adc >= (MAX_BATTERY_ADC-MIN_BATTERY_ADC))
+ 452:	22 32       	cpi	r18, 0x22	; 34
+ 454:	31 05       	cpc	r19, r1
+ 456:	10 f0       	brcs	.+4      	; 0x45c <ADC_to_battery_percent+0x1a>
+ 458:	84 e6       	ldi	r24, 0x64	; 100
+ 45a:	08 95       	ret
+        return 100;
+
+    // при значении в заданном интервале
+    // результат переводится в проценты (1 ступень = 3 %)
+    return (adc * 3);
+ 45c:	c9 01       	movw	r24, r18
+ 45e:	88 0f       	add	r24, r24
+ 460:	99 1f       	adc	r25, r25
+ 462:	82 0f       	add	r24, r18
+}
+ 464:	08 95       	ret
+
+00000466 <temp_measurement>:
+
+//хранение значения температуры
+uint16_t term_obj = 0;
+
+//измерение температуры
+uint16_t temp_measurement(void){
+ 466:	ff 92       	push	r15
+ 468:	0f 93       	push	r16
+ 46a:	1f 93       	push	r17
+	
+		TWI_Start();
+ 46c:	68 df       	rcall	.-304    	; 0x33e <TWI_Start>
+		TWI_SendByte(ADDRESS_W);            
+ 46e:	84 eb       	ldi	r24, 0xB4	; 180
+ 470:	81 df       	rcall	.-254    	; 0x374 <TWI_SendByte>
+		TWI_SendByte(TERM_OBJ_ADDR);
+ 472:	87 e0       	ldi	r24, 0x07	; 7
+ 474:	7f df       	rcall	.-258    	; 0x374 <TWI_SendByte>
+
+		TWI_Start(); 
+ 476:	63 df       	rcall	.-314    	; 0x33e <TWI_Start>
+		TWI_SendByte(ADDRESS_R);
+ 478:	85 eb       	ldi	r24, 0xB5	; 181
+ 47a:	7c df       	rcall	.-264    	; 0x374 <TWI_SendByte>
+		uint8_t lo_obj = TWI_RecieveByte();	   // читаем старший байт температуры	
+ 47c:	b0 df       	rcall	.-160    	; 0x3de <TWI_RecieveByte>
+ 47e:	08 2f       	mov	r16, r24
+		uint8_t hi_obj = TWI_RecieveByte();	  // читаем младший байт температур
+ 480:	ae df       	rcall	.-164    	; 0x3de <TWI_RecieveByte>
+ 482:	f8 2e       	mov	r15, r24
+		TWI_RecieveLastByte();
+ 484:	ba df       	rcall	.-140    	; 0x3fa <TWI_RecieveLastByte>
+		TWI_Stop();
+ 486:	6a df       	rcall	.-300    	; 0x35c <TWI_Stop>
+		
+		       
+		term_obj 	 = ((hi_obj<<8) | lo_obj); //меняем младший байт и старший байт местами 
+ 488:	9f 2d       	mov	r25, r15
+ 48a:	80 e0       	ldi	r24, 0x00	; 0
+ 48c:	10 e0       	ldi	r17, 0x00	; 0
+ 48e:	08 2b       	or	r16, r24
+ 490:	19 2b       	or	r17, r25
+ 492:	10 93 0b 01 	sts	0x010B, r17
+ 496:	00 93 0a 01 	sts	0x010A, r16
+		return    term_obj;
+}
+ 49a:	c8 01       	movw	r24, r16
+ 49c:	1f 91       	pop	r17
+ 49e:	0f 91       	pop	r16
+ 4a0:	ff 90       	pop	r15
+ 4a2:	08 95       	ret
+
+000004a4 <__udivmodqi4>:
+ 4a4:	99 1b       	sub	r25, r25
+ 4a6:	79 e0       	ldi	r23, 0x09	; 9
+ 4a8:	04 c0       	rjmp	.+8      	; 0x4b2 <__udivmodqi4_ep>
+
+000004aa <__udivmodqi4_loop>:
+ 4aa:	99 1f       	adc	r25, r25
+ 4ac:	96 17       	cp	r25, r22
+ 4ae:	08 f0       	brcs	.+2      	; 0x4b2 <__udivmodqi4_ep>
+ 4b0:	96 1b       	sub	r25, r22
+
+000004b2 <__udivmodqi4_ep>:
+ 4b2:	88 1f       	adc	r24, r24
+ 4b4:	7a 95       	dec	r23
+ 4b6:	c9 f7       	brne	.-14     	; 0x4aa <__udivmodqi4_loop>
+ 4b8:	80 95       	com	r24
+ 4ba:	08 95       	ret
+
+000004bc <__udivmodhi4>:
+ 4bc:	aa 1b       	sub	r26, r26
+ 4be:	bb 1b       	sub	r27, r27
+ 4c0:	51 e1       	ldi	r21, 0x11	; 17
+ 4c2:	07 c0       	rjmp	.+14     	; 0x4d2 <__udivmodhi4_ep>
+
+000004c4 <__udivmodhi4_loop>:
+ 4c4:	aa 1f       	adc	r26, r26
+ 4c6:	bb 1f       	adc	r27, r27
+ 4c8:	a6 17       	cp	r26, r22
+ 4ca:	b7 07       	cpc	r27, r23
+ 4cc:	10 f0       	brcs	.+4      	; 0x4d2 <__udivmodhi4_ep>
+ 4ce:	a6 1b       	sub	r26, r22
+ 4d0:	b7 0b       	sbc	r27, r23
+
+000004d2 <__udivmodhi4_ep>:
+ 4d2:	88 1f       	adc	r24, r24
+ 4d4:	99 1f       	adc	r25, r25
+ 4d6:	5a 95       	dec	r21
+ 4d8:	a9 f7       	brne	.-22     	; 0x4c4 <__udivmodhi4_loop>
+ 4da:	80 95       	com	r24
+ 4dc:	90 95       	com	r25
+ 4de:	bc 01       	movw	r22, r24
+ 4e0:	cd 01       	movw	r24, r26
+ 4e2:	08 95       	ret
+
+000004e4 <_exit>:
+ 4e4:	f8 94       	cli
+
+000004e6 <__stop_program>:
+ 4e6:	ff cf       	rjmp	.-2      	; 0x4e6 <__stop_program>

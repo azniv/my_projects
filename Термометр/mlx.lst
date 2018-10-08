@@ -1,0 +1,88 @@
+   1               		.file	"mlx.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	temp_measurement
+  18               	temp_measurement:
+  19               	.LFB6:
+  20               	.LM1:
+  21 0000 FF92      		push r15
+  22 0002 0F93      		push r16
+  23 0004 1F93      		push r17
+  24               	/* prologue: function */
+  25               	/* frame size = 0 */
+  26               	.LM2:
+  27 0006 00D0      		rcall TWI_Start
+  28               	.LM3:
+  29 0008 84EB      		ldi r24,lo8(-76)
+  30 000a 00D0      		rcall TWI_SendByte
+  31               	.LM4:
+  32 000c 87E0      		ldi r24,lo8(7)
+  33 000e 00D0      		rcall TWI_SendByte
+  34               	.LM5:
+  35 0010 00D0      		rcall TWI_Start
+  36               	.LM6:
+  37 0012 85EB      		ldi r24,lo8(-75)
+  38 0014 00D0      		rcall TWI_SendByte
+  39               	.LM7:
+  40 0016 00D0      		rcall TWI_RecieveByte
+  41 0018 082F      		mov r16,r24
+  42               	.LVL0:
+  43               	.LM8:
+  44 001a 00D0      		rcall TWI_RecieveByte
+  45 001c F82E      		mov r15,r24
+  46               	.LVL1:
+  47               	.LM9:
+  48 001e 00D0      		rcall TWI_RecieveLastByte
+  49               	.LM10:
+  50 0020 00D0      		rcall TWI_Stop
+  51               	.LM11:
+  52 0022 9F2D      		mov r25,r15
+  53               	.LVL2:
+  54 0024 80E0      		ldi r24,lo8(0)
+  55               	.LVL3:
+  56 0026 10E0      		ldi r17,lo8(0)
+  57 0028 082B      		or r16,r24
+  58 002a 192B      		or r17,r25
+  59               	.LVL4:
+  60 002c 1093 0000 		sts (term_obj)+1,r17
+  61 0030 0093 0000 		sts term_obj,r16
+  62               	.LM12:
+  63 0034 C801      		movw r24,r16
+  64               	.LVL5:
+  65               	/* epilogue start */
+  66 0036 1F91      		pop r17
+  67 0038 0F91      		pop r16
+  68 003a FF90      		pop r15
+  69 003c 0895      		ret
+  70               	.LFE6:
+  72               	.global	term_obj
+  73               	.global	term_obj
+  74               		.section .bss
+  77               	term_obj:
+  78 0000 0000      		.skip 2,0
+  79               		.comm timer,1,1
+ 104               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 mlx.c
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccgpie0a.s:2      *ABS*:0000003f __SREG__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccgpie0a.s:3      *ABS*:0000003e __SP_H__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccgpie0a.s:4      *ABS*:0000003d __SP_L__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccgpie0a.s:5      *ABS*:00000034 __CCP__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccgpie0a.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccgpie0a.s:7      *ABS*:00000001 __zero_reg__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccgpie0a.s:18     .text:00000000 temp_measurement
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccgpie0a.s:77     .bss:00000000 term_obj
+                            *COM*:00000001 timer
+
+UNDEFINED SYMBOLS
+TWI_Start
+TWI_SendByte
+TWI_RecieveByte
+TWI_RecieveLastByte
+TWI_Stop
+__do_clear_bss

@@ -1,0 +1,221 @@
+   1               		.file	"twi.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	TWI_Start
+  18               	TWI_Start:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 8FEF      		ldi r24,lo8(-1)
+  25 0002 8093 0000 		sts timer,r24
+  26               	.LM3:
+  27 0006 84EA      		ldi r24,lo8(-92)
+  28 0008 8093 BC00 		sts 188,r24
+  29               	.L3:
+  30               	.LM4:
+  31 000c 8091 0000 		lds r24,timer
+  32 0010 8823      		tst r24
+  33 0012 01F0      		breq .L4
+  34 0014 8091 BC00 		lds r24,188
+  35 0018 87FF      		sbrs r24,7
+  36 001a 00C0      		rjmp .L3
+  37               	.L4:
+  38 001c 0895      		ret
+  39               	.LFE6:
+  41               	.global	TWI_Stop
+  43               	TWI_Stop:
+  44               	.LFB7:
+  45               	.LM5:
+  46               	/* prologue: function */
+  47               	/* frame size = 0 */
+  48               	.LM6:
+  49 001e 84E9      		ldi r24,lo8(-108)
+  50 0020 8093 BC00 		sts 188,r24
+  51               	.L8:
+  52               	.LM7:
+  53 0024 8091 0000 		lds r24,timer
+  54 0028 8823      		tst r24
+  55 002a 01F0      		breq .L9
+  56 002c 8091 BC00 		lds r24,188
+  57 0030 84FD      		sbrc r24,4
+  58 0032 00C0      		rjmp .L8
+  59               	.L9:
+  60 0034 0895      		ret
+  61               	.LFE7:
+  63               	.global	TWI_SendByte
+  65               	TWI_SendByte:
+  66               	.LFB8:
+  67               	.LM8:
+  68               	.LVL0:
+  69               	/* prologue: function */
+  70               	/* frame size = 0 */
+  71               	.LM9:
+  72 0036 8093 BB00 		sts 187,r24
+  73               	.LM10:
+  74 003a 84E8      		ldi r24,lo8(-124)
+  75               	.LVL1:
+  76 003c 8093 BC00 		sts 188,r24
+  77               	.L13:
+  78               	.LM11:
+  79 0040 8091 0000 		lds r24,timer
+  80 0044 8823      		tst r24
+  81 0046 01F0      		breq .L14
+  82 0048 8091 BC00 		lds r24,188
+  83 004c 87FF      		sbrs r24,7
+  84 004e 00C0      		rjmp .L13
+  85               	.L14:
+  86 0050 0895      		ret
+  87               	.LFE8:
+  89               	.global	TWI_Init
+  91               	TWI_Init:
+  92               	.LFB9:
+  93               	.LM12:
+  94               	/* prologue: function */
+  95               	/* frame size = 0 */
+  96               	.LM13:
+  97 0052 80E2      		ldi r24,lo8(32)
+  98 0054 8093 B800 		sts 184,r24
+  99               	/* epilogue start */
+ 100               	.LM14:
+ 101 0058 0895      		ret
+ 102               	.LFE9:
+ 104               	.global	TWI_SendPocket
+ 106               	TWI_SendPocket:
+ 107               	.LFB10:
+ 108               	.LM15:
+ 109               	.LVL2:
+ 110 005a 0F93      		push r16
+ 111 005c 1F93      		push r17
+ 112               	/* prologue: function */
+ 113               	/* frame size = 0 */
+ 114 005e 082F      		mov r16,r24
+ 115 0060 162F      		mov r17,r22
+ 116               	.LM16:
+ 117 0062 00D0      		rcall TWI_Start
+ 118               	.LVL3:
+ 119               	.LBB6:
+ 120               	.LBB7:
+ 121               	.LM17:
+ 122 0064 1093 BB00 		sts 187,r17
+ 123               	.LM18:
+ 124 0068 84E8      		ldi r24,lo8(-124)
+ 125 006a 8093 BC00 		sts 188,r24
+ 126               	.L20:
+ 127               	.LM19:
+ 128 006e 8091 0000 		lds r24,timer
+ 129 0072 8823      		tst r24
+ 130 0074 01F0      		breq .L19
+ 131 0076 8091 BC00 		lds r24,188
+ 132 007a 87FF      		sbrs r24,7
+ 133 007c 00C0      		rjmp .L20
+ 134               	.L19:
+ 135               	.LBE7:
+ 136               	.LBE6:
+ 137               	.LBB8:
+ 138               	.LBB9:
+ 139               	.LM20:
+ 140 007e 0093 BB00 		sts 187,r16
+ 141               	.LM21:
+ 142 0082 84E8      		ldi r24,lo8(-124)
+ 143 0084 8093 BC00 		sts 188,r24
+ 144               	.L22:
+ 145               	.LM22:
+ 146 0088 8091 0000 		lds r24,timer
+ 147 008c 8823      		tst r24
+ 148 008e 01F0      		breq .L21
+ 149 0090 8091 BC00 		lds r24,188
+ 150 0094 87FF      		sbrs r24,7
+ 151 0096 00C0      		rjmp .L22
+ 152               	.L21:
+ 153               	.LBE9:
+ 154               	.LBE8:
+ 155               	.LM23:
+ 156 0098 00D0      		rcall TWI_Stop
+ 157               	/* epilogue start */
+ 158               	.LM24:
+ 159 009a 1F91      		pop r17
+ 160               	.LVL4:
+ 161 009c 0F91      		pop r16
+ 162               	.LVL5:
+ 163 009e 0895      		ret
+ 164               	.LFE10:
+ 166               	.global	TWI_RecieveByte
+ 168               	TWI_RecieveByte:
+ 169               	.LFB11:
+ 170               	.LM25:
+ 171               	/* prologue: function */
+ 172               	/* frame size = 0 */
+ 173               	.LM26:
+ 174 00a0 84EC      		ldi r24,lo8(-60)
+ 175 00a2 8093 BC00 		sts 188,r24
+ 176               	.L28:
+ 177               	.LM27:
+ 178 00a6 8091 0000 		lds r24,timer
+ 179 00aa 8823      		tst r24
+ 180 00ac 01F0      		breq .L27
+ 181 00ae 8091 BC00 		lds r24,188
+ 182 00b2 87FF      		sbrs r24,7
+ 183 00b4 00C0      		rjmp .L28
+ 184               	.L27:
+ 185               	.LM28:
+ 186 00b6 8091 BB00 		lds r24,187
+ 187               	.LVL6:
+ 188               	.LVL7:
+ 189               	/* epilogue start */
+ 190               	.LM29:
+ 191 00ba 0895      		ret
+ 192               	.LFE11:
+ 194               	.global	TWI_RecieveLastByte
+ 196               	TWI_RecieveLastByte:
+ 197               	.LFB12:
+ 198               	.LM30:
+ 199               	/* prologue: function */
+ 200               	/* frame size = 0 */
+ 201               	.LM31:
+ 202 00bc 84E8      		ldi r24,lo8(-124)
+ 203 00be 8093 BC00 		sts 188,r24
+ 204               	.L33:
+ 205               	.LM32:
+ 206 00c2 8091 0000 		lds r24,timer
+ 207 00c6 8823      		tst r24
+ 208 00c8 01F0      		breq .L32
+ 209 00ca 8091 BC00 		lds r24,188
+ 210 00ce 87FF      		sbrs r24,7
+ 211 00d0 00C0      		rjmp .L33
+ 212               	.L32:
+ 213               	.LM33:
+ 214 00d2 8091 BB00 		lds r24,187
+ 215               	.LVL8:
+ 216               	.LVL9:
+ 217               	/* epilogue start */
+ 218               	.LM34:
+ 219 00d6 0895      		ret
+ 220               	.LFE12:
+ 222               		.comm timer,1,1
+ 295               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 twi.c
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccSwmpxC.s:2      *ABS*:0000003f __SREG__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccSwmpxC.s:3      *ABS*:0000003e __SP_H__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccSwmpxC.s:4      *ABS*:0000003d __SP_L__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccSwmpxC.s:5      *ABS*:00000034 __CCP__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccSwmpxC.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccSwmpxC.s:7      *ABS*:00000001 __zero_reg__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccSwmpxC.s:18     .text:00000000 TWI_Start
+                            *COM*:00000001 timer
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccSwmpxC.s:43     .text:0000001e TWI_Stop
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccSwmpxC.s:65     .text:00000036 TWI_SendByte
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccSwmpxC.s:91     .text:00000052 TWI_Init
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccSwmpxC.s:106    .text:0000005a TWI_SendPocket
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccSwmpxC.s:168    .text:000000a0 TWI_RecieveByte
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccSwmpxC.s:196    .text:000000bc TWI_RecieveLastByte
+
+UNDEFINED SYMBOLS
+__do_clear_bss
