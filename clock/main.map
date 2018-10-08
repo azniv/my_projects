@@ -1,0 +1,557 @@
+Archive member included because of file (symbol)
+
+d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+                              d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o (exit)
+d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
+                              main.o (__do_copy_data)
+d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+                              main.o (__do_clear_bss)
+
+Allocating common symbols
+Common symbol       size              file
+
+current_ds_Time     0x7               main.o
+alarm_ds_Time       0x7               main.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00002000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+fuse             0x00820000         0x00000400         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+Address of section .data set to 0x800100
+LOAD d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+LOAD main.o
+LOAD LCD_interface.o
+LOAD ds1307.o
+LOAD d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4\libm.a
+LOAD d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a
+LOAD d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4\libc.a
+LOAD d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000      0x802
+ *(.vectors)
+ .vectors       0x00000000       0x34 d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+                0x00000000                __vectors
+                0x00000000                __vector_default
+ *(.vectors)
+ *(.progmem.gcc*)
+ *(.progmem*)
+ .progmem.data  0x00000034        0x7 main.o
+                0x00000034                X
+                0x0000003c                . = ALIGN (0x2)
+ *fill*         0x0000003b        0x1 00
+                0x0000003c                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x0000003c        0x0 linker stubs
+ *(.trampolines*)
+                0x0000003c                __trampolines_end = .
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x0000003c                __ctors_start = .
+ *(.ctors)
+                0x0000003c                __ctors_end = .
+                0x0000003c                __dtors_start = .
+ *(.dtors)
+                0x0000003c                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x0000003c        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+                0x0000003c                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x0000003c        0xc d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x00000048       0x16 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
+                0x00000048                __do_copy_data
+ .init4         0x0000005e       0x10 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+                0x0000005e                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x0000006e        0x4 d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+ *(.init9)
+ *(.text)
+ .text          0x00000072        0x2 d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+                0x00000072                __vector_22
+                0x00000072                __vector_1
+                0x00000072                __vector_24
+                0x00000072                __vector_12
+                0x00000072                __bad_interrupt
+                0x00000072                __vector_6
+                0x00000072                __vector_3
+                0x00000072                __vector_23
+                0x00000072                __vector_25
+                0x00000072                __vector_11
+                0x00000072                __vector_13
+                0x00000072                __vector_17
+                0x00000072                __vector_19
+                0x00000072                __vector_7
+                0x00000072                __vector_4
+                0x00000072                __vector_9
+                0x00000072                __vector_21
+                0x00000072                __vector_15
+                0x00000072                __vector_8
+                0x00000072                __vector_14
+                0x00000072                __vector_10
+                0x00000072                __vector_18
+                0x00000072                __vector_20
+ .text          0x00000074      0x4e0 main.o
+                0x000001a6                DisplayAlarmTime
+                0x00000110                SetTime
+                0x00000074                AlarmCheck
+                0x00000262                __vector_5
+                0x0000033e                main
+                0x000003aa                __vector_2
+                0x000001e2                DisplayMenu
+                0x000000b8                Set
+                0x00000188                SetCursor
+                0x0000009a                AlarmOff
+                0x0000015c                SetAlarmTime
+                0x00000440                __vector_16
+                0x0000021c                DisplayTime
+ .text          0x00000554       0xd6 LCD_interface.o
+                0x0000059e                LCD_init
+                0x00000554                enable
+                0x000005f4                LCD_gotoXY
+                0x00000592                LCD_send_data
+                0x00000566                entering_data_or_command
+                0x00000606                LCD_putstring
+                0x00000598                LCD_send_cmd
+ .text          0x0000062a      0x1d4 ds1307.o
+                0x00000710                read_DS
+                0x0000062a                TWI_SendPocket
+                0x0000067e                write_DS
+                0x000007a0                ds_SetTime
+                0x00000666                TWI_RecieveByte
+                0x000006ce                init_DS
+                0x000007be                time2str
+                0x00000782                ds_GetTime
+ .text          0x000007fe        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ .text          0x000007fe        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
+ .text          0x000007fe        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+                0x000007fe                . = ALIGN (0x2)
+ *(.text.*)
+ .text.libgcc   0x000007fe        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ .text.libgcc   0x000007fe        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
+ .text.libgcc   0x000007fe        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+                0x000007fe                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x000007fe        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+                0x000007fe                exit
+                0x000007fe                _exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x000007fe        0x4 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ *(.fini0)
+                0x00000802                _etext = .
+
+.data           0x00800100       0x50 load address 0x00000802
+                0x00800100                PROVIDE (__data_start, .)
+ *(.data)
+ .data          0x00800100        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+ .data          0x00800100       0x50 main.o
+                0x0080010e                buf_time
+                0x0080014f                seconds_lo
+                0x00800138                buf_menu
+                0x0080014d                update_flag
+                0x00800107                min_value
+                0x00800123                buf_alarm
+                0x00800100                max_value
+                0x0080014e                seconds_hi
+ .data          0x00800150        0x0 LCD_interface.o
+ .data          0x00800150        0x0 ds1307.o
+ .data          0x00800150        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ .data          0x00800150        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
+ .data          0x00800150        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+ *(.data*)
+ *(.rodata)
+ *(.rodata*)
+ *(.gnu.linkonce.d*)
+                0x00800150                . = ALIGN (0x2)
+                0x00800150                _edata = .
+                0x00800150                PROVIDE (__data_end, .)
+
+.bss            0x00800150       0x1a
+                0x00800150                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x00800150        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+ .bss           0x00800150        0xc main.o
+                0x0080015b                menu_item
+                0x00800156                button_PIN1_counter
+                0x00800150                update_alarm_flag
+                0x00800153                clock_ticking
+                0x00800154                menu_conf_mode
+                0x00800151                sound_of_alarm
+                0x00800159                timeout_alarm
+                0x00800157                confmode_off
+                0x00800155                button_PIN2_counter
+                0x00800152                conf_mode
+ .bss           0x0080015c        0x0 LCD_interface.o
+ .bss           0x0080015c        0x0 ds1307.o
+ .bss           0x0080015c        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ .bss           0x0080015c        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
+ .bss           0x0080015c        0x0 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+ *(.bss*)
+ *(COMMON)
+ COMMON         0x0080015c        0xe main.o
+                0x0080015c                current_ds_Time
+                0x00800163                alarm_ds_Time
+                0x0080016a                PROVIDE (__bss_end, .)
+                0x00000802                __data_load_start = LOADADDR (.data)
+                0x00000852                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x0080016a        0x0
+                0x0080016a                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x0080016a                PROVIDE (__noinit_end, .)
+                0x0080016a                _end = .
+                0x0080016a                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment
+ *(.comment)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000       0x60
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x20 main.o
+ .debug_aranges
+                0x00000020       0x20 LCD_interface.o
+ .debug_aranges
+                0x00000040       0x20 ds1307.o
+
+.debug_pubnames
+                0x00000000      0x33c
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000      0x228 main.o
+ .debug_pubnames
+                0x00000228       0x8b LCD_interface.o
+ .debug_pubnames
+                0x000002b3       0x89 ds1307.o
+
+.debug_info     0x00000000      0xd16
+ *(.debug_info)
+ .debug_info    0x00000000      0x52c main.o
+ .debug_info    0x0000052c      0x3b0 LCD_interface.o
+ .debug_info    0x000008dc      0x43a ds1307.o
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev   0x00000000      0x4cb
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x214 main.o
+ .debug_abbrev  0x00000214      0x116 LCD_interface.o
+ .debug_abbrev  0x0000032a      0x1a1 ds1307.o
+
+.debug_line     0x00000000      0xb9a
+ *(.debug_line)
+ .debug_line    0x00000000      0x5ec main.o
+ .debug_line    0x000005ec      0x283 LCD_interface.o
+ .debug_line    0x0000086f      0x32b ds1307.o
+
+.debug_frame    0x00000000      0x1f0
+ *(.debug_frame)
+ .debug_frame   0x00000000       0xe0 main.o
+ .debug_frame   0x000000e0       0x80 LCD_interface.o
+ .debug_frame   0x00000160       0x90 ds1307.o
+
+.debug_str      0x00000000      0x3a6
+ *(.debug_str)
+ .debug_str     0x00000000      0x276 main.o
+                                0x2c1 (size before relaxing)
+ .debug_str     0x00000276       0x9a LCD_interface.o
+                                0x187 (size before relaxing)
+ .debug_str     0x00000310       0x96 ds1307.o
+                                0x176 (size before relaxing)
+
+.debug_loc      0x00000000      0x2df
+ *(.debug_loc)
+ .debug_loc     0x00000000       0x4e main.o
+ .debug_loc     0x0000004e      0x118 LCD_interface.o
+ .debug_loc     0x00000166      0x179 ds1307.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+OUTPUT(main.elf elf32-avr)
+LOAD linker stubs
+
+Cross Reference Table
+
+Symbol                                            File
+AlarmCheck                                        main.o
+AlarmOff                                          main.o
+DisplayAlarmTime                                  main.o
+DisplayMenu                                       main.o
+DisplayTime                                       main.o
+LCD_gotoXY                                        LCD_interface.o
+                                                  main.o
+LCD_init                                          LCD_interface.o
+                                                  main.o
+LCD_putstring                                     LCD_interface.o
+                                                  main.o
+LCD_send_cmd                                      LCD_interface.o
+                                                  main.o
+LCD_send_data                                     LCD_interface.o
+                                                  main.o
+Set                                               main.o
+SetAlarmTime                                      main.o
+SetCursor                                         main.o
+SetTime                                           main.o
+TWI_RecieveByte                                   ds1307.o
+TWI_SendPocket                                    ds1307.o
+X                                                 main.o
+__bad_interrupt                                   d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__bss_end                                         d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+__bss_start                                       d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+__data_end                                        d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
+__data_load_start                                 d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
+__data_start                                      d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
+__do_clear_bss                                    d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+                                                  main.o
+__do_copy_data                                    d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
+                                                  main.o
+__heap_end                                        d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__init                                            d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__stack                                           d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_1                                        d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_10                                       d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_11                                       d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_12                                       d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_13                                       d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_14                                       d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_15                                       d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_16                                       main.o
+                                                  d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_17                                       d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_18                                       d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_19                                       d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_2                                        main.o
+                                                  d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_20                                       d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_21                                       d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_22                                       d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_23                                       d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_24                                       d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_25                                       d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_3                                        d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_4                                        d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_5                                        main.o
+                                                  d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_6                                        d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_7                                        d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_8                                        d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_9                                        d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vector_default                                  d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+__vectors                                         d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+_exit                                             d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+alarm_ds_Time                                     main.o
+buf_alarm                                         main.o
+buf_menu                                          main.o
+buf_time                                          main.o
+button_PIN1_counter                               main.o
+button_PIN2_counter                               main.o
+clock_ticking                                     main.o
+conf_mode                                         main.o
+confmode_off                                      main.o
+current_ds_Time                                   main.o
+ds_GetTime                                        ds1307.o
+                                                  main.o
+ds_SetTime                                        ds1307.o
+enable                                            LCD_interface.o
+entering_data_or_command                          LCD_interface.o
+exit                                              d:/winavr/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+                                                  d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+init_DS                                           ds1307.o
+                                                  main.o
+main                                              main.o
+                                                  d:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm48p.o
+max_value                                         main.o
+menu_conf_mode                                    main.o
+menu_item                                         main.o
+min_value                                         main.o
+read_DS                                           ds1307.o
+                                                  main.o
+seconds_hi                                        main.o
+seconds_lo                                        main.o
+sound_of_alarm                                    main.o
+time2str                                          ds1307.o
+                                                  main.o
+timeout_alarm                                     main.o
+update_alarm_flag                                 main.o
+update_flag                                       main.o
+write_DS                                          ds1307.o
+                                                  main.o

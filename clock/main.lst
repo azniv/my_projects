@@ -1,0 +1,1100 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	AlarmCheck
+  18               	AlarmCheck:
+  19               	.LFB19:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 88EF      		ldi r24,lo8(1016)
+  25 0002 93E0      		ldi r25,hi8(1016)
+  26 0004 9093 0000 		sts (timeout_alarm)+1,r25
+  27 0008 8093 0000 		sts timeout_alarm,r24
+  28               	.LM3:
+  29 000c 81E0      		ldi r24,lo8(1)
+  30 000e 8093 0000 		sts sound_of_alarm,r24
+  31 0012 88E8      		ldi r24,lo8(5000)
+  32 0014 93E1      		ldi r25,hi8(5000)
+  33               	.LVL0:
+  34               	.LBB20:
+  35               	.LBB21:
+  36               	.LBB22:
+  37               	.LBB23:
+  38               	.LM4:
+  39 0016 28EC      		ldi r18,lo8(200)
+  40 0018 30E0      		ldi r19,hi8(200)
+  41               	.L2:
+  42 001a F901      		movw r30,r18
+  43               	.LVL1:
+  44               	/* #APP */
+  45               	 ;  105 "d:/winavr/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  46 001c 3197      		1: sbiw r30,1
+  47 001e 01F4      		brne 1b
+  48               	 ;  0 "" 2
+  49               	/* #NOAPP */
+  50               	.LBE23:
+  51               	.LBE22:
+  52               	.LM5:
+  53 0020 0197      		sbiw r24,1
+  54               	.LM6:
+  55 0022 01F4      		brne .L2
+  56               	/* epilogue start */
+  57               	.LBE21:
+  58               	.LBE20:
+  59               	.LM7:
+  60 0024 0895      		ret
+  61               	.LFE19:
+  63               	.global	AlarmOff
+  65               	AlarmOff:
+  66               	.LFB18:
+  67               	.LM8:
+  68               	/* prologue: function */
+  69               	/* frame size = 0 */
+  70               	.LM9:
+  71 0026 8FE0      		ldi r24,lo8(15)
+  72 0028 60E0      		ldi r22,lo8(0)
+  73 002a 00D0      		rcall write_DS
+  74 002c 88E8      		ldi r24,lo8(5000)
+  75 002e 93E1      		ldi r25,hi8(5000)
+  76               	.LVL2:
+  77               	.LBB24:
+  78               	.LBB25:
+  79               	.LBB26:
+  80               	.LBB27:
+  81               	.LM10:
+  82 0030 28EC      		ldi r18,lo8(200)
+  83 0032 30E0      		ldi r19,hi8(200)
+  84               	.L6:
+  85 0034 F901      		movw r30,r18
+  86               	.LVL3:
+  87               	/* #APP */
+  88               	 ;  105 "d:/winavr/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  89 0036 3197      		1: sbiw r30,1
+  90 0038 01F4      		brne 1b
+  91               	 ;  0 "" 2
+  92               	/* #NOAPP */
+  93               	.LBE27:
+  94               	.LBE26:
+  95               	.LM11:
+  96 003a 0197      		sbiw r24,1
+  97               	.LM12:
+  98 003c 01F4      		brne .L6
+  99               	.LBE25:
+ 100               	.LBE24:
+ 101               	.LM13:
+ 102 003e 1092 0000 		sts sound_of_alarm,__zero_reg__
+ 103               	/* epilogue start */
+ 104               	.LM14:
+ 105 0042 0895      		ret
+ 106               	.LFE18:
+ 108               	.global	Set
+ 110               	Set:
+ 111               	.LFB14:
+ 112               	.LM15:
+ 113               	.LVL4:
+ 114               	/* prologue: function */
+ 115               	/* frame size = 0 */
+ 116 0044 DC01      		movw r26,r24
+ 117               	.LM16:
+ 118 0046 9C91      		ld r25,X
+ 119 0048 E091 0000 		lds r30,conf_mode
+ 120 004c F0E0      		ldi r31,lo8(0)
+ 121 004e E050      		subi r30,lo8(-(max_value))
+ 122 0050 F040      		sbci r31,hi8(-(max_value))
+ 123 0052 8081      		ld r24,Z
+ 124               	.LVL5:
+ 125 0054 9817      		cp r25,r24
+ 126 0056 00F4      		brsh .L10
+ 127 0058 E92F      		mov r30,r25
+ 128 005a EF5F      		subi r30,lo8(-(1))
+ 129 005c 00C0      		rjmp .L11
+ 130               	.L10:
+ 131 005e E091 0000 		lds r30,conf_mode
+ 132 0062 F0E0      		ldi r31,lo8(0)
+ 133 0064 E050      		subi r30,lo8(-(min_value))
+ 134 0066 F040      		sbci r31,hi8(-(min_value))
+ 135 0068 E081      		ld r30,Z
+ 136               	.L11:
+ 137 006a EC93      		st X,r30
+ 138               	.LM17:
+ 139 006c 8E2F      		mov r24,r30
+ 140 006e 90E0      		ldi r25,lo8(0)
+ 141 0070 8F70      		andi r24,lo8(15)
+ 142 0072 9070      		andi r25,hi8(15)
+ 143 0074 0A97      		sbiw r24,10
+ 144 0076 04F0      		brlt .L12
+ 145               	.LM18:
+ 146 0078 E07F      		andi r30,lo8(-16)
+ 147 007a E05F      		subi r30,lo8(-(16))
+ 148 007c EC93      		st X,r30
+ 149               	.L12:
+ 150               	.LM19:
+ 151 007e 862F      		mov r24,r22
+ 152 0080 6C91      		ld r22,X
+ 153               	.LVL6:
+ 154 0082 00D0      		rcall write_DS
+ 155               	.LVL7:
+ 156               	.LM20:
+ 157 0084 8091 0000 		lds r24,menu_item
+ 158 0088 8823      		tst r24
+ 159 008a 01F4      		brne .L13
+ 160               	.LM21:
+ 161 008c 81E0      		ldi r24,lo8(1)
+ 162 008e 8093 0000 		sts update_flag,r24
+ 163 0092 0895      		ret
+ 164               	.L13:
+ 165               	.LM22:
+ 166 0094 81E0      		ldi r24,lo8(1)
+ 167 0096 8093 0000 		sts update_alarm_flag,r24
+ 168 009a 0895      		ret
+ 169               	.LFE14:
+ 171               	.global	SetTime
+ 173               	SetTime:
+ 174               	.LFB16:
+ 175               	.LM23:
+ 176               	/* prologue: function */
+ 177               	/* frame size = 0 */
+ 178               	.LM24:
+ 179 009c 8091 0000 		lds r24,conf_mode
+ 180 00a0 8430      		cpi r24,lo8(4)
+ 181 00a2 01F0      		breq .L20
+ 182 00a4 8530      		cpi r24,lo8(5)
+ 183 00a6 00F4      		brsh .L23
+ 184 00a8 8130      		cpi r24,lo8(1)
+ 185 00aa 01F0      		breq .L18
+ 186 00ac 8230      		cpi r24,lo8(2)
+ 187 00ae 01F4      		brne .L24
+ 188 00b0 00C0      		rjmp .L26
+ 189               	.L23:
+ 190 00b2 8530      		cpi r24,lo8(5)
+ 191 00b4 01F0      		breq .L21
+ 192 00b6 8630      		cpi r24,lo8(6)
+ 193 00b8 01F4      		brne .L24
+ 194 00ba 00C0      		rjmp .L27
+ 195               	.L18:
+ 196               	.LM25:
+ 197 00bc 80E0      		ldi r24,lo8(current_ds_Time+2)
+ 198 00be 90E0      		ldi r25,hi8(current_ds_Time+2)
+ 199 00c0 62E0      		ldi r22,lo8(2)
+ 200 00c2 00C0      		rjmp .L25
+ 201               	.L26:
+ 202               	.LM26:
+ 203 00c4 80E0      		ldi r24,lo8(current_ds_Time+1)
+ 204 00c6 90E0      		ldi r25,hi8(current_ds_Time+1)
+ 205 00c8 61E0      		ldi r22,lo8(1)
+ 206 00ca 00C0      		rjmp .L25
+ 207               	.L20:
+ 208               	.LM27:
+ 209 00cc 80E0      		ldi r24,lo8(current_ds_Time+4)
+ 210 00ce 90E0      		ldi r25,hi8(current_ds_Time+4)
+ 211 00d0 64E0      		ldi r22,lo8(4)
+ 212 00d2 00C0      		rjmp .L25
+ 213               	.L21:
+ 214               	.LM28:
+ 215 00d4 80E0      		ldi r24,lo8(current_ds_Time+5)
+ 216 00d6 90E0      		ldi r25,hi8(current_ds_Time+5)
+ 217 00d8 65E0      		ldi r22,lo8(5)
+ 218               	.L25:
+ 219 00da 00D0      		rcall Set
+ 220 00dc 0895      		ret
+ 221               	.L27:
+ 222               	.LM29:
+ 223 00de 80E0      		ldi r24,lo8(current_ds_Time+6)
+ 224 00e0 90E0      		ldi r25,hi8(current_ds_Time+6)
+ 225 00e2 66E0      		ldi r22,lo8(6)
+ 226 00e4 00D0      		rcall Set
+ 227               	.L24:
+ 228 00e6 0895      		ret
+ 229               	.LFE16:
+ 231               	.global	SetAlarmTime
+ 233               	SetAlarmTime:
+ 234               	.LFB15:
+ 235               	.LM30:
+ 236               	/* prologue: function */
+ 237               	/* frame size = 0 */
+ 238               	.LM31:
+ 239 00e8 8091 0000 		lds r24,conf_mode
+ 240 00ec 8230      		cpi r24,lo8(2)
+ 241 00ee 01F0      		breq .L31
+ 242 00f0 8430      		cpi r24,lo8(4)
+ 243 00f2 01F0      		breq .L32
+ 244 00f4 8130      		cpi r24,lo8(1)
+ 245 00f6 01F4      		brne .L33
+ 246               	.LM32:
+ 247 00f8 80E0      		ldi r24,lo8(alarm_ds_Time+2)
+ 248 00fa 90E0      		ldi r25,hi8(alarm_ds_Time+2)
+ 249 00fc 69E0      		ldi r22,lo8(9)
+ 250 00fe 00C0      		rjmp .L34
+ 251               	.L31:
+ 252               	.LM33:
+ 253 0100 80E0      		ldi r24,lo8(alarm_ds_Time+1)
+ 254 0102 90E0      		ldi r25,hi8(alarm_ds_Time+1)
+ 255 0104 68E0      		ldi r22,lo8(8)
+ 256               	.L34:
+ 257 0106 00D0      		rcall Set
+ 258 0108 0895      		ret
+ 259               	.L32:
+ 260               	.LM34:
+ 261 010a 80E0      		ldi r24,lo8(alarm_ds_Time+4)
+ 262 010c 90E0      		ldi r25,hi8(alarm_ds_Time+4)
+ 263 010e 6AE0      		ldi r22,lo8(10)
+ 264 0110 00D0      		rcall Set
+ 265               	.L33:
+ 266 0112 0895      		ret
+ 267               	.LFE15:
+ 269               	.global	SetCursor
+ 271               	SetCursor:
+ 272               	.LFB13:
+ 273               	.LM35:
+ 274               	/* prologue: function */
+ 275               	/* frame size = 0 */
+ 276               	.LBB28:
+ 277               	.LM36:
+ 278 0114 E091 0000 		lds r30,conf_mode
+ 279 0118 F0E0      		ldi r31,lo8(0)
+ 280 011a E050      		subi r30,lo8(-(X))
+ 281 011c F040      		sbci r31,hi8(-(X))
+ 282               	/* #APP */
+ 283               	 ;  362 "main.c" 1
+ 284 011e 9491      		lpm r25, Z
+ 285               		
+ 286               	 ;  0 "" 2
+ 287               	.LVL8:
+ 288               	/* #NOAPP */
+ 289               	.LBE28:
+ 290 0120 8091 0000 		lds r24,conf_mode
+ 291 0124 60E0      		ldi r22,lo8(0)
+ 292 0126 8430      		cpi r24,lo8(4)
+ 293 0128 00F0      		brlo .L36
+ 294 012a 61E0      		ldi r22,lo8(1)
+ 295               	.L36:
+ 296 012c 892F      		mov r24,r25
+ 297 012e 00D0      		rcall LCD_gotoXY
+ 298               	.LVL9:
+ 299               	/* epilogue start */
+ 300               	.LM37:
+ 301 0130 0895      		ret
+ 302               	.LFE13:
+ 304               	.global	DisplayAlarmTime
+ 306               	DisplayAlarmTime:
+ 307               	.LFB12:
+ 308               	.LM38:
+ 309 0132 0F93      		push r16
+ 310 0134 1F93      		push r17
+ 311               	/* prologue: function */
+ 312               	/* frame size = 0 */
+ 313               	.LM39:
+ 314 0136 00E0      		ldi r16,lo8(buf_alarm)
+ 315 0138 10E0      		ldi r17,hi8(buf_alarm)
+ 316 013a 80E0      		ldi r24,lo8(alarm_ds_Time)
+ 317 013c 90E0      		ldi r25,hi8(alarm_ds_Time)
+ 318 013e B801      		movw r22,r16
+ 319 0140 00D0      		rcall time2str
+ 320               	.LM40:
+ 321 0142 8091 0000 		lds r24,buf_alarm+6
+ 322 0146 8093 0000 		sts seconds_hi,r24
+ 323               	.LM41:
+ 324 014a 8091 0000 		lds r24,buf_alarm+7
+ 325 014e 8093 0000 		sts seconds_lo,r24
+ 326               	.LM42:
+ 327 0152 80E0      		ldi r24,lo8(0)
+ 328 0154 60E0      		ldi r22,lo8(0)
+ 329 0156 00D0      		rcall LCD_gotoXY
+ 330               	.LM43:
+ 331 0158 C801      		movw r24,r16
+ 332 015a 00D0      		rcall LCD_putstring
+ 333               	.LM44:
+ 334 015c 80E0      		ldi r24,lo8(0)
+ 335 015e 61E0      		ldi r22,lo8(1)
+ 336 0160 00D0      		rcall LCD_gotoXY
+ 337               	.LM45:
+ 338 0162 C801      		movw r24,r16
+ 339 0164 0C96      		adiw r24,12
+ 340 0166 00D0      		rcall LCD_putstring
+ 341               	/* epilogue start */
+ 342               	.LM46:
+ 343 0168 1F91      		pop r17
+ 344 016a 0F91      		pop r16
+ 345 016c 0895      		ret
+ 346               	.LFE12:
+ 348               	.global	DisplayMenu
+ 350               	DisplayMenu:
+ 351               	.LFB11:
+ 352               	.LM47:
+ 353 016e 0F93      		push r16
+ 354 0170 1F93      		push r17
+ 355               	/* prologue: function */
+ 356               	/* frame size = 0 */
+ 357               	.LM48:
+ 358 0172 1092 0000 		sts update_flag,__zero_reg__
+ 359               	.LM49:
+ 360 0176 00E0      		ldi r16,lo8(buf_menu+6)
+ 361 0178 10E0      		ldi r17,hi8(buf_menu+6)
+ 362 017a 8091 0000 		lds r24,buf_menu+6
+ 363 017e 8093 0000 		sts seconds_hi,r24
+ 364               	.LM50:
+ 365 0182 8091 0000 		lds r24,buf_menu+7
+ 366 0186 8093 0000 		sts seconds_lo,r24
+ 367               	.LM51:
+ 368 018a 80E0      		ldi r24,lo8(0)
+ 369 018c 60E0      		ldi r22,lo8(0)
+ 370 018e 00D0      		rcall LCD_gotoXY
+ 371               	.LM52:
+ 372 0190 C801      		movw r24,r16
+ 373 0192 0697      		sbiw r24,6
+ 374 0194 00D0      		rcall LCD_putstring
+ 375               	.LM53:
+ 376 0196 80E0      		ldi r24,lo8(0)
+ 377 0198 61E0      		ldi r22,lo8(1)
+ 378 019a 00D0      		rcall LCD_gotoXY
+ 379               	.LM54:
+ 380 019c C801      		movw r24,r16
+ 381 019e 0696      		adiw r24,6
+ 382 01a0 00D0      		rcall LCD_putstring
+ 383               	/* epilogue start */
+ 384               	.LM55:
+ 385 01a2 1F91      		pop r17
+ 386 01a4 0F91      		pop r16
+ 387 01a6 0895      		ret
+ 388               	.LFE11:
+ 390               	.global	DisplayTime
+ 392               	DisplayTime:
+ 393               	.LFB10:
+ 394               	.LM56:
+ 395 01a8 0F93      		push r16
+ 396 01aa 1F93      		push r17
+ 397               	/* prologue: function */
+ 398               	/* frame size = 0 */
+ 399               	.LM57:
+ 400               	/* #APP */
+ 401               	 ;  307 "main.c" 1
+ 402 01ac F894      		cli
+ 403               	 ;  0 "" 2
+ 404               	.LM58:
+ 405               	/* #NOAPP */
+ 406 01ae 80E0      		ldi r24,lo8(current_ds_Time)
+ 407 01b0 90E0      		ldi r25,hi8(current_ds_Time)
+ 408 01b2 00D0      		rcall ds_GetTime
+ 409               	.LM59:
+ 410               	/* #APP */
+ 411               	 ;  310 "main.c" 1
+ 412 01b4 7894      		sei
+ 413               	 ;  0 "" 2
+ 414               	.LM60:
+ 415               	/* #NOAPP */
+ 416 01b6 00E0      		ldi r16,lo8(buf_time)
+ 417 01b8 10E0      		ldi r17,hi8(buf_time)
+ 418 01ba 80E0      		ldi r24,lo8(current_ds_Time)
+ 419 01bc 90E0      		ldi r25,hi8(current_ds_Time)
+ 420 01be B801      		movw r22,r16
+ 421 01c0 00D0      		rcall time2str
+ 422               	.LM61:
+ 423 01c2 8091 0000 		lds r24,buf_time+6
+ 424 01c6 8093 0000 		sts seconds_hi,r24
+ 425               	.LM62:
+ 426 01ca 8091 0000 		lds r24,buf_time+7
+ 427 01ce 8093 0000 		sts seconds_lo,r24
+ 428               	.LM63:
+ 429 01d2 80E0      		ldi r24,lo8(0)
+ 430 01d4 60E0      		ldi r22,lo8(0)
+ 431 01d6 00D0      		rcall LCD_gotoXY
+ 432               	.LM64:
+ 433 01d8 C801      		movw r24,r16
+ 434 01da 00D0      		rcall LCD_putstring
+ 435               	.LM65:
+ 436 01dc 80E0      		ldi r24,lo8(0)
+ 437 01de 61E0      		ldi r22,lo8(1)
+ 438 01e0 00D0      		rcall LCD_gotoXY
+ 439               	.LM66:
+ 440 01e2 C801      		movw r24,r16
+ 441 01e4 0C96      		adiw r24,12
+ 442 01e6 00D0      		rcall LCD_putstring
+ 443               	/* epilogue start */
+ 444               	.LM67:
+ 445 01e8 1F91      		pop r17
+ 446 01ea 0F91      		pop r16
+ 447 01ec 0895      		ret
+ 448               	.LFE10:
+ 450               	.global	__vector_5
+ 452               	__vector_5:
+ 453               	.LFB8:
+ 454               	.LM68:
+ 455 01ee 1F92      		push __zero_reg__
+ 456 01f0 0F92      		push r0
+ 457 01f2 0FB6      		in r0,__SREG__
+ 458 01f4 0F92      		push r0
+ 459 01f6 1124      		clr __zero_reg__
+ 460 01f8 2F93      		push r18
+ 461 01fa 3F93      		push r19
+ 462 01fc 4F93      		push r20
+ 463 01fe 5F93      		push r21
+ 464 0200 6F93      		push r22
+ 465 0202 7F93      		push r23
+ 466 0204 8F93      		push r24
+ 467 0206 9F93      		push r25
+ 468 0208 AF93      		push r26
+ 469 020a BF93      		push r27
+ 470 020c EF93      		push r30
+ 471 020e FF93      		push r31
+ 472               	/* prologue: Signal */
+ 473               	/* frame size = 0 */
+ 474               	.LM69:
+ 475 0210 88EF      		ldi r24,lo8(1016)
+ 476 0212 93E0      		ldi r25,hi8(1016)
+ 477 0214 9093 0000 		sts (confmode_off)+1,r25
+ 478 0218 8093 0000 		sts confmode_off,r24
+ 479               	.LM70:
+ 480 021c 8091 0000 		lds r24,button_PIN2_counter
+ 481 0220 8823      		tst r24
+ 482 0222 01F4      		brne .L45
+ 483 0224 4A99      		sbic 41-32,2
+ 484 0226 00C0      		rjmp .L45
+ 485               	.LM71:
+ 486 0228 8FE7      		ldi r24,lo8(127)
+ 487 022a 8093 0000 		sts button_PIN2_counter,r24
+ 488               	.L45:
+ 489               	.LM72:
+ 490 022e 8091 0000 		lds r24,sound_of_alarm
+ 491 0232 8823      		tst r24
+ 492 0234 01F0      		breq .L46
+ 493 0236 8091 0000 		lds r24,timeout_alarm
+ 494 023a 9091 0000 		lds r25,(timeout_alarm)+1
+ 495 023e 892B      		or r24,r25
+ 496 0240 01F0      		breq .L46
+ 497 0242 499B      		sbis 41-32,1
+ 498               	.LM73:
+ 499 0244 00D0      		rcall AlarmOff
+ 500               	.L46:
+ 501               	.LM74:
+ 502 0246 8091 0000 		lds r24,menu_conf_mode
+ 503 024a 8823      		tst r24
+ 504 024c 01F0      		breq .L56
+ 505               	.LM75:
+ 506 024e 4999      		sbic 41-32,1
+ 507 0250 00C0      		rjmp .L48
+ 508               	.LM76:
+ 509 0252 8091 0000 		lds r24,menu_item
+ 510 0256 91E0      		ldi r25,lo8(1)
+ 511 0258 8927      		eor r24,r25
+ 512 025a 8093 0000 		sts menu_item,r24
+ 513               	.LM77:
+ 514 025e 6091 0000 		lds r22,menu_item
+ 515 0262 80E0      		ldi r24,lo8(0)
+ 516 0264 00D0      		rcall LCD_gotoXY
+ 517               	.LM78:
+ 518 0266 1092 0000 		sts conf_mode,__zero_reg__
+ 519               	.L48:
+ 520               	.LM79:
+ 521 026a 4A99      		sbic 41-32,2
+ 522 026c 00C0      		rjmp .L49
+ 523               	.LM80:
+ 524 026e 8091 0000 		lds r24,conf_mode
+ 525 0272 8630      		cpi r24,lo8(6)
+ 526 0274 00F0      		brlo .L50
+ 527 0276 80E0      		ldi r24,lo8(0)
+ 528 0278 00C0      		rjmp .L51
+ 529               	.L50:
+ 530 027a 8091 0000 		lds r24,conf_mode
+ 531 027e 8F5F      		subi r24,lo8(-(1))
+ 532               	.L51:
+ 533 0280 8093 0000 		sts conf_mode,r24
+ 534               	.LM81:
+ 535 0284 8091 0000 		lds r24,menu_item
+ 536 0288 8823      		tst r24
+ 537 028a 01F4      		brne .L52
+ 538               	.LM82:
+ 539 028c 00D0      		rcall DisplayTime
+ 540 028e 00C0      		rjmp .L53
+ 541               	.L52:
+ 542               	.LM83:
+ 543 0290 00D0      		rcall DisplayAlarmTime
+ 544               	.L53:
+ 545               	.LM84:
+ 546 0292 00D0      		rcall SetCursor
+ 547               	.L49:
+ 548               	.LM85:
+ 549 0294 4899      		sbic 41-32,0
+ 550 0296 00C0      		rjmp .L56
+ 551               	.LM86:
+ 552 0298 8091 0000 		lds r24,menu_item
+ 553 029c 8823      		tst r24
+ 554 029e 01F4      		brne .L54
+ 555               	.LM87:
+ 556 02a0 00D0      		rcall SetTime
+ 557 02a2 00C0      		rjmp .L55
+ 558               	.L54:
+ 559               	.LM88:
+ 560 02a4 00D0      		rcall SetAlarmTime
+ 561               	.L55:
+ 562               	.LM89:
+ 563 02a6 00D0      		rcall SetCursor
+ 564               	.L56:
+ 565               	/* epilogue start */
+ 566               	.LM90:
+ 567 02a8 FF91      		pop r31
+ 568 02aa EF91      		pop r30
+ 569 02ac BF91      		pop r27
+ 570 02ae AF91      		pop r26
+ 571 02b0 9F91      		pop r25
+ 572 02b2 8F91      		pop r24
+ 573 02b4 7F91      		pop r23
+ 574 02b6 6F91      		pop r22
+ 575 02b8 5F91      		pop r21
+ 576 02ba 4F91      		pop r20
+ 577 02bc 3F91      		pop r19
+ 578 02be 2F91      		pop r18
+ 579 02c0 0F90      		pop r0
+ 580 02c2 0FBE      		out __SREG__,r0
+ 581 02c4 0F90      		pop r0
+ 582 02c6 1F90      		pop __zero_reg__
+ 583 02c8 1895      		reti
+ 584               	.LFE8:
+ 586               	.global	main
+ 588               	main:
+ 589               	.LFB9:
+ 590               	.LM91:
+ 591               	/* prologue: naked */
+ 592               	/* frame size = 0 */
+ 593               	.LM92:
+ 594               	/* #APP */
+ 595               	 ;  264 "main.c" 1
+ 596 02ca A895      		wdr
+ 597               	 ;  0 "" 2
+ 598               	.LM93:
+ 599               	/* #NOAPP */
+ 600 02cc 28E2      		ldi r18,lo8(40)
+ 601 02ce 88E1      		ldi r24,lo8(24)
+ 602 02d0 90E0      		ldi r25,hi8(24)
+ 603               	/* #APP */
+ 604               	 ;  265 "main.c" 1
+ 605 02d2 0FB6      		in __tmp_reg__,__SREG__
+ 606 02d4 F894      		cli
+ 607 02d6 A895      		wdr
+ 608 02d8 8093 6000 		sts 96,r24
+ 609 02dc 0FBE      		out __SREG__,__tmp_reg__
+ 610 02de 2093 6000 		sts 96,r18
+ 611               		
+ 612               	 ;  0 "" 2
+ 613               	.LM94:
+ 614               	/* #NOAPP */
+ 615 02e2 00D0      		rcall LCD_init
+ 616               	.LM95:
+ 617 02e4 00D0      		rcall init_DS
+ 618               	.LM96:
+ 619 02e6 8FE0      		ldi r24,lo8(15)
+ 620 02e8 60E0      		ldi r22,lo8(0)
+ 621 02ea 00D0      		rcall write_DS
+ 622               	.LM97:
+ 623 02ec 88E0      		ldi r24,lo8(8)
+ 624 02ee 62E0      		ldi r22,lo8(2)
+ 625 02f0 00D0      		rcall write_DS
+ 626               	.LM98:
+ 627 02f2 89E0      		ldi r24,lo8(9)
+ 628 02f4 60E0      		ldi r22,lo8(0)
+ 629 02f6 00D0      		rcall write_DS
+ 630               	.LM99:
+ 631 02f8 80E0      		ldi r24,lo8(0)
+ 632 02fa 65E5      		ldi r22,lo8(85)
+ 633 02fc 00D0      		rcall write_DS
+ 634               	.LM100:
+ 635 02fe 81E0      		ldi r24,lo8(1)
+ 636 0300 61E0      		ldi r22,lo8(1)
+ 637 0302 00D0      		rcall write_DS
+ 638               	.LM101:
+ 639 0304 82E0      		ldi r24,lo8(2)
+ 640 0306 60E0      		ldi r22,lo8(0)
+ 641 0308 00D0      		rcall write_DS
+ 642               	.L64:
+ 643               	.LM102:
+ 644               	/* #APP */
+ 645               	 ;  281 "main.c" 1
+ 646 030a A895      		wdr
+ 647               	 ;  0 "" 2
+ 648               	.LM103:
+ 649               	/* #NOAPP */
+ 650 030c 8091 0000 		lds r24,update_flag
+ 651 0310 8823      		tst r24
+ 652 0312 01F0      		breq .L58
+ 653               	.LM104:
+ 654 0314 8FE0      		ldi r24,lo8(15)
+ 655 0316 00D0      		rcall read_DS
+ 656 0318 80FD      		sbrc r24,0
+ 657               	.LM105:
+ 658 031a 00D0      		rcall AlarmCheck
+ 659               	.L59:
+ 660               	.LM106:
+ 661 031c 00D0      		rcall DisplayTime
+ 662               	.LM107:
+ 663 031e 1092 0000 		sts update_flag,__zero_reg__
+ 664               	.LM108:
+ 665 0322 00D0      		rcall SetCursor
+ 666               	.L58:
+ 667               	.LM109:
+ 668 0324 8091 0000 		lds r24,update_alarm_flag
+ 669 0328 8823      		tst r24
+ 670 032a 01F0      		breq .L64
+ 671               	.LM110:
+ 672 032c 00D0      		rcall DisplayAlarmTime
+ 673               	.LM111:
+ 674 032e 1092 0000 		sts update_alarm_flag,__zero_reg__
+ 675               	.LM112:
+ 676 0332 00D0      		rcall SetCursor
+ 677 0334 00C0      		rjmp .L64
+ 678               	.LFE9:
+ 680               	.global	__vector_2
+ 682               	__vector_2:
+ 683               	.LFB7:
+ 684               	.LM113:
+ 685 0336 1F92      		push __zero_reg__
+ 686 0338 0F92      		push r0
+ 687 033a 0FB6      		in r0,__SREG__
+ 688 033c 0F92      		push r0
+ 689 033e 1124      		clr __zero_reg__
+ 690 0340 2F93      		push r18
+ 691 0342 3F93      		push r19
+ 692 0344 4F93      		push r20
+ 693 0346 5F93      		push r21
+ 694 0348 6F93      		push r22
+ 695 034a 7F93      		push r23
+ 696 034c 8F93      		push r24
+ 697 034e 9F93      		push r25
+ 698 0350 AF93      		push r26
+ 699 0352 BF93      		push r27
+ 700 0354 EF93      		push r30
+ 701 0356 FF93      		push r31
+ 702               	/* prologue: Signal */
+ 703               	/* frame size = 0 */
+ 704               	.LM114:
+ 705 0358 8091 0000 		lds r24,clock_ticking
+ 706 035c 8823      		tst r24
+ 707 035e 01F4      		brne .L68
+ 708               	.LM115:
+ 709 0360 8091 0000 		lds r24,seconds_lo
+ 710 0364 8F5F      		subi r24,lo8(-(1))
+ 711 0366 8093 0000 		sts seconds_lo,r24
+ 712               	.LM116:
+ 713 036a 8091 0000 		lds r24,seconds_lo
+ 714 036e 8A33      		cpi r24,lo8(58)
+ 715 0370 00F0      		brlo .L67
+ 716               	.LM117:
+ 717 0372 90E3      		ldi r25,lo8(48)
+ 718 0374 9093 0000 		sts seconds_lo,r25
+ 719               	.LM118:
+ 720 0378 8091 0000 		lds r24,seconds_hi
+ 721 037c 8F5F      		subi r24,lo8(-(1))
+ 722 037e 8093 0000 		sts seconds_hi,r24
+ 723               	.LM119:
+ 724 0382 8091 0000 		lds r24,seconds_hi
+ 725 0386 8633      		cpi r24,lo8(54)
+ 726 0388 00F0      		brlo .L67
+ 727               	.LM120:
+ 728 038a 9093 0000 		sts seconds_lo,r25
+ 729               	.LM121:
+ 730 038e 9093 0000 		sts seconds_hi,r25
+ 731               	.LM122:
+ 732 0392 81E0      		ldi r24,lo8(1)
+ 733 0394 8093 0000 		sts update_flag,r24
+ 734               	.L67:
+ 735               	.LM123:
+ 736 0398 86E0      		ldi r24,lo8(6)
+ 737 039a 60E0      		ldi r22,lo8(0)
+ 738 039c 00D0      		rcall LCD_gotoXY
+ 739               	.LM124:
+ 740 039e 8091 0000 		lds r24,seconds_hi
+ 741 03a2 00D0      		rcall LCD_send_data
+ 742               	.LM125:
+ 743 03a4 8091 0000 		lds r24,seconds_lo
+ 744 03a8 00D0      		rcall LCD_send_data
+ 745               	.L68:
+ 746               	/* epilogue start */
+ 747               	.LM126:
+ 748 03aa FF91      		pop r31
+ 749 03ac EF91      		pop r30
+ 750 03ae BF91      		pop r27
+ 751 03b0 AF91      		pop r26
+ 752 03b2 9F91      		pop r25
+ 753 03b4 8F91      		pop r24
+ 754 03b6 7F91      		pop r23
+ 755 03b8 6F91      		pop r22
+ 756 03ba 5F91      		pop r21
+ 757 03bc 4F91      		pop r20
+ 758 03be 3F91      		pop r19
+ 759 03c0 2F91      		pop r18
+ 760 03c2 0F90      		pop r0
+ 761 03c4 0FBE      		out __SREG__,r0
+ 762 03c6 0F90      		pop r0
+ 763 03c8 1F90      		pop __zero_reg__
+ 764 03ca 1895      		reti
+ 765               	.LFE7:
+ 767               	.global	__vector_16
+ 769               	__vector_16:
+ 770               	.LFB6:
+ 771               	.LM127:
+ 772 03cc 1F92      		push __zero_reg__
+ 773 03ce 0F92      		push r0
+ 774 03d0 0FB6      		in r0,__SREG__
+ 775 03d2 0F92      		push r0
+ 776 03d4 1124      		clr __zero_reg__
+ 777 03d6 2F93      		push r18
+ 778 03d8 3F93      		push r19
+ 779 03da 4F93      		push r20
+ 780 03dc 5F93      		push r21
+ 781 03de 6F93      		push r22
+ 782 03e0 7F93      		push r23
+ 783 03e2 8F93      		push r24
+ 784 03e4 9F93      		push r25
+ 785 03e6 AF93      		push r26
+ 786 03e8 BF93      		push r27
+ 787 03ea EF93      		push r30
+ 788 03ec FF93      		push r31
+ 789               	/* prologue: Signal */
+ 790               	/* frame size = 0 */
+ 791               	.LM128:
+ 792 03ee 8091 0000 		lds r24,clock_ticking
+ 793 03f2 8823      		tst r24
+ 794 03f4 01F4      		brne .L70
+ 795               	.LM129:
+ 796 03f6 8091 0000 		lds r24,sound_of_alarm
+ 797 03fa 8823      		tst r24
+ 798 03fc 01F0      		breq .L71
+ 799 03fe 8091 0000 		lds r24,timeout_alarm
+ 800 0402 9091 0000 		lds r25,(timeout_alarm)+1
+ 801 0406 892B      		or r24,r25
+ 802 0408 01F0      		breq .L71
+ 803               	.LBB29:
+ 804               	.LBB30:
+ 805               	.LM130:
+ 806 040a 4B9B      		sbis 41-32,3
+ 807 040c 00C0      		rjmp .L77
+ 808               	.LM131:
+ 809 040e 409A      		sbi 40-32,0
+ 810               	.LM132:
+ 811 0410 8091 0000 		lds r24,timeout_alarm
+ 812 0414 9091 0000 		lds r25,(timeout_alarm)+1
+ 813 0418 0197      		sbiw r24,1
+ 814 041a 9093 0000 		sts (timeout_alarm)+1,r25
+ 815 041e 8093 0000 		sts timeout_alarm,r24
+ 816 0422 00C0      		rjmp .L70
+ 817               	.L71:
+ 818               	.LBE30:
+ 819               	.LBE29:
+ 820               	.LM133:
+ 821 0424 8FE0      		ldi r24,lo8(15)
+ 822 0426 60E0      		ldi r22,lo8(0)
+ 823 0428 00D0      		rcall write_DS
+ 824               	.L77:
+ 825               	.LM134:
+ 826 042a 4098      		cbi 40-32,0
+ 827               	.L70:
+ 828               	.LM135:
+ 829 042c 8091 0000 		lds r24,confmode_off
+ 830 0430 9091 0000 		lds r25,(confmode_off)+1
+ 831 0434 892B      		or r24,r25
+ 832 0436 01F0      		breq .L73
+ 833               	.LM136:
+ 834 0438 8091 0000 		lds r24,confmode_off
+ 835 043c 9091 0000 		lds r25,(confmode_off)+1
+ 836 0440 0197      		sbiw r24,1
+ 837 0442 9093 0000 		sts (confmode_off)+1,r25
+ 838 0446 8093 0000 		sts confmode_off,r24
+ 839               	.LM137:
+ 840 044a 8091 0000 		lds r24,confmode_off
+ 841 044e 9091 0000 		lds r25,(confmode_off)+1
+ 842 0452 892B      		or r24,r25
+ 843 0454 01F4      		brne .L73
+ 844               	.LM138:
+ 845 0456 1092 0000 		sts clock_ticking,__zero_reg__
+ 846               	.LM139:
+ 847 045a 8091 0000 		lds r24,clock_ticking
+ 848 045e 8823      		tst r24
+ 849 0460 01F4      		brne .L73
+ 850               	.LM140:
+ 851 0462 00D0      		rcall DisplayTime
+ 852               	.LM141:
+ 853 0464 8CE0      		ldi r24,lo8(12)
+ 854 0466 00D0      		rcall LCD_send_cmd
+ 855               	.L73:
+ 856               	.LM142:
+ 857 0468 8091 0000 		lds r24,button_PIN2_counter
+ 858 046c 8823      		tst r24
+ 859 046e 01F0      		breq .L76
+ 860               	.LM143:
+ 861 0470 8091 0000 		lds r24,button_PIN2_counter
+ 862 0474 8150      		subi r24,lo8(-(-1))
+ 863 0476 8093 0000 		sts button_PIN2_counter,r24
+ 864               	.LM144:
+ 865 047a 8091 0000 		lds r24,button_PIN2_counter
+ 866 047e 8823      		tst r24
+ 867 0480 01F4      		brne .L76
+ 868 0482 4A99      		sbic 41-32,2
+ 869 0484 00C0      		rjmp .L76
+ 870               	.LM145:
+ 871 0486 81E0      		ldi r24,lo8(1)
+ 872 0488 8093 0000 		sts clock_ticking,r24
+ 873               	.LM146:
+ 874 048c 9091 0000 		lds r25,menu_conf_mode
+ 875 0490 9827      		eor r25,r24
+ 876 0492 9093 0000 		sts menu_conf_mode,r25
+ 877               	.LM147:
+ 878 0496 8091 0000 		lds r24,menu_conf_mode
+ 879 049a 8823      		tst r24
+ 880 049c 01F0      		breq .L75
+ 881               	.LM148:
+ 882 049e 00D0      		rcall DisplayMenu
+ 883               	.LM149:
+ 884 04a0 8DE0      		ldi r24,lo8(13)
+ 885 04a2 00D0      		rcall LCD_send_cmd
+ 886               	.LM150:
+ 887 04a4 80E0      		ldi r24,lo8(0)
+ 888 04a6 60E0      		ldi r22,lo8(0)
+ 889 04a8 00D0      		rcall LCD_gotoXY
+ 890 04aa 00C0      		rjmp .L76
+ 891               	.L75:
+ 892               	.LM151:
+ 893 04ac 00D0      		rcall DisplayTime
+ 894               	.LM152:
+ 895 04ae 8CE0      		ldi r24,lo8(12)
+ 896 04b0 00D0      		rcall LCD_send_cmd
+ 897               	.LM153:
+ 898 04b2 1092 0000 		sts clock_ticking,__zero_reg__
+ 899               	.LM154:
+ 900 04b6 1092 0000 		sts menu_item,__zero_reg__
+ 901               	.LM155:
+ 902 04ba 1092 0000 		sts conf_mode,__zero_reg__
+ 903               	.L76:
+ 904               	/* epilogue start */
+ 905               	.LM156:
+ 906 04be FF91      		pop r31
+ 907 04c0 EF91      		pop r30
+ 908 04c2 BF91      		pop r27
+ 909 04c4 AF91      		pop r26
+ 910 04c6 9F91      		pop r25
+ 911 04c8 8F91      		pop r24
+ 912 04ca 7F91      		pop r23
+ 913 04cc 6F91      		pop r22
+ 914 04ce 5F91      		pop r21
+ 915 04d0 4F91      		pop r20
+ 916 04d2 3F91      		pop r19
+ 917 04d4 2F91      		pop r18
+ 918 04d6 0F90      		pop r0
+ 919 04d8 0FBE      		out __SREG__,r0
+ 920 04da 0F90      		pop r0
+ 921 04dc 1F90      		pop __zero_reg__
+ 922 04de 1895      		reti
+ 923               	.LFE6:
+ 925               	.global	max_value
+ 926               		.data
+ 929               	max_value:
+ 930 0000 00        		.byte	0
+ 931 0001 23        		.byte	35
+ 932 0002 59        		.byte	89
+ 933 0003 00        		.byte	0
+ 934 0004 31        		.byte	49
+ 935 0005 12        		.byte	18
+ 936 0006 40        		.byte	64
+ 937               	.global	min_value
+ 940               	min_value:
+ 941 0007 00        		.byte	0
+ 942 0008 00        		.byte	0
+ 943 0009 01        		.byte	1
+ 944 000a 00        		.byte	0
+ 945 000b 01        		.byte	1
+ 946 000c 01        		.byte	1
+ 947 000d 16        		.byte	22
+ 948               	.global	buf_time
+ 951               	buf_time:
+ 952 000e 30        		.byte	48
+ 953 000f 30        		.byte	48
+ 954 0010 3A        		.byte	58
+ 955 0011 30        		.byte	48
+ 956 0012 30        		.byte	48
+ 957 0013 3A        		.byte	58
+ 958 0014 30        		.byte	48
+ 959 0015 30        		.byte	48
+ 960 0016 00        		.byte	0
+ 961 0017 30        		.byte	48
+ 962 0018 30        		.byte	48
+ 963 0019 00        		.byte	0
+ 964 001a 30        		.byte	48
+ 965 001b 30        		.byte	48
+ 966 001c 2F        		.byte	47
+ 967 001d 30        		.byte	48
+ 968 001e 30        		.byte	48
+ 969 001f 2F        		.byte	47
+ 970 0020 30        		.byte	48
+ 971 0021 30        		.byte	48
+ 972 0022 00        		.byte	0
+ 973               	.global	buf_alarm
+ 976               	buf_alarm:
+ 977 0023 30        		.byte	48
+ 978 0024 30        		.byte	48
+ 979 0025 3A        		.byte	58
+ 980 0026 30        		.byte	48
+ 981 0027 30        		.byte	48
+ 982 0028 3A        		.byte	58
+ 983 0029 30        		.byte	48
+ 984 002a 30        		.byte	48
+ 985 002b 00        		.byte	0
+ 986 002c 30        		.byte	48
+ 987 002d 30        		.byte	48
+ 988 002e 00        		.byte	0
+ 989 002f 30        		.byte	48
+ 990 0030 30        		.byte	48
+ 991 0031 2F        		.byte	47
+ 992 0032 30        		.byte	48
+ 993 0033 30        		.byte	48
+ 994 0034 2F        		.byte	47
+ 995 0035 30        		.byte	48
+ 996 0036 30        		.byte	48
+ 997 0037 00        		.byte	0
+ 998               	.global	buf_menu
+ 1001               	buf_menu:
+ 1002 0038 31        		.byte	49
+ 1003 0039 29        		.byte	41
+ 1004 003a 54        		.byte	84
+ 1005 003b 69        		.byte	105
+ 1006 003c 6D        		.byte	109
+ 1007 003d 65        		.byte	101
+ 1008 003e 20        		.byte	32
+ 1009 003f 20        		.byte	32
+ 1010 0040 00        		.byte	0
+ 1011 0041 30        		.byte	48
+ 1012 0042 30        		.byte	48
+ 1013 0043 00        		.byte	0
+ 1014 0044 32        		.byte	50
+ 1015 0045 29        		.byte	41
+ 1016 0046 41        		.byte	65
+ 1017 0047 6C        		.byte	108
+ 1018 0048 61        		.byte	97
+ 1019 0049 72        		.byte	114
+ 1020 004a 6D        		.byte	109
+ 1021 004b 20        		.byte	32
+ 1022 004c 00        		.byte	0
+ 1023               	.global	update_flag
+ 1026               	update_flag:
+ 1027 004d 01        		.byte	1
+ 1028               	.global	update_alarm_flag
+ 1029               	.global	update_alarm_flag
+ 1030               		.section .bss
+ 1033               	update_alarm_flag:
+ 1034 0000 00        		.skip 1,0
+ 1035               	.global	sound_of_alarm
+ 1036               	.global	sound_of_alarm
+ 1039               	sound_of_alarm:
+ 1040 0001 00        		.skip 1,0
+ 1041               	.global	conf_mode
+ 1042               	.global	conf_mode
+ 1045               	conf_mode:
+ 1046 0002 00        		.skip 1,0
+ 1047               	.global	clock_ticking
+ 1048               	.global	clock_ticking
+ 1051               	clock_ticking:
+ 1052 0003 00        		.skip 1,0
+ 1053               	.global	menu_conf_mode
+ 1054               	.global	menu_conf_mode
+ 1057               	menu_conf_mode:
+ 1058 0004 00        		.skip 1,0
+ 1059               	.global	button_PIN2_counter
+ 1060               	.global	button_PIN2_counter
+ 1063               	button_PIN2_counter:
+ 1064 0005 00        		.skip 1,0
+ 1065               	.global	button_PIN1_counter
+ 1066               	.global	button_PIN1_counter
+ 1069               	button_PIN1_counter:
+ 1070 0006 00        		.skip 1,0
+ 1071               	.global	confmode_off
+ 1072               	.global	confmode_off
+ 1075               	confmode_off:
+ 1076 0007 0000      		.skip 2,0
+ 1077               	.global	timeout_alarm
+ 1078               	.global	timeout_alarm
+ 1081               	timeout_alarm:
+ 1082 0009 0000      		.skip 2,0
+ 1083               	.global	seconds_hi
+ 1084               		.data
+ 1087               	seconds_hi:
+ 1088 004e 30        		.byte	48
+ 1089               	.global	seconds_lo
+ 1092               	seconds_lo:
+ 1093 004f 30        		.byte	48
+ 1094               	.global	menu_item
+ 1095               	.global	menu_item
+ 1096               		.section .bss
+ 1099               	menu_item:
+ 1100 000b 00        		.skip 1,0
+ 1101               	.global	X
+ 1102               		.section	.progmem.data,"a",@progbits
+ 1105               	X:
+ 1106 0000 08        		.byte	8
+ 1107 0001 01        		.byte	1
+ 1108 0002 04        		.byte	4
+ 1109 0003 07        		.byte	7
+ 1110 0004 01        		.byte	1
+ 1111 0005 04        		.byte	4
+ 1112 0006 07        		.byte	7
+ 1113               		.comm current_ds_Time,7,1
+ 1114               		.comm alarm_ds_Time,7,1
+ 1235               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:2      *ABS*:0000003f __SREG__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:3      *ABS*:0000003e __SP_H__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:4      *ABS*:0000003d __SP_L__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:5      *ABS*:00000034 __CCP__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:7      *ABS*:00000001 __zero_reg__
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:18     .text:00000000 AlarmCheck
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:1081   .bss:00000009 timeout_alarm
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:1039   .bss:00000001 sound_of_alarm
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:65     .text:00000026 AlarmOff
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:110    .text:00000044 Set
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:1045   .bss:00000002 conf_mode
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:929    .data:00000000 max_value
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:940    .data:00000007 min_value
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:1099   .bss:0000000b menu_item
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:1026   .data:0000004d update_flag
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:1033   .bss:00000000 update_alarm_flag
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:173    .text:0000009c SetTime
+                            *COM*:00000007 current_ds_Time
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:233    .text:000000e8 SetAlarmTime
+                            *COM*:00000007 alarm_ds_Time
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:271    .text:00000114 SetCursor
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:1105   .progmem.data:00000000 X
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:306    .text:00000132 DisplayAlarmTime
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:976    .data:00000023 buf_alarm
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:1087   .data:0000004e seconds_hi
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:1092   .data:0000004f seconds_lo
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:350    .text:0000016e DisplayMenu
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:1001   .data:00000038 buf_menu
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:392    .text:000001a8 DisplayTime
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:951    .data:0000000e buf_time
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:452    .text:000001ee __vector_5
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:1075   .bss:00000007 confmode_off
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:1063   .bss:00000005 button_PIN2_counter
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:1057   .bss:00000004 menu_conf_mode
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:588    .text:000002ca main
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:682    .text:00000336 __vector_2
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:1051   .bss:00000003 clock_ticking
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:769    .text:000003cc __vector_16
+C:\DOCUME~1\A7325~1.KUZ\LOCALS~1\Temp/ccz1WL6j.s:1069   .bss:00000006 button_PIN1_counter
+
+UNDEFINED SYMBOLS
+write_DS
+LCD_gotoXY
+time2str
+LCD_putstring
+ds_GetTime
+LCD_init
+init_DS
+read_DS
+LCD_send_data
+LCD_send_cmd
+__do_copy_data
+__do_clear_bss
