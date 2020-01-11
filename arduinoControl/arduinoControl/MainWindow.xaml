@@ -1,0 +1,30 @@
+﻿<Window x:Class="arduinoControl.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:arduinoControl"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Label Content="Подключение" HorizontalAlignment="Left" Margin="176,26,0,0" VerticalAlignment="Top" Height="47" Width="157"/>
+        <ComboBox HorizontalAlignment="Left" Margin="350,104,0,0" VerticalAlignment="Top" Width="126" Height="28" SelectionChanged="ComboBox_SelectionChanged" Name="cBSelectPorts"/>
+        <Label Content="COM Port" HorizontalAlignment="Left" Margin="345,76,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="2.023"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.459"/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Button Content="Обновить список COM портов" HorizontalAlignment="Left" Margin="27,104,0,0" VerticalAlignment="Top" Width="271" Height="28" Click="Button_Click" Name="btnUpdatePorts"/>
+        <Button Content="Подключить" HorizontalAlignment="Left" Margin="119,170,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1" Name="btnConnect"/>
+        <Button Content="Отключить" HorizontalAlignment="Left" Margin="386,170,0,0" VerticalAlignment="Top" Width="75" Name="btnDisconnect" Click="btnDisconnect_Click"/>
+        <Ellipse Name="state" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="35" Margin="273,170,0,0" Stroke="Black" VerticalAlignment="Top" Width="35" RenderTransformOrigin="0.454,0.164"/>
+        <Button Content="Вкл LED" HorizontalAlignment="Left" Margin="119,279,0,0" VerticalAlignment="Top" Width="75" Name="btnLedOn" Click="btnLedOn_Click"/>
+        <Button Content="Выкл LED" HorizontalAlignment="Left" Margin="386,279,0,0" VerticalAlignment="Top" Width="75" Name="btnLedOff" Click="btnLedOff_Click"/>
+
+    </Grid>
+</Window>
